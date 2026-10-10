@@ -46,6 +46,7 @@ def home(request):
 
     context = {
         'ouvidoria_image_url': ouvidoria_image_url,
+        'redes': redes,
         'redes_json': json.dumps(redes),
         'materiais': materiais,
         'servicos': servicos,
@@ -70,7 +71,7 @@ def legislacao(request):
 
 def atendimentos(request):
     redes = list(RedeProtecao.objects.values())
-    return render(request, "atendimentos.html", {"redes_json": json.dumps(redes)})
+    return render(request, "atendimentos.html", {"redes": redes, "redes_json": json.dumps(redes)})
 
 def ocorrencias(request):
     return render(request, "ocorrencias.html")
@@ -106,7 +107,7 @@ def modulo3(request):
 
 def modulo4(request):
     redes = list(RedeProtecao.objects.values())
-    return render(request, "modulo4_mapa_rede.html", {"redes_json": json.dumps(redes)})
+    return render(request, "modulo4_mapa_rede.html", {"redes": redes, "redes_json": json.dumps(redes)})
 
 def documentos(request):
     todas_legislacoes = PageContent.objects.filter(tema__slug='legislacao').order_by('id')

@@ -17,6 +17,8 @@ cert.crt
 # Ambientes e segredos
 .env
 *.env
+.secret_key
+*.key
 
 # Bancos de dados locais
 *.sqlite3

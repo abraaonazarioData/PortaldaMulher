@@ -28,7 +28,7 @@ class PageContent(models.Model):
         upload_to='pages/',
         blank=True,
         null=True,
-        validators=[FileExtensionValidator(allowed_extensions=['jpg','jpeg','png','svg','gif'])],
+        validators=[FileExtensionValidator(allowed_extensions=['jpg','jpeg','png','webp','gif'])],
     )
     youtube_video_url = models.URLField("URL do Vídeo do YouTube", blank=True)
 

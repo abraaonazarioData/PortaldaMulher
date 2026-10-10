@@ -12,24 +12,67 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import secrets
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Carregamento simplificado e seguro de variáveis de ambiente de arquivo .env local
+def _load_env_file(filepath):
+    if filepath.is_file():
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith('#') and '=' in line:
+                        k, v = line.split('=', 1)
+                        k = k.strip()
+                        v = v.strip().strip("'\"")
+                        if k not in os.environ:
+                            os.environ[k] = v
+        except Exception:
+            pass
+
+_load_env_file(BASE_DIR / '.env')
+_load_env_file(BASE_DIR.parent / '.env')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-o@2w13zj6e$6=e2btg15wf2b@s0tn73kh#5_hrx&k*x&(=23#8')
+# Chave secreta segura: Carregada do ambiente ou gerada de forma criptográfica localmente
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    _key_file = BASE_DIR / '.secret_key'
+    if _key_file.is_file():
+        SECRET_KEY = _key_file.read_text(encoding='utf-8').strip()
+    else:
+        SECRET_KEY = secrets.token_urlsafe(50)
+        try:
+            _key_file.write_text(SECRET_KEY, encoding='utf-8')
+        except Exception:
+            pass
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
+# Controle de modo DEBUG
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() in ('true', '1')
 
-ALLOWED_HOSTS = ['*'] if DEBUG else os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',')
+# Restrição de ALLOWED_HOSTS
+_env_hosts = os.environ.get('DJANGO_ALLOWED_HOSTS')
+if _env_hosts:
+    ALLOWED_HOSTS = [h.strip() for h in _env_hosts.split(',') if h.strip()]
+else:
+    ALLOWED_HOSTS = ['*'] if DEBUG else ['localhost', '127.0.0.1']
 
-# Configurações de Segurança para Produção
-PRODUCTION = os.environ.get('DJANGO_PRODUCTION', '') == 'True'
+# Cabeçalhos Globais de Defesa do Navegador
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+# Configurações de Segurança para Produção / HTTPS
+PRODUCTION = os.environ.get('DJANGO_PRODUCTION', '').lower() in ('true', '1')
 if PRODUCTION:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
@@ -37,6 +80,8 @@ if PRODUCTION:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Application definition
 

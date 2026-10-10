@@ -306,8 +306,9 @@
 {% block scripts %}
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+{{ redes|json_script:"redes-data" }}
 <script>
-    const redesData = {{ redes_json | safe }};
+    const redesData = JSON.parse(document.getElementById('redes-data').textContent);
 
     document.addEventListener('DOMContentLoaded', function() {
         const map = L.map('map', {

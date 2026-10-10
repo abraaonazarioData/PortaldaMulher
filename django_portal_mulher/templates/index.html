@@ -609,6 +609,7 @@
                 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
                     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
                 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+                {{ redes|json_script:"home-redes-data" }}
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -618,7 +619,7 @@
                             maxZoom: 18
                         }).addTo(map);
 
-                        var allLocations = {{ redes_json | safe }};
+                        var allLocations = JSON.parse(document.getElementById('home-redes-data').textContent);
                         var markerClusterGroup = null;
                         var currentMarkers = [];
                         var locationsListEl = document.getElementById('locationsList');
