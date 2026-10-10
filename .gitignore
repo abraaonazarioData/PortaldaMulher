@@ -13,3 +13,12 @@ local_cert.crt
 cert.key
 cert.crt
 .vscode/
+
+# Ambientes e segredos
+.env
+*.env
+
+# Bancos de dados locais
+*.sqlite3
+db.sqlite3
+*.db
