@@ -1,0 +1,515 @@
+{% extends "base.html" %} {% block title %}Documentos e Legislação | Portal Mato
+{% load static %}
+Grosso em Defesa das Mulheres{% endblock %} {% block head %}
+<style>
+  /* Estilos customizados premium para a página de Documentos */
+  .documents-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .doc-search-wrapper {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .doc-search-input {
+    width: 100%;
+    padding: 14px 20px 14px 48px;
+    border: 2px solid #e2e8f0;
+    border-radius: 30px;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .doc-search-input:focus {
+    border-color: var(--color-gov-blue);
+    box-shadow: 0 8px 25px rgba(0, 69, 135, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .doc-search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 1.1rem;
+    pointer-events: none;
+    transition: color 0.3s ease;
+  }
+
+  .doc-search-input:focus+.doc-search-icon {
+    color: var(--color-gov-blue);
+  }
+
+  /* Sessões de Documentos */
+  .doc-category-card {
+    background-color: var(--color-white);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    margin-bottom: 35px;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s ease;
+  }
+
+  .doc-category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  .doc-category-header {
+    background-color: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 20px 28px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .doc-category-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .doc-category-toggle-icon {
+    transition: transform 0.3s ease;
+    color: #94a3b8;
+  }
+
+  .doc-category-card.active .doc-category-toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  .doc-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .doc-category-header i {
+    color: var(--color-gov-blue);
+    font-size: 1.4rem;
+  }
+
+
+
+  .doc-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .doc-item:last-child {
+    border-bottom: none;
+  }
+
+  .doc-item:hover {
+    background-color: #f8fafc;
+  }
+
+  .doc-item-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .doc-item-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #fef2f2;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .doc-item:hover .doc-item-icon-box {
+    background-color: #ef4444;
+    color: var(--color-white);
+    transform: scale(1.08);
+  }
+
+  /* Cores alternativas para ícones externos (Ex: Sites externos em Azul) */
+  .doc-item-icon-box.external-link {
+    background-color: #eff6ff;
+    color: #3b82f6;
+  }
+
+  .doc-item:hover .doc-item-icon-box.external-link {
+    background-color: #3b82f6;
+    color: var(--color-white);
+  }
+
+  .doc-item-title {
+    display: block;
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+  }
+
+  .doc-item:hover .doc-item-title {
+    color: var(--color-gov-blue);
+  }
+
+  .doc-item-desc {
+    display: block;
+    font-size: 0.88rem;
+    color: #64748b;
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+
+  .doc-action-btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .doc-item:hover .doc-action-btn {
+    background-color: var(--color-gov-blue);
+    color: var(--color-white);
+    border-color: var(--color-gov-blue);
+    box-shadow: 0 4px 12px rgba(0, 69, 135, 0.2);
+  }
+
+  /* Placeholder e Estados vazios */
+  .doc-empty-state {
+    padding: 40px 28px;
+    text-align: center;
+    color: #64748b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .doc-empty-state i {
+    font-size: 2.2rem;
+    color: #cbd5e1;
+  }
+
+  .doc-empty-state span {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .doc-empty-state p {
+    font-size: 0.85rem;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* Animação suave para filtro */
+  .hidden-doc {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .documents-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .doc-search-wrapper {
+      max-width: 100%;
+    }
+
+    .doc-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .doc-action-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  /* UX Improvements */
+  .doc-category-card {
+    transition: all 0.3s ease;
+  }
+  
+  .doc-list-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  
+  .doc-category-card.active .doc-list-wrapper {
+    grid-template-rows: 1fr;
+  }
+  
+  .doc-list-inner {
+    overflow: hidden;
+  }
+  
+  .doc-category-header:hover {
+    background-color: #f1f5f9;
+  }
+
+  .doc-search-input {
+    height: 52px; /* Ensure both inputs have exact same height */
+    box-sizing: border-box;
+  }
+  
+  select.doc-search-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+  }
+
+</style>
+{% endblock %} {% block content %}
+<main class="main-content">
+<div class="container">
+<!-- Header da Seção de Documentos -->
+<div class="documents-header">
+<h2 class="section-title" style="margin-bottom: 0">
+<div class="title-icon-svg">
+<svg fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="50" fill="currentColor" r="45"></circle>
+<path d="M35 30H55L65 40V75H35V30Z" fill="#00D2D3"></path>
+<path d="M55 30V40H65" stroke="white" stroke-width="2"></path>
+</svg>
+</div>
+        Legislação
+      </h2>
+<!-- Filtros e Busca Avançada -->
+<div style="display: flex; gap: 15px; flex-wrap: wrap; flex: 1; justify-content: flex-end; align-items: flex-start;">
+    <div style="position: relative; max-width: 250px; width: 100%;">
+        <select id="categoryFilter" class="doc-search-input" style="padding-left: 20px; cursor: pointer; appearance: none;">
+            <option value="all">Todas as Categorias</option>
+            <option value="cat-leis-federais">Leis Federais</option>
+            <option value="cat-leis-estaduais">Leis Estaduais</option>
+            <option value="cat-decretos-normativas">Decretos e Normativas</option>
+        </select>
+        
+    </div>
+    
+    <div class="doc-search-wrapper" style="flex: 1; max-width: 350px;">
+        <input class="doc-search-input" id="docSearch" placeholder="Buscar documento..." type="text"/>
+        <i class="fa-solid fa-magnifying-glass doc-search-icon"></i>
+    </div>
+</div>
+</div>
+<p class="section-description" style="margin-bottom: 40px">
+      Consulte leis federais, leis estaduais, decretos e normativas voltados para a defesa, proteção e garantia dos direitos das mulheres em Mato Grosso.
+    </p>
+<!-- CATEGORIA: LEIS FEDERAIS -->
+<div class="doc-category-card active" id="cat-leis-federais">
+<div class="doc-category-header" onclick="toggleCategory('cat-leis-federais')">
+    <div class="doc-category-header-left">
+        <i class="fa-solid fa-scale-balanced"></i>
+        Leis Federais
+    </div>
+    <i class="fa-solid fa-chevron-down doc-category-toggle-icon"></i>
+</div>
+<div class="doc-list-wrapper"><div class="doc-list-inner"><div class="doc-list">
+    <div>
+        {% for item in leis_federais %}
+        <div style="padding: 20px 28px;" class="doc-item">
+            <div class="doc-item-content">
+                <div style="flex: 1;">
+                    <h4 style="color: #004587; margin-bottom: 10px;" class="doc-item-title">{{ item.title }}</h4>
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;" class="doc-item-desc">{{ item.text }}</p>
+                    {% if item.link_url %}
+                    <a href="{{ item.link_url }}" target="_blank" style="color: #e91e63; font-weight: 600; text-decoration: none;" class="doc-action-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Documento</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="doc-empty-state">
+            <i class="fa-regular fa-folder-open"></i>
+            <span>Nenhuma lei federal encontrada</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div></div></div>
+
+<!-- CATEGORIA: LEIS ESTADUAIS -->
+<div class="doc-category-card" id="cat-leis-estaduais">
+<div class="doc-category-header" onclick="toggleCategory('cat-leis-estaduais')">
+    <div class="doc-category-header-left">
+        <i class="fa-solid fa-scale-balanced"></i>
+        Leis Estaduais
+    </div>
+    <i class="fa-solid fa-chevron-down doc-category-toggle-icon"></i>
+</div>
+<div class="doc-list-wrapper"><div class="doc-list-inner"><div class="doc-list">
+    <div>
+        {% for item in leis_estaduais %}
+        <div style="padding: 20px 28px;" class="doc-item">
+            <div class="doc-item-content">
+                <div style="flex: 1;">
+                    <h4 style="color: #004587; margin-bottom: 10px;" class="doc-item-title">{{ item.title }}</h4>
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;" class="doc-item-desc">{{ item.text }}</p>
+                    {% if item.link_url %}
+                    <a href="{{ item.link_url }}" target="_blank" style="color: #e91e63; font-weight: 600; text-decoration: none;" class="doc-action-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Documento</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="doc-empty-state">
+            <i class="fa-regular fa-folder-open"></i>
+            <span>Nenhuma lei estadual encontrada</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div></div></div>
+
+<!-- CATEGORIA: DECRETOS E NORMATIVAS -->
+<div class="doc-category-card" id="cat-decretos-normativas">
+<div class="doc-category-header" onclick="toggleCategory('cat-decretos-normativas')">
+    <div class="doc-category-header-left">
+        <i class="fa-solid fa-gavel"></i>
+        Decretos e Normativas
+    </div>
+    <i class="fa-solid fa-chevron-down doc-category-toggle-icon"></i>
+</div>
+<div class="doc-list-wrapper"><div class="doc-list-inner"><div class="doc-list">
+    <div>
+        {% for item in decretos %}
+        <div style="padding: 20px 28px;" class="doc-item">
+            <div class="doc-item-content">
+                <div style="flex: 1;">
+                    <h4 style="color: #004587; margin-bottom: 10px;" class="doc-item-title">{{ item.title }}</h4>
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;" class="doc-item-desc">{{ item.text }}</p>
+                    {% if item.link_url %}
+                    <a href="{{ item.link_url }}" target="_blank" style="color: #e91e63; font-weight: 600; text-decoration: none;" class="doc-action-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Documento</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="doc-empty-state">
+            <i class="fa-regular fa-folder-open"></i>
+            <span>Nenhum decreto ou normativa encontrado</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div></div></div>
+
+
+
+</main>
+{% endblock %} {% block scripts %}
+<script>
+  function toggleCategory(categoryId) {
+      const card = document.getElementById(categoryId);
+      if(card) {
+          card.classList.toggle("active");
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("docSearch");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const docCategories = document.querySelectorAll(".doc-category-card");
+
+    function applyFilters() {
+      const query = searchInput.value
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+        
+      const selectedCategory = categoryFilter.value;
+
+      docCategories.forEach((category) => {
+        let categoryHasMatch = false;
+        
+        if (selectedCategory !== 'all' && category.id !== selectedCategory) {
+            category.style.display = 'none';
+            return;
+        } else {
+            category.style.display = 'block'; 
+        }
+
+        const items = category.querySelectorAll(".doc-item");
+        items.forEach((item) => {
+          const titleText = item
+            .querySelector(".doc-item-title")
+            .textContent.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+          const descText = item
+            .querySelector(".doc-item-desc")
+            .textContent.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
+          if (titleText.includes(query) || descText.includes(query)) {
+            item.classList.remove("hidden-doc");
+            categoryHasMatch = true;
+          } else {
+            item.classList.add("hidden-doc");
+          }
+        });
+
+        if (categoryHasMatch || query === "") {
+          category.classList.remove("hidden-doc");
+          if (query !== "") {
+              category.classList.add("active");
+          }
+        } else {
+          category.classList.add("hidden-doc");
+        }
+      });
+    }
+
+    if(searchInput) searchInput.addEventListener("input", applyFilters);
+    if(categoryFilter) categoryFilter.addEventListener("change", applyFilters);
+  });
+</script>
+{% endblock %}

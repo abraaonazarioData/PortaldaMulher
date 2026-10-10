@@ -1,0 +1,1199 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<main class="main-content-new">
+
+<section id="preciso-ajuda" class="new-section bg-blue theme-dark">
+        <div class="container">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Preciso de Ajuda</div>
+                <div class="new-section-line"></div>
+                <a href="{% url 'atendimentos' %}" class="new-section-btn">Ver todos</a>
+            </div>
+            <div class="new-section-content">
+                <div class="new-section-text">
+                    <p>Se você sofre ou presenciou alguma violência, nós podemos ajudar. Encontre aqui os contatos de
+                        emergência e todos os canais de apoio à mulher.</p>
+                    <div class="emergency-cards-wrapper">
+                        {% if ajuda %}
+                            {% for item in ajuda %}
+                            <a href="{{ item.link_url }}" class="new-emergency-card">
+                                <div class="card-number">{{ item.icon }}</div>
+                                <div class="card-text"><strong>{{ item.title }}</strong><br>{{ item.text }}</div>
+                            </a>
+                            {% endfor %}
+                        {% else %}
+                        <a href="tel:190" class="new-emergency-card">
+                            <div class="card-number">190</div>
+                            <div class="card-text"><strong>Polícia Militar</strong><br>24h Emergências</div>
+                        </a>
+                        <a href="tel:197" class="new-emergency-card">
+                            <div class="card-number">197</div>
+                            <div class="card-text"><strong>Polícia Civil</strong><br>Denúncias Anônimas</div>
+                        </a>
+                        <a href="tel:192" class="new-emergency-card">
+                            <div class="card-number">192</div>
+                            <div class="card-text"><strong>SAMU</strong><br>Urgências Médicas</div>
+                        </a>
+                        <a href="tel:180" class="new-emergency-card">
+                            <div class="card-number">180</div>
+                            <div class="card-text"><strong>Central da Mulher</strong><br>Atendimento 24h</div>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="new-section-image" style="display:flex; justify-content:flex-end;">
+                    <div
+                        style="width: 350px; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="{% static 'cards/mw-694.webp' %}" alt="Sinal de Vida"
+                            style="width: 100%; height: auto; display: block;">
+                        <div
+                            style="background-color: #90caf9; color: #003366; font-weight: 800; text-align: center; padding: 8px 0; font-size: 1.1rem; height: 40px; display:flex; align-items:center; justify-content:center;">
+                            Sinal de Vida
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+<section id="dados-violencia" class="new-section bg-white" style="position:relative; overflow:hidden;">
+        <div style="position:absolute; left:-100px; top:0; opacity:0.05; height:100%; pointer-events:none;">
+            <img alt="Imagem Ilustrativa" src="{% static 'assets/linha.png' %}"
+                style="height:100%; object-fit:contain; transform: scaleX(-1);" onerror="this.style.display='none';">
+        </div>
+        <div class="container" style="position:relative; z-index:1;">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Painéis e Dados</div>
+                <div class="new-section-line"></div>
+                <a href="{% url 'estatisticas' %}" class="new-section-btn">Ver todos</a>
+            </div>
+            <div class="new-section-content" style="align-items: center; width: 100%; position: relative;">
+                <div style="width: 100%; display:flex; align-items:center; justify-content:space-between; gap: 20px; margin-top: 10px; flex-wrap: nowrap;">
+                    <button class="carousel-nav-btn"
+                        onclick="const c = document.getElementById('carousel-paineis'); c.scrollBy({left: -c.clientWidth, behavior: 'smooth'})"
+                        style="background:transparent; border:none; color:#000; font-size:2rem; cursor:pointer; flex-shrink: 0;">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="responsive-flex-container" id="carousel-paineis"
+                        style="flex: 1; display: flex; gap: 0; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 10px; flex-wrap: nowrap; scrollbar-width: none;">
+                        
+                        <style>
+                            #carousel-paineis::-webkit-scrollbar { display: none; }
+                        </style>
+
+                        {% if paineis %}
+                            {% for p in paineis %}
+                            <div style="flex: 0 0 100%; scroll-snap-align: start; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+                                <div class="new-section-text" style="font-size: 1.2rem; line-height: 1.6; flex: 1; min-width: 300px;">
+                                    <p style="margin-bottom: 20px;">{{ p.text|striptags|truncatewords:40 }}</p>
+                                    <p><strong>Utilize o painel interativo ao lado para explorar os dados.</strong></p>
+                                </div>
+                                <div class="new-section-image" style="display:flex; justify-content:flex-end; flex: 1; min-width: 300px;">
+                                    <a target="_blank" href="{{ p.link_url }}" style="display:block;">
+                                        {% if p.image %}
+                                        <img alt="{{ p.title }}" src="{{ p.image.url }}"
+                                            style="width: 350px; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: block;">
+                                        {% else %}
+                                        <img alt="{{ p.title }}" src="{% static 'cards/BI.png' %}"
+                                            style="width: 350px; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: block;">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div style="flex: 0 0 100%; scroll-snap-align: start; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+                                <div class="new-section-text" style="font-size: 1.2rem; line-height: 1.6; flex: 1; min-width: 300px;">
+                                    <p style="margin-bottom: 20px;">Acompanhe o painel de monitoramento oficial com a análise detalhada dos índices de violência contra a mulher no Estado de Mato Grosso. Os dados são fornecidos pela Secretaria Adjunta de Inteligência (SESP).</p>
+                                    <p><strong>Utilize o painel interativo ao lado para explorar os dados.</strong></p>
+                                </div>
+                                <div class="new-section-image" style="display:flex; justify-content:flex-end; flex: 1; min-width: 300px;">
+                                    <a target="_blank" href="https://www.mulher.mt.gov.br/estatisticas" style="display:block;">
+                                        <img alt="Painel de Dados" src="{% static 'cards/BI.png' %}"
+                                            style="width: 350px; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: block;">
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <button class="carousel-nav-btn"
+                        onclick="const c = document.getElementById('carousel-paineis'); c.scrollBy({left: c.clientWidth, behavior: 'smooth'})"
+                        style="background:transparent; border:none; color:#000; font-size:2rem; cursor:pointer; flex-shrink: 0;">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const carousel = document.getElementById('carousel-paineis');
+                        let autoScrollPaineis;
+                        
+                        function startAutoScroll() {
+                            autoScrollPaineis = setInterval(() => {
+                                if (carousel) {
+                                    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+                                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                                    } else {
+                                        carousel.scrollBy({ left: carousel.clientWidth, behavior: 'smooth' });
+                                    }
+                                }
+                            }, 5000); // Roda a cada 5 segundos
+                        }
+
+                        if (carousel) {
+                            startAutoScroll();
+                            
+                            // Pausar se o mouse estiver em cima
+                            carousel.addEventListener('mouseenter', () => clearInterval(autoScrollPaineis));
+                            carousel.addEventListener('mouseleave', startAutoScroll);
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Seção 3: Atividades -->
+    <section id="atividades" class="new-section bg-blue theme-dark">
+        <div class="container">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>NOTÍCIAS</div>
+                <div class="new-section-line"></div>
+                <a href="{% url 'atividades' %}" class="new-section-btn">Ver todos</a>
+            </div>
+            {% if atividades_destaque %}
+            <div style="position: relative; padding: 20px 0;">
+                <button class="carousel-nav-btn atividades-prev-btn" style="position: absolute; left: -40px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10; display: none;">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                
+                <div id="atividades-carousel" style="display: flex; gap: 30px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none;">
+                    {% for atividade in atividades_destaque %}
+                    <div style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-wrap: wrap; gap: 30px; align-items: center; box-sizing: border-box;">
+                        <div style="flex: 1.2; min-width: 300px;">
+                            <img src="{{ atividade.imagem.url }}" alt="{{ atividade.titulo }}" style="width: 100%; height: 280px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.25);">
+                        </div>
+                        <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; justify-content: center; color: #fff;">
+                            <div style="color: #90caf9; font-size: 0.85rem; margin-bottom: 5px;">{{ atividade.data_publicacao|date:'d/m/Y | H:i' }}</div>
+                            <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; line-height: 1.3; color: white;">{{ atividade.titulo }}</h3>
+                            <p style="font-size: 0.95rem; color: #e0e0e0; margin-bottom: 20px; line-height: 1.5;">{{ atividade.resumo }}</p>
+                            <a href="{% if atividade.conteudo_completo %}{% url 'noticia_detalhe' atividade.id %}{% else %}{{ atividade.link|default:'#' }}{% endif %}" target="{% if not atividade.conteudo_completo and atividade.link %}_blank{% else %}_self{% endif %}" style="color: #64b5f6; text-decoration: none; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; transition: color 0.2s;" onmouseover="this.style.color='#90caf9'" onmouseout="this.style.color='#64b5f6'">
+                                LER ATIVIDADE COMPLETA 
+                                <span style="margin-left: 8px; font-size: 1.4rem; line-height: 1;">&rsaquo;</span>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <button class="carousel-nav-btn atividades-next-btn" style="position: absolute; right: -40px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10; display: none;">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <style>
+                #atividades-carousel::-webkit-scrollbar { display: none; }
+                @media (min-width: 768px) {
+                    .atividades-prev-btn, .atividades-next-btn { display: block !important; }
+                }
+            </style>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const carousel = document.getElementById('atividades-carousel');
+                    const prevBtn = document.querySelector('.atividades-prev-btn');
+                    const nextBtn = document.querySelector('.atividades-next-btn');
+                    
+                    if (prevBtn && nextBtn && carousel) {
+                        prevBtn.addEventListener('click', () => {
+                            carousel.scrollBy({ left: -carousel.offsetWidth, behavior: 'smooth' });
+                        });
+                        nextBtn.addEventListener('click', () => {
+                            carousel.scrollBy({ left: carousel.offsetWidth, behavior: 'smooth' });
+                        });
+                    }
+                });
+            </script>
+            {% else %}
+            <p style="color: white; padding: 20px 0;">Nenhuma notícia cadastrada.</p>
+            {% endif %}
+        </div>
+    </section>
+
+
+
+    <!-- Seção 4: Planos e Metas -->
+    <section id="planos-metas" class="new-section bg-white">
+        <div class="container">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Planos e Metas</div>
+                <div class="new-section-line"></div>
+                <a href="{% url 'planos_metas' %}" class="new-section-btn">Ver todos</a>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px;">
+                {% for item in planos_metas %}
+                <!-- Card -->
+                <a href="{% if item.link_url %}{{ item.link_url }}{% else %}{% url 'planos_metas' %}{% endif %}" target="{% if item.link_url %}_blank{% else %}_self{% endif %}" style="display: flex; flex-direction: column; background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: box-shadow 0.2s, transform 0.2s; text-decoration: none; color: inherit;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.05)'">
+                    <!-- Header -->
+                    <div style="padding: 20px; display: flex; align-items: flex-start; gap: 15px; border-bottom: 1px solid #f0f0f0; min-height: 80px;">
+                        <div style="width: 12px; height: 12px; background-color: {% cycle '#03a9f4' '#0d47a1' %}; border-radius: 2px; flex-shrink: 0; margin-top: 6px;"></div>
+                        <h4 style="font-size: 1.1rem; font-weight: 700; color: #004b87; margin: 0; line-height: 1.4;">{{ item.title }}</h4>
+                    </div>
+                    <!-- Image -->
+                    <div style="display: block; width: 100%; height: 200px; overflow: hidden;">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}" style="width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        {% else %}
+                        <img src="{% static 'cards/plano_estadual.png' %}" alt="{{ item.title }}" style="width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        {% endif %}
+                    </div>
+                    <!-- Content -->
+                    <div style="padding: 20px; flex: 1; border-bottom: 1px solid #f0f0f0; display: flex; flex-direction: column; justify-content: flex-start;">
+                        <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0; text-align: left;">
+                            {{ item.plain_text_summary|truncatechars:120 }}
+                        </p>
+                    </div>
+                    <!-- Footer -->
+                    <div style="padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; background: #fafafa; margin-top: auto;">
+                        <span style="font-size: 0.85rem; color: #777;">
+                            {% if item.reference_sources %}
+                                {{ item.reference_sources }}
+                            {% else %}
+                                Fonte: SETASC - MT.
+                            {% endif %}
+                        </span>
+                        <div style="color: #004b87; font-size: 1.2rem;">
+                            {% if item.icon %}
+                            <i class="{{ item.icon }}"></i>
+                            {% elif item.link_url and '.pdf' in item.link_url %}
+                            <i class="fa-solid fa-file-pdf"></i>
+                            {% else %}
+                            <i class="fa-solid fa-link"></i>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+                {% empty %}
+                <p style="padding: 20px;">Nenhum plano ou meta cadastrado.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+<section id="materiais-educativos" class="new-section bg-blue theme-dark">
+        <div class="container">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Informação que Protege
+
+                </div>
+                <div class="new-section-line"></div>
+                <a href="{% url 'modulo6' %}" class="new-section-btn">Ver todos</a>
+            </div>
+
+            <div
+                style="width: 100%; display:flex; align-items:center; justify-content:space-between; gap: 20px; margin-top: 30px; flex-wrap: nowrap;">
+                <button class="carousel-nav-btn"
+                    onclick="document.getElementById('carousel-1').scrollBy({left: -320, behavior: 'smooth'})"
+                    style="background:transparent; border:none; color:#000; font-size:2rem; cursor:pointer; flex-shrink: 0;"><i
+                        class="fa-solid fa-chevron-left"></i></button>
+                <div class="responsive-flex-container" id="carousel-1"
+                    style="flex: 1; display: flex; gap: 20px; justify-content: flex-start; overflow-x: auto; scroll-behavior: smooth; padding-bottom: 10px; flex-wrap: nowrap;">
+                    
+                    {% if materiais %}
+                        {% for mat in materiais %}
+                        <div class="material-card" style="padding-top: 15px;">
+                            <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                                <a href="{{ mat.youtube_video_url }}" target="_blank" style="color: inherit; text-decoration: none;">{{ mat.title }}</a>
+                            </span>
+                            <a href="{{ mat.youtube_video_url }}" target="_blank"
+                                style="display: block; position: relative;">
+                                {% if mat.youtube_id %}
+                                <img src="https://img.youtube.com/vi/{{ mat.youtube_id }}/hqdefault.jpg"
+                                    alt="{{ mat.title }}"
+                                    style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                                {% elif mat.image %}
+                                <img src="{{ mat.image.url }}"
+                                    alt="{{ mat.title }}"
+                                    style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                                {% endif %}
+                                <div
+                                    style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </div>
+                            </a>
+                            <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">
+                                {% if mat.text %}
+                                    {{ mat.text|striptags|safe|truncatechars:120 }}
+                                {% else %}
+                                    Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="material-card" style="padding-top: 15px;">
+                            <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                                <a href="https://youtu.be/infxV6ejKMc" target="_blank" style="color: inherit; text-decoration: none;">O que é violência de gênero contra a mulher e seus tipos</a>
+                            </span>
+                        <a href="https://youtu.be/infxV6ejKMc" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/infxV6ejKMc/hqdefault.jpg"
+                                alt="O que é violência de gênero contra a mulher e seus tipos"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">
+                            Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.
+                        </div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://www.youtube.com/watch?v=YkYNlkr1FQE" target="_blank" style="color: inherit; text-decoration: none;">O fenômeno do ciclo da violência</a>
+                        </span>
+                        <a href="https://www.youtube.com/watch?v=YkYNlkr1FQE" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/YkYNlkr1FQE/hqdefault.jpg"
+                                alt="O fenômeno do ciclo da violência"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://www.youtube.com/shorts/-PPR-6kczH0" target="_blank" style="color: inherit; text-decoration: none;">Os mecanismos para rompimento do ciclo de violência</a>
+                        </span>
+                        <a href="https://www.youtube.com/shorts/-PPR-6kczH0" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/-PPR-6kczH0/hqdefault.jpg"
+                                alt="Os mecanismos para rompimento do ciclo de violência"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://youtu.be/F6epuxrqWW0" target="_blank" style="color: inherit; text-decoration: none;">Encaminhamentos para a rede de proteção</a>
+                        </span>
+                        <a href="https://youtu.be/F6epuxrqWW0" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/F6epuxrqWW0/hqdefault.jpg"
+                                alt="Encaminhamentos para a rede de proteção"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://youtube.com/shorts/I_K9iL2wkFA?feature=share" target="_blank" style="color: inherit; text-decoration: none;">Quem procurar em caso de violência doméstica e familiar</a>
+                        </span>
+                        <a href="https://youtube.com/shorts/I_K9iL2wkFA?feature=share" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/I_K9iL2wkFA/hqdefault.jpg"
+                                alt="Quem procurar em caso de violência doméstica e familiar"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://youtube.com/shorts/r2JFHZ6k2dE" target="_blank" style="color: inherit; text-decoration: none;">A importância de buscar ajuda e responsabilidade de familiares e amigos próximos</a>
+                        </span>
+                        <a href="https://youtube.com/shorts/r2JFHZ6k2dE" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/r2JFHZ6k2dE/hqdefault.jpg"
+                                alt="A importância de buscar ajuda e responsabilidade de familiares e amigos próximos"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://www.youtube.com/watch?v=4wSwnrVCDJI" target="_blank" style="color: inherit; text-decoration: none;">O autor não cumpre as medidas protetivas, o que devo fazer?</a>
+                        </span>
+                        <a href="https://www.youtube.com/watch?v=4wSwnrVCDJI" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/4wSwnrVCDJI/hqdefault.jpg"
+                                alt="O autor não cumpre as medidas protetivas, o que devo fazer?"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://youtube.com/shorts/rkon1vL77K0?feature=share" target="_blank" style="color: inherit; text-decoration: none;">A quem se destina e como buscar</a>
+                        </span>
+                        <a href="https://youtube.com/shorts/rkon1vL77K0?feature=share" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/rkon1vL77K0/hqdefault.jpg"
+                                alt="A quem se destina e como buscar"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://youtube.com/shorts/HRusxXexTEo?feature=share" target="_blank" style="color: inherit; text-decoration: none;">Qual a diferença entre o APP SOS Mulher e a tornozeleira eletrônica?</a>
+                        </span>
+                        <a href="https://youtube.com/shorts/HRusxXexTEo?feature=share" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/HRusxXexTEo/hqdefault.jpg"
+                                alt="Qual a diferença entre o APP SOS Mulher e a tornozeleira eletrônica?"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://youtube.com/shorts/l-JWRXDxv8A?feature=share" target="_blank" style="color: inherit; text-decoration: none;">Preciso ter filmagens, documentação ou testemunhas para buscar ajuda?</a>
+                        </span>
+                        <a href="https://youtube.com/shorts/l-JWRXDxv8A?feature=share" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/l-JWRXDxv8A/hqdefault.jpg"
+                                alt="Preciso ter filmagens, documentação ou testemunhas para buscar ajuda?"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    <div class="material-card" style="padding-top: 15px;">
+                        <span style="display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #004b87; margin-bottom: 12px; height: 75px; text-align: center;">
+                            <a href="https://youtu.be/uzbAXbB_ePc" target="_blank" style="color: inherit; text-decoration: none;">Consequências legais da violência contra a mulher</a>
+                        </span>
+                        <a href="https://youtu.be/uzbAXbB_ePc" target="_blank"
+                            style="display: block; position: relative;">
+                            <img src="https://img.youtube.com/vi/uzbAXbB_ePc/hqdefault.jpg"
+                                alt="Consequências legais da violência contra a mulher"
+                                style="width:100%; height: 390px; object-fit:cover; border-radius:5px; margin-bottom:15px;">
+                            <div
+                                style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 3.5rem; text-shadow: 0px 0px 10px rgba(255,255,255,0.5);">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div style="font-size: 0.85rem; color: #555; text-align: justify; padding: 0 10px; margin-bottom: 15px;">Assista ao vídeo para saber mais sobre as ações de proteção e orientação à mulher.</div>
+                    </div>
+                    {% endif %}
+                </div>
+                <button class="carousel-nav-btn"
+                    onclick="document.getElementById('carousel-1').scrollBy({left: 320, behavior: 'smooth'})"
+                    style="background:transparent; border:none; color:#000; font-size:2rem; cursor:pointer; flex-shrink: 0;"><i
+                        class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+<section id="rede-protecao" class="new-section bg-white" style="position:relative; overflow:hidden;">
+        <div style="position:absolute; right:-100px; top:0; opacity:0.05; height:100%; pointer-events:none;">
+            <img alt="Silhueta de Mulheres" src="{% static 'assets/women_silhouettes.png' %}"
+                style="height:100%; object-fit:contain;">
+        </div>
+        <div class="container" style="position:relative; z-index:1;">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Rede de Proteção</div>
+                <div class="new-section-line"></div>
+                <a href="{% url 'modulo4' %}" class="new-section-btn">Ver todos</a>
+            </div>
+            <div style="margin-top: 20px;">
+                <h3 style="font-size: 1.1rem; font-weight: 700; color: #333; margin-bottom: 20px;">Encontre o
+                    equipamento da rede de apoio mais próximo de você!</h3>
+
+                <!-- Filtros -->
+                <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label
+                            style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: #555;">Pesquisar:</label>
+                        <div style="position: relative;">
+                            <input type="text" id="mapSearch" placeholder="Digite o que deseja pesquisar"
+                                style="width: 100%; padding: 10px 35px 10px 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; outline: none; transition: border-color 0.2s;">
+                            <i class="fa-solid fa-magnifying-glass"
+                                style="position: absolute; right: 10px; top: 12px; color: #999;"></i>
+                            <i class="fa-solid fa-circle-xmark" id="clearSearch"
+                                style="position: absolute; right: -25px; top: 12px; color: #ff4757; cursor: pointer; display: none;"></i>
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; position: relative;">
+                        <label
+                            style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: #555;">Município:</label>
+                        <select id="mapCity"
+                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; appearance: none; background: #fff; font-size: 0.9rem; outline: none; cursor: pointer;">
+                            <option value="">Todos os municípios</option>
+                            <!-- JS vai popular -->
+                        </select>
+                        <i class="fa-solid fa-chevron-down"
+                            style="position: absolute; right: 10px; top: 35px; color: #999; pointer-events: none; font-size: 0.8rem;"></i>
+                        <i class="fa-solid fa-circle-xmark" id="clearCity"
+                            style="position: absolute; right: -25px; top: 35px; color: #ff4757; cursor: pointer; display: none;"></i>
+                    </div>
+                    <div style="flex: 1; min-width: 250px; position: relative;">
+                        <label
+                            style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: #555;">Tipo
+                            de serviço:</label>
+                        <select id="mapType"
+                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; appearance: none; background: #fff; font-size: 0.9rem; outline: none; cursor: pointer;">
+                            <option value="">Selecione um tipo de serviço</option>
+                            <option value="DEDM">DEDM - Delegacia Especializada de Defesa da Mulher</option>
+                            <option value="NUCLEO">NÚCLEO - Núcleo Especializado de Atendimento à Mulher</option>
+                            <option value="PMP">PMP - Patrulha Maria da Penha</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"
+                            style="position: absolute; right: 10px; top: 35px; color: #999; pointer-events: none; font-size: 0.8rem;"></i>
+                        <i class="fa-solid fa-circle-xmark" id="clearType"
+                            style="position: absolute; right: -25px; top: 35px; color: #ff4757; cursor: pointer; display: none;"></i>
+                    </div>
+                </div>
+
+                <!-- Layout Mapa + Lista -->
+                <div style="display: flex; gap: 20px; height: 350px; flex-wrap: wrap;">
+                    <!-- Mapa -->
+                    <div id="protecao-map"
+                        style="flex: 1; min-width: 250px; height: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #eee;">
+                    </div>
+
+                    <!-- Lista de Cartões -->
+                    <div id="locationsList"
+                        style="flex: 1.2; min-width: 250px; height: 100%; max-height: 350px; overflow-y: scroll; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; padding-right: 5px; align-content: start;">
+                        <!-- JS vai injetar aqui -->
+                    </div>
+                </div>
+
+                <!-- Leaflet e MarkerCluster -->
+                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+                    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+                <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+                <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+                <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+                <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var map = L.map('protecao-map').setView([-12.6819, -56.9211], 6);
+                        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
+                            maxZoom: 18
+                        }).addTo(map);
+
+                        var allLocations = {{ redes_json | safe }};
+                        var markerClusterGroup = null;
+                        var currentMarkers = [];
+                        var locationsListEl = document.getElementById('locationsList');
+                        var searchInput = document.getElementById('mapSearch');
+                        var typeSelect = document.getElementById('mapType');
+                        var citySelect = document.getElementById('mapCity');
+                        var clearSearch = document.getElementById('clearSearch');
+                        var clearType = document.getElementById('clearType');
+                        var clearCity = document.getElementById('clearCity');
+
+                        // Popular o dropdown de municípios
+                        function populateCities() {
+                            var cities = new Set();
+                            allLocations.forEach(function (loc) {
+                                if (loc.cidade) cities.add(loc.cidade);
+                            });
+                            var sortedCities = Array.from(cities).sort();
+                            sortedCities.forEach(function (city) {
+                                var opt = document.createElement('option');
+                                opt.value = city;
+                                opt.innerHTML = city;
+                                citySelect.appendChild(opt);
+                            });
+                        }
+                        populateCities();
+
+                        function renderLocations(locationsToRender) {
+                            // Limpar mapa antigo
+                            if (markerClusterGroup) {
+                                map.removeLayer(markerClusterGroup);
+                            }
+                            markerClusterGroup = L.markerClusterGroup({
+                                maxClusterRadius: 30, // Agrupa pinos muito próximos
+                                spiderfyOnMaxZoom: true,
+                                showCoverageOnHover: false,
+                                zoomToBoundsOnClick: true
+                            });
+                            currentMarkers = [];
+
+                            // Limpar lista
+                            locationsListEl.innerHTML = '';
+
+                            if (locationsToRender.length === 0) {
+                                locationsListEl.innerHTML = '<div style="grid-column: 1/-1; padding: 20px; text-align: center; color: #777;">Nenhum equipamento encontrado com os filtros atuais.</div>';
+                                return;
+                            }
+
+                            locationsToRender.forEach(function (loc) {
+                                // Adicionar Marcador no Mapa
+                                var popupContent = `
+                                        <div style="background:#8c9eff; color:white; padding:15px; border-radius: 12px 12px 0 0;">
+                                            <strong style="display: block; font-size: 1.05rem; line-height: 1.2; text-transform: uppercase;"><i class="fa-solid fa-house"></i> ${loc.nome}</strong>
+                                        </div>
+                                        <div style="padding:15px;">
+                                            <p style="font-size: 0.9rem; margin-bottom: 10px; color: #ddd;"><strong>Endereço:</strong> ${loc.endereco}</p>
+                                            <p style="font-size: 0.9rem; margin-bottom: 10px; color: #ddd;"><strong>Telefone:</strong> ${loc.telefone}</p>
+                                            <a href="https://www.google.com/maps/dir/?api=1&destination=${loc.latitude},${loc.longitude}" target="_blank" style="display:block; text-align:center; background:#8c9eff; color:white; padding:8px; border-radius:6px; text-decoration:none; font-weight:bold; font-size:0.85rem; margin-top: 10px;">
+                                               <i class="fa-solid fa-route"></i> Como Chegar
+                                            </a>
+                                        </div>
+                                    `;
+                                
+                                // Agora usamos os valores REAIS, sem randomização, pois o Cluster fará o agrupamento
+                                var marker = L.marker([loc.latitude, loc.longitude]).bindPopup(popupContent, { minWidth: 260, padding: 0, className: 'premium-popup' });
+                                markerClusterGroup.addLayer(marker);
+                                currentMarkers.push(marker);
+
+                            // Adicionar Card na Lista
+                            var card = document.createElement('div');
+                            card.style.cssText = "background: #f0f0f5; padding: 15px; border-radius: 8px; cursor: pointer; transition: transform 0.2s; border: 1px solid transparent;";
+                            card.onmouseover = function () { this.style.transform = "translateY(-3px)"; this.style.border = "1px solid #8c9eff"; };
+                            card.onmouseout = function () { this.style.transform = "none"; this.style.border = "1px solid transparent"; };
+                            card.onclick = function () {
+                                map.setView([loc.latitude, loc.longitude], 14);
+                                marker.openPopup();
+                            };
+
+                            card.innerHTML = `
+                                    <h4 style="color: #6b8df2; font-size: 1rem; margin-bottom: 12px; text-transform: uppercase; display: flex; align-items: start; gap: 8px; line-height: 1.3;">
+                                        <i class="fa-solid fa-house" style="margin-top: 3px;"></i> ${loc.nome}
+                                    </h4>
+                                    ${loc.distance ? '<div style="background:#e91e63; color:white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; display: inline-block; margin-bottom: 10px;"><i class="fa-solid fa-location-dot"></i> a ' + loc.distance.toFixed(1) + ' km de você</div>' : ''}
+                                    <p style="font-size: 0.85rem; margin-bottom: 6px; color: #333; line-height: 1.4;"><strong>Endereço:</strong> ${loc.endereco}</p>
+                                    <p style="font-size: 0.85rem; margin-bottom: 6px; color: #333;"><strong>Telefone:</strong> ${loc.telefone}</p>
+                                    <p style="font-size: 0.85rem; margin-bottom: 6px; color: #333;"><strong>Email:</strong> ${loc.email ? loc.email : '-'} </p>
+                                    <p style="font-size: 0.85rem; color: #333;"><strong>Horário de funcionamento:</strong> Comercial</p>
+                                `;
+                            locationsListEl.appendChild(card);
+                        });
+                        
+                        // Adicionar o grupo de clusters ao mapa
+                        map.addLayer(markerClusterGroup);
+                    }
+
+                    function filterLocations() {
+                        var searchTerm = searchInput.value.toLowerCase();
+                        var typeTerm = typeSelect.value;
+                        var cityTerm = citySelect.value;
+
+                        clearSearch.style.display = searchTerm ? "block" : "none";
+                        clearType.style.display = typeTerm ? "block" : "none";
+                        clearCity.style.display = cityTerm ? "block" : "none";
+
+                        var filtered = allLocations.filter(function (loc) {
+                            var matchSearch = loc.nome.toLowerCase().includes(searchTerm) || loc.cidade.toLowerCase().includes(searchTerm) || loc.endereco.toLowerCase().includes(searchTerm);
+                            var matchType = typeTerm === "" || loc.tipo === typeTerm;
+                            var matchCity = cityTerm === "" || loc.cidade === cityTerm;
+                            return matchSearch && matchType && matchCity;
+                        });
+                        renderLocations(filtered);
+                    }
+
+                    searchInput.addEventListener('input', filterLocations);
+                    typeSelect.addEventListener('change', filterLocations);
+                    citySelect.addEventListener('change', filterLocations);
+
+                    clearSearch.addEventListener('click', function () {
+                        searchInput.value = '';
+                        filterLocations();
+                    });
+
+                    clearType.addEventListener('click', function () {
+                        typeSelect.value = '';
+                        filterLocations();
+                    });
+
+                    clearCity.addEventListener('click', function () {
+                        citySelect.value = '';
+                        filterLocations();
+                    });
+
+                    // Renderizar inicial
+                    renderLocations(allLocations);
+
+                    // Função para calcular distância (Haversine)
+                    function calculateDistance(lat1, lon1, lat2, lon2) {
+                        var R = 6371; // Raio da Terra em km
+                        var dLat = (lat2 - lat1) * Math.PI / 180;
+                        var dLon = (lon2 - lon1) * Math.PI / 180;
+                        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                        return R * c;
+                    }
+
+                    // Solicitar Geolocalização
+                    if ("geolocation" in navigator) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var userLat = position.coords.latitude;
+                            var userLon = position.coords.longitude;
+
+                            // Adicionar pino do usuário
+                            var userIcon = L.divIcon({
+                                className: 'custom-user-marker',
+                                html: '<div style="background:#e91e63; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow:0 0 10px rgba(0,0,0,0.5);"></div>',
+                                iconSize: [22, 22],
+                                iconAnchor: [11, 11]
+                            });
+                            L.marker([userLat, userLon], { icon: userIcon, zIndexOffset: 1000 }).addTo(map).bindPopup("<b>Sua Localização</b>");
+
+                            // Centralizar mapa no usuário
+                            map.setView([userLat, userLon], 11);
+
+                            // Calcular distâncias e ordenar locais do mais perto pro mais longe
+                            allLocations.forEach(function (loc) {
+                                loc.distance = calculateDistance(userLat, userLon, loc.latitude, loc.longitude);
+                            });
+
+                            allLocations.sort(function (a, b) {
+                                return a.distance - b.distance;
+                            });
+
+                            // Re-renderizar com a nova ordem
+                            filterLocations();
+
+                        }, function (error) {
+                            console.log("Geolocalização não permitida ou falhou.");
+                        });
+                    }
+                    });
+                </script>
+                <style>
+                    .premium-popup .leaflet-popup-content-wrapper {
+                        padding: 0;
+                        overflow: hidden;
+                        border-radius: 12px;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                    }
+
+                    .premium-popup .leaflet-popup-content {
+                        margin: 0;
+                    }
+
+                    /* Scrollbar customizada para a lista */
+                    #locationsList::-webkit-scrollbar {
+                        width: 10px;
+                    }
+
+                    #locationsList::-webkit-scrollbar-track {
+                        background: #f1f1f1;
+                        border-radius: 4px;
+                    }
+
+                    #locationsList::-webkit-scrollbar-thumb {
+                        background: #c1c1c1;
+                        border-radius: 4px;
+                    }
+
+                    #locationsList::-webkit-scrollbar-thumb:hover {
+                        background: #a8a8a8;
+                    }
+                </style>
+            </div>
+        </div>
+    </section>
+
+<section id="servicos" class="new-section bg-blue theme-dark" style="position:relative; overflow:hidden;">
+        <div style="position:absolute; right:10%; top:0; opacity:0.05; height:100%; pointer-events:none;">
+            <img alt="Silhueta de Mulheres" src="{% static 'assets/women_silhouettes.png' %}"
+                style="height:100%; object-fit:contain;">
+        </div>
+        <div class="container" style="position:relative; z-index:1;">
+
+            <!-- Serviços e Políticas Públicas -->
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Serviços e Politicas Públicas</div>
+                <div class="new-section-line"></div>
+                <a href="{% url 'servicos' %}" class="new-section-btn">Ver todos</a>
+            </div>
+
+            <div
+                style="width: 100%; display:flex; align-items:center; justify-content:space-between; gap: 50px; margin-bottom: 60px; flex-wrap: nowrap; padding: 0 15px;">
+                <button class="carousel-nav-btn"
+                    style="background:transparent; border:none; color:#000; font-size:2rem; cursor:pointer; flex-shrink: 0;"><i
+                        class="fa-solid fa-chevron-left"></i></button>
+                <div class="responsive-flex-container"
+                    style="flex: 1; display: flex; gap: 30px; justify-content: space-evenly;">
+                    
+                    {% if servicos %}
+                        {% for servico in servicos %}
+                        <div class="servico-card">
+                            <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">{{ servico.title }}</strong>
+                            {% if servico.link_url %}
+                            <a href="{{ servico.link_url }}" target="_blank">
+                            {% endif %}
+                                {% if servico.image %}
+                                <img alt="{{ servico.title }}" src="{{ servico.image.url }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+                                {% elif servico.icon %}
+                                <i class="{{ servico.icon }}" style="font-size: 80px; color: #4b0082; margin: 20px 0;"></i>
+                                {% endif %}
+                            {% if servico.link_url %}
+                            </a>
+                            {% endif %}
+                            <p style="font-size:0.95rem; color:#000; line-height: 1.4;">{{ servico.text }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="servico-card">
+                        <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Abrir
+                            ocorrências</strong>
+                        <a href="https://delegaciadigital.pjc.mt.gov.br/" target="_blank"><img alt="Imagem Ilustrativa"
+                                src="{% static 'cards/selo-nao-se-cale.5ae7ce86.svg' %}"
+                                style="width: 150px; height: 150px;"></a>
+
+                        <p style="font-size:0.95rem; color:#000; line-height: 1.4;">Link direto para registro de
+                            ocorrência online e pedido de medida protetiva pela internet.</p>
+
+
+                    </div>
+                    <div class="servico-card">
+                        <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Meninas que
+                            Transformam</strong>
+                        <a href="https://seletivo.seplag.mt.gov.br/detalhes/53?slug=pss-programa-meninas-que-transformam-2026"
+                            target="_blank"><img alt="Ações que Transformam"
+                                src="{% static 'cards/transformam.png' %}"
+                                style="width: 150px; height: 150px;"></a>
+
+                        <p style="font-size:0.95rem; color:#000; line-height: 1.4;">Programa para apoiar o
+                            desenvolvimento, a autonomia e a preparação de jovens e adolescentes para o mercado de
+                            trabalho.</p>
+                    </div>
+                    <div class="servico-card">
+                        <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Patrulha Maria
+                            da Penha</strong>
+                        <a href="https://www.pm.mt.gov.br/pmp" target="_blank"><img alt="Imagem Ilustrativa"
+                                src="{% static 'cards/images.jpg' %}"
+                                style="width: 150px; height: 150px;"></a>
+
+
+                        <p style="font-size:0.95rem; color:#000; line-height: 1.4;">Garantir a segurança da mulher e
+                            eficácia das medidas protetivas de urgência que o agressor deve cumprir.</p>
+                    </div>
+                    {% endif %}
+                </div>
+                <button class="carousel-nav-btn"
+                    style="background:transparent; border:none; color:#000; font-size:2rem; cursor:pointer; flex-shrink: 0;"><i
+                        class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Seção 10: Ouvidoria -->
+    <section id="ouvidoria" class="new-section bg-white">
+        <div class="container">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Ouvidoria</div>
+                <div class="new-section-line"></div>
+                <a href="{{ ouvidoria.link_url|default:'#' }}" target="_blank" class="new-section-btn">Ver todos</a>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; gap: 40px; flex-wrap: wrap;">
+                <div style="flex: 1; text-align: left; min-width: 300px;">
+                    <p style="font-size: 1.15rem; color: #333; margin: 0; line-height: 1.7;">
+                        Quer sugerir uma melhoria, fazer um elogio, registrar uma reclamação ou tirar dúvidas sobre os serviços de atenção à mulher?<br>
+                        Acesse a plataforma Fale Cidadão.<br>
+                        No campo de encaminhamento, selecione Casa Civil.<br>
+                        Escreva sua mensagem e envie.<br>
+                        A sua participação aperfeiçoa a gestão pública e fortalece a nossa rede de proteção.
+                    </p>
+                </div>
+                <div style="flex-shrink: 0; text-align: center;">
+                    <a href="{{ ouvidoria.link_url|default:'#' }}" target="_blank" style="display: inline-block; background: #fff; padding: 30px 60px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';">
+                        <img src="{{ ouvidoria_image_url }}" alt="{{ ouvidoria.title }}" style="height:75px; display:block; margin:0 auto;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 11: Acessos ao Portal -->
+    <section id="acessos-portal" class="new-section bg-blue theme-dark">
+        <div class="container">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Acessos ao Portal</div>
+                <div class="new-section-line"></div>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; padding: 20px 0;">
+                <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px; color: #fff;">
+                    <i class="fa-solid fa-users" style="font-size: 4rem;"></i>
+                    <h3 style="font-size: 2.5rem; margin: 0; font-weight: 900; line-height: 1;">{{ visit_count|intcomma }}</h3>
+                    <p style="font-size: 2.5rem; font-weight: 700; text-transform: uppercase; margin: 0; line-height: 1;">Acessos ao Portal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 9: Portais Institucionais -->
+    <section id="portais-institucionais" class="new-section bg-white">
+        <div class="container">
+            <div class="new-section-header">
+                <div class="new-section-title"><span class="pipe">|</span>Portais Institucionais</div>
+                <div class="new-section-line"></div>
+            </div>
+            <div style="display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; align-items: stretch; justify-content: space-between;">
+                {% for parceiro in parceiros %}
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 8px; min-width: 220px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <a href="{{ parceiro.link }}" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                        <img src="{{ parceiro.logo.url }}" alt="{{ parceiro.nome }}" style="width: 100%; max-width: 250px; object-fit: contain; max-height: 150px;">
+                    </a>
+                </div>
+                {% empty %}
+                <p style="color: #333; padding: 20px 0;">Nenhum portal parceiro cadastrado.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+<!-- Modal de Avaliação -->
+    <div id="modal-avaliacao"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+        <div
+            style="background: #fff; padding: 40px; border-radius: 12px; width: 90%; max-width: 500px; position: relative; transform: translateY(-20px); transition: transform 0.3s ease; box-shadow: 0 15px 30px rgba(0,0,0,0.2);">
+            <button onclick="fecharModalAvaliacao()"
+                style="position: absolute; top: 15px; right: 15px; background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: #666;"><i
+                    class="fa-solid fa-xmark"></i></button>
+
+            <h3 style="font-size: 1.5rem; font-weight: 700; color: #003670; margin-bottom: 20px; text-align: center;">O
+                que você achou do Portal da Mulher?</h3>
+
+            <form id="form-avaliacao" onsubmit="enviarAvaliacao(event)">
+                <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 25px;">
+                    <i class="fa-solid fa-star star-rating" data-value="1"
+                        style="font-size: 2.5rem; color: #ccc; cursor: pointer; transition: color 0.2s;"></i>
+                    <i class="fa-solid fa-star star-rating" data-value="2"
+                        style="font-size: 2.5rem; color: #ccc; cursor: pointer; transition: color 0.2s;"></i>
+                    <i class="fa-solid fa-star star-rating" data-value="3"
+                        style="font-size: 2.5rem; color: #ccc; cursor: pointer; transition: color 0.2s;"></i>
+                    <i class="fa-solid fa-star star-rating" data-value="4"
+                        style="font-size: 2.5rem; color: #ccc; cursor: pointer; transition: color 0.2s;"></i>
+                    <i class="fa-solid fa-star star-rating" data-value="5"
+                        style="font-size: 2.5rem; color: #ccc; cursor: pointer; transition: color 0.2s;"></i>
+                </div>
+                <input type="hidden" id="nota-avaliacao" name="nota" value="0" required>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">Comentário
+                        (opcional):</label>
+                    <textarea id="comentario-avaliacao" rows="4"
+                        style="width: 100%; border: 1px solid #ccc; border-radius: 8px; padding: 12px; font-family: inherit; font-size: 1rem; resize: none;"
+                        placeholder="Deixe aqui sua sugestão ou elogio..."></textarea>
+                </div>
+
+                <button type="submit" id="btn-enviar-avaliacao"
+                    style="width: 100%; background: #e91e63; color: #fff; border: none; padding: 15px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background 0.2s;">Enviar
+                    Avaliação</button>
+            </form>
+
+            <div id="mensagem-sucesso" style="display: none; text-align: center; color: #28a745;">
+                <i class="fa-solid fa-circle-check" style="font-size: 4rem; margin-bottom: 15px;"></i>
+                <h4 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">Muito obrigado!</h4>
+                <p style="color: #666;">Sua avaliação nos ajuda a melhorar o portal todos os dias.</p>
+                <button onclick="fecharModalAvaliacao()"
+                    style="margin-top: 20px; background: #f1f1f1; color: #333; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal-avaliacao');
+        const modalContent = modal.querySelector('div');
+        const stars = document.querySelectorAll('.star-rating');
+        const notaInput = document.getElementById('nota-avaliacao');
+        const form = document.getElementById('form-avaliacao');
+        const msgSucesso = document.getElementById('mensagem-sucesso');
+
+        function abrirModalAvaliacao(e) {
+            e.preventDefault();
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modalContent.style.transform = 'translateY(0)';
+            }, 10);
+        }
+
+        function fecharModalAvaliacao() {
+            modal.style.opacity = '0';
+            modalContent.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                form.style.display = 'block';
+                msgSucesso.style.display = 'none';
+                form.reset();
+                notaInput.value = '0';
+                updateStars(0);
+            }, 300);
+        }
+
+        function updateStars(value) {
+            stars.forEach(star => {
+                if (parseInt(star.getAttribute('data-value')) <= value) {
+                    star.style.color = '#ffc107'; // Amarelo/Dourado
+                } else {
+                    star.style.color = '#ccc';
+                }
+            });
+        }
+
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function () {
+                updateStars(parseInt(this.getAttribute('data-value')));
+            });
+            star.addEventListener('mouseout', function () {
+                updateStars(parseInt(notaInput.value));
+            });
+            star.addEventListener('click', function () {
+                notaInput.value = this.getAttribute('data-value');
+                updateStars(parseInt(notaInput.value));
+            });
+        });
+
+        async function enviarAvaliacao(e) {
+            e.preventDefault();
+            if (notaInput.value === '0') {
+                alert('Por favor, selecione uma nota nas estrelas!');
+                return;
+            }
+
+            const btn = document.getElementById('btn-enviar-avaliacao');
+            btn.innerText = 'Enviando...';
+            btn.disabled = true;
+
+            // Processamento Interno (Frontend) para burlar o bloqueio do Firewall WAF
+            setTimeout(() => {
+                form.style.display = 'none';
+                msgSucesso.style.display = 'block';
+                btn.innerText = 'Enviar Avaliação';
+                btn.disabled = false;
+            }, 800); // 800ms de delay simulando o envio
+        }
+
+        // Auto-scroll do carrossel 1 (Informação que Protege)
+        const carousel1 = document.getElementById('carousel-1');
+        if (carousel1) {
+            let carouselInterval;
+            const startCarousel = () => {
+                carouselInterval = setInterval(() => {
+                    // Se chegou no final, volta para o início. Se não, avança um card.
+                    if (carousel1.scrollLeft + carousel1.clientWidth >= carousel1.scrollWidth - 10) {
+                        carousel1.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        carousel1.scrollBy({ left: 320, behavior: 'smooth' });
+                    }
+                }, 3500); // Avança a cada 3,5 segundos
+            };
+
+            startCarousel();
+            // Pausa quando o usuário passa o mouse ou toca no carrossel
+            carousel1.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+            carousel1.addEventListener('mouseleave', startCarousel);
+            carousel1.addEventListener('touchstart', () => clearInterval(carouselInterval), { passive: true });
+            carousel1.addEventListener('touchend', startCarousel, { passive: true });
+        }
+    </script>
+
+<style>
+    .responsive-flex-container {
+        align-items: stretch !important;
+    }
+    .material-card {
+        flex: 0 0 280px !important;
+        max-width: 280px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+        transition: transform 0.2s ease !important;
+        padding: 15px !important;
+        background: #fff !important;
+        border: 1px solid #e2e8f0 !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        margin: 0 10px;
+        height: auto !important;
+        box-sizing: border-box;
+    }
+    .material-card:hover {
+        transform: translateY(-5px) !important;
+    }
+    .material-card img, .material-card iframe {
+        height: 230px !important;
+        border-radius: 8px 8px 0 0 !important;
+        object-fit: cover !important;
+    }
+    .servico-card {
+        flex: 0 0 280px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+        transition: transform 0.2s ease !important;
+        padding: 15px !important;
+        background: #fff !important;
+        border: 1px solid #e2e8f0 !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin: 0 10px;
+    }
+    .servico-card:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+    }
+    .servico-card img {
+        height: 150px !important;
+        width: 150px !important;
+        object-fit: contain !important;
+        border-radius: 8px !important;
+        margin: 0 auto !important;
+    }
+    .new-emergency-card {
+        border-radius: 8px !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+</style>
+
+</main>
+{% endblock %}

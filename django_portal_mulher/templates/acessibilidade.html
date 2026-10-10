@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Acessibilidade | Portal Mulher MT{% endblock %}
+
+{% block content %}
+<main id="conteudo" class="main-content" tabindex="-1">
+    <div class="container" style="padding-top: 50px; padding-bottom: 50px;">
+        <h2 class="section-title">
+            <div class="title-icon-svg">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" />
+                    <path d="M50 30V40M40 50H60M50 60V70" stroke="#00D2D3" stroke-width="6" stroke-linecap="round" />
+                    <circle cx="50" cy="50" r="15" stroke="#00D2D3" stroke-width="4" />
+                </svg>
+            </div>
+            <strong>Acessibilidade</strong> Digital
+        </h2>
+
+        <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-top: 40px; line-height: 1.8; font-size: 1.1rem; color: #444;">
+            <p>O <strong>Portal Mulher do Governo do Estado de Mato Grosso</strong> foi desenvolvido seguindo as diretrizes do Modelo de Acessibilidade em Governo Eletrônico (e-MAG), em conformidade com as recomendações internacionais do W3C (World Wide Web Consortium).</p>
+            <p>O objetivo do e-MAG é garantir que o processo de acessibilidade nos sítios e portais do governo brasileiro seja conduzido de forma padronizada e alinhada com as melhores práticas mundiais, permitindo que todas as cidadãs, independentemente de suas capacidades visuais, motoras, auditivas ou cognitivas, tenham acesso pleno à informação e aos serviços disponíveis.</p>
+            
+            <h3 style="margin-top: 40px; color: #d1208a; border-bottom: 2px solid #eee; padding-bottom: 10px;">Teclas de Atalho por Navegadores</h3>
+            <p>A navegação neste portal pode ser feita através de teclas de atalho (Accesskeys). As combinações de teclas variam de acordo com o navegador e o sistema operacional que você está utilizando:</p>
+            
+            <div style="overflow-x: auto; margin-top: 20px;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background-color: #f8f9fa;">
+                            <th style="padding: 12px 15px; border: 1px solid #ddd;">Navegador</th>
+                            <th style="padding: 12px 15px; border: 1px solid #ddd;">Sistema Operacional</th>
+                            <th style="padding: 12px 15px; border: 1px solid #ddd;">Combinação de Teclas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;">Chrome, Edge</td>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;">Windows, Linux</td>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;"><strong>Alt</strong> + Número</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;">Firefox</td>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;">Windows, Linux</td>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;"><strong>Alt + Shift</strong> + Número</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;">Safari, Chrome, Firefox</td>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;">Mac OS</td>
+                            <td style="padding: 12px 15px; border: 1px solid #ddd;"><strong>Ctrl + Option</strong> + Número</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin-top: 40px; color: #d1208a; border-bottom: 2px solid #eee; padding-bottom: 10px;">Atalhos Disponíveis neste Portal</h3>
+            <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+                <li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #00D2D3;">
+                    <strong>[ 1 ]</strong> - Ir diretamente para o <strong>Conteúdo Principal</strong> da página.
+                </li>
+                <li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #00D2D3;">
+                    <strong>[ 2 ]</strong> - Ir diretamente para o <strong>Menu Principal</strong> de navegação.
+                </li>
+                <li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #00D2D3;">
+                    <strong>[ 3 ]</strong> - Ir diretamente para o <strong>Rodapé / Informações Institucionais</strong>.
+                </li>
+            </ul>
+
+            <h3 style="margin-top: 40px; color: #d1208a; border-bottom: 2px solid #eee; padding-bottom: 10px;">Ferramentas de Apoio</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+                    <i class="fa-solid fa-hands" style="font-size: 2rem; color: #00D2D3; margin-bottom: 15px; display: block;"></i>
+                    <h4 style="margin: 0 0 10px 0; color: #333;">VLibras</h4>
+                    <p style="font-size: 0.95rem; margin: 0;">Disponibilizamos o tradutor automático para a Língua Brasileira de Sinais, acessível pelo botão flutuante nas laterais da tela.</p>
+                </div>
+                
+                <div style="padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+                    <i class="fa-solid fa-circle-half-stroke" style="font-size: 2rem; color: #00D2D3; margin-bottom: 15px; display: block;"></i>
+                    <h4 style="margin: 0 0 10px 0; color: #333;">Alto Contraste</h4>
+                    <p style="font-size: 0.95rem; margin: 0;">Disponível no menu superior, este recurso inverte as cores do site facilitando a leitura para pessoas com baixa visão ou daltonismo.</p>
+                </div>
+
+                <div style="padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+                    <i class="fa-solid fa-text-height" style="font-size: 2rem; color: #00D2D3; margin-bottom: 15px; display: block;"></i>
+                    <h4 style="margin: 0 0 10px 0; color: #333;">Tamanho da Fonte (AA)</h4>
+                    <p style="font-size: 0.95rem; margin: 0;">Opção no menu superior que permite aumentar o tamanho de todos os textos da tela em múltiplos níveis para maior legibilidade.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,456 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portal Mato Grosso em Defesa das Mulheres{% endblock %}</title>
+    <meta name="description"
+        content="{% block description %}Portal oficial do Estado de Mato Grosso em defesa das mulheres. Informações, serviços e rede de proteção contra a violência doméstica.{% endblock %}">
+    <meta name="keywords" content="Portal Mulher, Mato Grosso, Proteção">
+    <meta name="author" content="Governo do Estado de Mato Grosso">
+
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome for expressve icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=2.1">
+    <style>
+        .skip-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            z-index: 9999;
+            transition: top 0.3s ease;
+        }
+        .skip-link:focus {
+            top: 5px;
+            left: 16px;
+            outline: 2px solid #fbc02d !important;
+            outline-offset: .0625rem;
+            border-radius: 6px;
+        }
+        .emergency-card:hover {
+            transform: scale(1.05) !important;
+            background: linear-gradient(90deg, #A770EF, #60146f) !important;
+        }
+        .emergency-card:active {
+            transform: scale(1.05) !important;
+            background: linear-gradient(90deg, #A770EF, #60146f) !important;
+        }
+        .emergency-card::before { display: none !important; } /* override old pseudo element if it exists */
+    </style>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <noscript>Seu navegador não suporta JavaScript. Algumas funcionalidades podem não funcionar corretamente.</noscript>
+    <!-- Skip Links para Acessibilidade -->
+    <a href="#conteudo" class="skip-link" accesskey="1">Ir para o conteúdo [1]</a>
+    <a href="#menu-principal" class="skip-link" accesskey="2">Ir para o menu [2]</a>
+    <a href="#rodape" class="skip-link" accesskey="3">Ir para o rodapé [3]</a>
+
+    <div class="background-ribbon"></div>
+    
+    <!-- Flash Messages System -->
+    
+      {% if messages %}
+        <div class="flash-messages" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" style="background: {% if message.tags == 'error' %}#e74c3c{% elif message.tags == 'warning' %}#f39c12{% else %}#2ecc71{% endif %}; color: white; padding: 15px; margin-bottom: 10px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: 'Montserrat', sans-serif;">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+        <script>
+            setTimeout(() => {
+                const alerts = document.querySelectorAll('.flash-messages .alert');
+                alerts.forEach(alert => {
+                    alert.style.transition = 'opacity 0.5s ease';
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 500);
+                });
+            }, 4000);
+        </script>
+      {% endif %}
+    
+    {% if request.endpoint != 'login' %}
+    <!-- Topbar Institucional Estilo Portal MT -->
+    <div class="topbar">
+        <div class="container topbar-container">
+            <div class="topbar-left">
+                <a href="https://www.mt.gov.br" target="_blank" class="topbar-logo">govmt</a>
+                <nav class="topbar-nav">
+                    <a href="https://www.mt.gov.br/orgaos" target="_blank">ÓRGÃOS PÚBLICOS</a>
+                    <span class="topbar-sep">|</span>
+                    <a href="{% url 'acessibilidade' %}">ACESSIBILIDADE</a>
+                    <span class="topbar-sep">|</span>
+                    <a href="https://transparencia.mt.gov.br/" target="_blank">TRANSPARÊNCIA</a>
+                    <span class="topbar-sep">|</span>
+                    <a href="{% url 'mapa_site' %}">MAPA DO SITE</a>
+                </nav>
+            </div>
+
+            <div class="topbar-right">
+                <div class="accessibility-tools">
+                    <a href="javascript:void(0)" id="accessFontToggle" title="Tamanho da Fonte" aria-label="Alterar tamanho da fonte" class="tool-font">AA</a>
+                    <a href="javascript:void(0)" id="accessDarkToggle" title="Alto Contraste" aria-label="Alternar alto contraste" aria-pressed="false"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i></a>
+                    <a href="javascript:void(0)" title="Cookies e Configurações"><i class="fa-solid fa-cookie-bite"></i></a>
+                    <div class="custom-lang-selector" id="customLangSelector">
+                        <button class="lang-btn" id="langBtn">
+                            <span id="currentLangText">PT</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <ul class="lang-dropdown" id="langDropdown">
+                            <li data-lang="en">EN</li>
+                            <li data-lang="es">ES</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <span class="topbar-sep">|</span>
+                
+                <div class="topbar-social">
+                    <a href="javascript:void(0)" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="javascript:void(0)" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="javascript:void(0)" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="javascript:void(0)" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="javascript:void(0)" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                
+                <!-- Sair removido, Acesso Restrito opcional -->
+                <a href="{% url 'admin:index' %}" class="btn-login" style="display: none; color: white; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 4px; margin-left: 10px; text-decoration: none; font-weight: bold; font-size: 12px; transition: 0.3s;">Acesso Restrito</a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Cabeçalho Principal (Novo Layout com Carrossel) -->
+    <header class="main-header-new" role="banner" style="position: relative; overflow: hidden; width: 100%; aspect-ratio: 1920 / 600; max-height: 600px; background: #fff;">
+        <div class="banner-slider" style="position: relative; width: 100%; height: 100%;">
+            <!-- Imagens do Carrossel -->
+            {% if banners %}
+                {% for banner in banners %}
+                <img src="{{ banner.imagem.url }}" alt="{{ banner.titulo }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: {% if forloop.first %}1{% else %}0{% endif %}; transition: opacity 1s ease-in-out; display: block;">
+                {% endfor %}
+            {% else %}
+                <img src="{% static 'assets/banner01.png' %}" alt="Banner 1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 1s ease-in-out; display: block;">
+                <img src="{% static 'assets/banner02.png' %}" alt="Banner 2" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; display: block;">
+                <img src="{% static 'assets/banner03.png' %}" alt="Banner 3" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; display: block;">
+            {% endif %}
+        </div>
+        
+        <!-- Controles do Carrossel -->
+        <button id="prevSlide" style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; font-size: 2rem; padding: 10px 20px; cursor: pointer; border-radius: 5px; z-index: 10;">&#10094;</button>
+        <button id="nextSlide" style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; font-size: 2rem; padding: 10px 20px; cursor: pointer; border-radius: 5px; z-index: 10;">&#10095;</button>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const slides = document.querySelectorAll('.banner-slider img');
+                const prevBtn = document.getElementById('prevSlide');
+                const nextBtn = document.getElementById('nextSlide');
+                let currentIndex = 0;
+                let intervalId;
+
+                function showSlide(index) {
+                    slides[currentIndex].style.opacity = '0'; // Esconde a atual
+                    
+                    if (index < 0) index = slides.length - 1;
+                    if (index >= slides.length) index = 0;
+                    
+                    slides[index].style.opacity = '1'; // Mostra a nova
+                    currentIndex = index;
+                }
+
+                function nextSlide() { showSlide(currentIndex + 1); }
+                function prevSlide() { showSlide(currentIndex - 1); }
+
+                function startAutoPlay() {
+                    intervalId = setInterval(nextSlide, 5000); // Troca a cada 5 segundos
+                }
+
+                function resetAutoPlay() {
+                    clearInterval(intervalId);
+                    startAutoPlay();
+                }
+
+                nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+                prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+
+                // Iniciar carrossel
+                startAutoPlay();
+            });
+        </script>
+    </header>
+    <!-- Linha colorida do governo (Padrão MT) -->
+    <div style="width: 100%; height: 6px; background: linear-gradient(90deg, #004ea8 0%, #009de0 50%, #8CC63F 100%);"></div>
+
+    <!-- Navegação Principal (Novo Layout) -->
+    <nav id="menu-principal" class="main-nav-new" role="navigation" aria-label="Menu Principal" style="position: sticky; top: 0; z-index: 9999; background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir Menu" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i> Menu
+            </button>
+            <ul class="mt-nav-list" id="mt-nav-list">
+                <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Inicial</a></li>
+                <li><a href="{% url 'home' %}#preciso-ajuda">Preciso de Ajuda</a></li>
+                <li><a href="{% url 'home' %}#materiais-educativos">Materiais Educativos</a></li>
+                <li><a href="{% url 'home' %}#rede-protecao" class="{% if request.resolver_match.url_name == 'modulo4' %}active{% endif %}">Rede de Proteção</a></li>
+                <li><a href="{% url 'home' %}#dados-violencia" class="{% if request.resolver_match.url_name == 'estatisticas' %}active{% endif %}">Painéis e Dados</a></li>
+                <li><a href="{% url 'home' %}#servicos">Serviços e Políticas Públicas</a></li>
+                <li><a href="{% url 'documentos' %}" class="{% if request.resolver_match.url_name == 'documentos' %}active{% endif %}">Legislação</a></li>
+                <li><a href="{% url 'conheca' %}" class="{% if request.resolver_match.url_name == 'conheca' %}active{% endif %}">Rede de Enfrentamento</a></li>
+                <!-- Links exclusivos do mobile (movidos da topbar azul) -->
+                <li class="mobile-only" style="border-top: 1px solid #ccc; margin-top: 10px;"><a href="{% url 'acessibilidade' %}">Acessibilidade</a></li>
+                <li class="mobile-only"><a href="{% url 'mapa_site' %}">Mapa do Site</a></li>
+            </ul>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nav = document.querySelector('.main-nav-new');
+            // Calcula o ponto onde o menu bate no topo (pode variar em telas diferentes)
+            const stickyPoint = nav.offsetTop;
+            window.addEventListener('scroll', function() {
+                // Adiciona uma margem de segurança de 5px
+                if (window.scrollY >= stickyPoint - 5) {
+                    nav.classList.add('nav-stuck');
+                } else {
+                    nav.classList.remove('nav-stuck');
+                }
+            });
+        });
+    </script>
+    <style>
+        /* Estilos quando o menu fica preso (fixo) no topo */
+        .main-nav-new { transition: background-color 0.3s ease; }
+        .main-nav-new.nav-stuck {
+            background-color: #d1208a !important; /* Mesma cor do botão Ver Todos */
+        }
+        .main-nav-new.nav-stuck .mt-nav-list li a {
+            color: #ffffff !important;
+        }
+        .main-nav-new.nav-stuck .mt-nav-list li a:hover {
+            color: #fce4ec !important;
+        }
+        .main-nav-new.nav-stuck .mt-nav-list li a.active {
+            border-bottom: 3px solid #ffffff !important;
+            color: #ffffff !important;
+        }
+    </style>
+    {% endif %}
+
+    <div id="conteudo" tabindex="-1">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% if request.endpoint != 'login' %}
+    <!-- Rodapé Oficial do Governo MT -->
+    <footer id="rodape" class="mt-footer" role="contentinfo">
+        <!-- Seção Institucional -->
+        <div class="footer-institutional">
+            <div class="container footer-inst-container">
+                <div class="footer-logo-social">
+                    <div class="footer-logo">
+                        <img src="{% static 'assets/logomt.svg' %}"
+                            alt="Logo Governo de Mato Grosso" class="mt-logo-footer">
+                    </div>
+                    <div class="social-icons">
+                        <a href="javascript:void(0)"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="javascript:void(0)"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="javascript:void(0)"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <strong>GOVERNO DO ESTADO DE MATO GROSSO</strong>
+                    <p>Palácio Paiaguás - Av. Desembargador Carlos Avalone - S/N - Centro</p>
+                    <p>Político Administrativo; CEP 78050-970; Cuiabá - Mato Grosso</p>
+                </div>
+                <div class="footer-back-to-top">
+                    <button id="backToTopBtn" aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+                    <span>TOPO DA<br>PÁGINA</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra Azul Final -->
+        <div class="footer-bottom-bar">
+            <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                <span>Desenvolvido Por: <strong>SEPLAG/SAPGD</strong> - Secretaria Adjunta de Planejamento e Governo Digital</span>
+                <a href="{% url 'politica_privacidade' %}" style="color: #ffffff; text-decoration: underline; font-size: 0.9rem;">Política de Privacidade e Termos de Uso (LGPD)</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Elementos Flutuantes -->
+
+    <button class="fab-assistant" id="assistantBtn" aria-label="Assistente Virtual">
+        <img src="{% static 'assets/assistant.png' %}" alt="Assistente Virtual" class="avatar">
+        <span class="badge"></span>
+    </button>
+
+    <!-- Janela do Chat -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header" style="background-color: #000; color: #fff; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: none;">
+            <div class="chat-header-info" style="display: flex; align-items: center; gap: 15px;">
+                <button class="chat-close-btn" id="closeChat" title="Fechar" style="background:transparent; border:none; color:#fff; cursor:pointer; font-size:1.2rem; padding:0; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-xmark"></i></button>
+                <div class="chat-header-text">
+                    <span style="font-size: 1.05rem; color: #fff; font-weight: 500;">Envie uma mensagem</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <button class="chat-maximize-btn" id="maximizeChat" title="Maximizar" style="background:transparent; border:none; color:#fff; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-expand"></i></button>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages" style="background-color: #f0f0f0;">
+            <!-- Badge de Data -->
+            <div style="text-align: center; margin-bottom: 20px; margin-top: 5px;">
+                <span style="background-color: #e0f7fa; color: #333; font-size: 0.8rem; padding: 5px 15px; border-radius: 6px;">HOJE</span>
+            </div>
+            
+            <div class="message-wrapper" style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 15px;">
+                <img src="{% static 'assets/assistant.png' %}" alt="Ixpia" class="chat-msg-avatar" style="width:35px; height:35px; border-radius:50%; border:2px solid #e2d6ff; margin-top: 5px;">
+                <div class="message bot" style="max-width: 100%; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); color: #444; border-radius: 8px; padding: 15px; font-size: 0.95rem; line-height: 1.5;">
+                    <strong style="color: #2c3e50; font-size: 1rem;">Olá, meu nome é Ixpia e sou sua assistente virtual.</strong>
+                    <br><br>
+                    Ao continuar, você concorda com a nossa Política de Privacidade.<br>Para acessar e conferir todos os detalhes, <a href="{% url 'politica_privacidade' %}" target="_blank" rel="noopener noreferrer" style="color: #1976d2; font-weight: 600; text-decoration: none;">clique aqui</a>.
+                    <br><br>
+                    <strong style="color: #2c3e50; font-size: 1rem;">Como posso te ajudar?</strong>
+                    <span class="msg-time" id="initTime" style="font-size:0.7rem; color:#999; display:block; text-align:right; margin-top:8px;"></span>
+                </div>
+            </div>
+            <div class="chat-options" id="chatOptionsContainer">
+                <button class="chat-option-btn" onclick="sendTopic('Preciso de Ajuda')">Preciso de Ajuda</button>
+                <button class="chat-option-btn" onclick="sendTopic('Materiais Educativos')">Materiais Educativos</button>
+                <button class="chat-option-btn" onclick="sendTopic('Rede de Proteção')">Rede de Proteção</button>
+                <button class="chat-option-btn" onclick="sendTopic('Políticas Públicas')">Políticas Públicas</button>
+                <button class="chat-option-btn" onclick="sendTopic('Rede de Enfrentamento')">Rede de Enfrentamento</button>
+            </div>
+            <div class="message-wrapper" id="chatTyping" style="display: none; gap: 10px; align-items: flex-end; margin-bottom: 10px;">
+                <img src="{% static 'assets/assistant.png' %}" alt="ExpiA" class="chat-msg-avatar" style="width:30px; height:30px; border-radius:50%; border:2px solid #e2d6ff;">
+            </div>
+        </div>
+
+        <div class="chat-input-wrapper">
+            <form class="chat-input-area" id="chatForm">
+                <input type="text" id="chatInput" placeholder="Escreva sua mensagem..." autocomplete="off" maxlength="200">
+                <button type="submit" class="chat-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+            <div class="chat-keywords" style="padding: 2px 15px 5px; font-size: 0.7rem; color: #666; display: flex; gap: 8px; flex-wrap: wrap;">
+                <span>Exemplos:</span>
+                <span style="color: #8c71d6; cursor: pointer; font-weight: 500;" onclick="sendTopic('Preciso de Ajuda')">preciso de ajuda</span>
+                <span style="color: #8c71d6; cursor: pointer; font-weight: 500;" onclick="sendTopic('Rede de Proteção')">rede de proteção</span>
+                <span style="color: #8c71d6; cursor: pointer; font-weight: 500;" onclick="document.getElementById('chatInput').value='delegacia'; document.getElementById('chatInput').focus();">delegacia</span>
+                <span style="color: #8c71d6; cursor: pointer; font-weight: 500;" onclick="sendTopic('Políticas Públicas')">políticas públicas</span>
+            </div>
+            <div class="chat-input-footer" style="display: flex; justify-content: space-between; padding: 5px 15px 10px; font-size: 0.7rem; color: #777;">
+                <div style="flex: 1;"></div>
+                <div class="chat-disclaimer" style="flex: 2; text-align: center;">Não armazenamos os dados inseridos no chat.</div>
+                <div class="chat-char-counter" id="chatCharCounter" style="flex: 1; text-align: right;">200 letras restantes</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-ribbon"></div>
+
+    <!-- VLibras Widget -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        /* Inicializa o VLibras assim que o plugin estiver disponível */
+        (function waitVLibras() {
+            if (window.VLibras && window.VLibras.Widget) {
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+            } else {
+                setTimeout(waitVLibras, 200);
+            }
+        })();
+    </script>
+
+    <!-- Google Translate Widget Invisível -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'en,es,pt', autoDisplay: false}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'i18n.js' %}"></script>
+    <script>
+        // Lógica do Dropdown de Serviços (Click)
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropBtn = document.getElementById('servicosDropdownBtn');
+            const dropContent = document.getElementById('servicosDropdownContent');
+            
+            if (dropBtn && dropContent) {
+                dropBtn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Evita conflitos
+                    dropContent.classList.toggle('show');
+                });
+
+                // Fecha o dropdown se clicar fora dele
+                window.addEventListener('click', function(e) {
+                    if (!dropBtn.contains(e.target) && !dropContent.contains(e.target)) {
+                        dropContent.classList.remove('show');
+                    }
+                });
+            }
+
+            // --- Lógica do Banner de Cookies ---
+            const cookieBanner = document.getElementById('cookieBanner');
+            const acceptCookiesBtn = document.getElementById('acceptCookies');
+            
+            if (cookieBanner && acceptCookiesBtn) {
+                if (!localStorage.getItem('cookiesAccepted')) {
+                    cookieBanner.style.display = 'flex';
+                }
+                
+                acceptCookiesBtn.addEventListener('click', function() {
+                    localStorage.setItem('cookiesAccepted', 'true');
+                    cookieBanner.style.display = 'none';
+                });
+            }
+            // --- Lógica do Menu Mobile (Hamburguer) ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mtNavList = document.getElementById('mt-nav-list');
+            if (mobileMenuBtn && mtNavList) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    const isExpanded = mtNavList.classList.toggle('show-menu');
+                    mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <p>Usamos cookies para melhorar sua experiência de navegação e personalizar o conteúdo. Ao continuar no portal, você concorda com a nossa <a href="{% url 'politica_privacidade' %}" target="_blank" style="color: #ffdf00; text-decoration: underline;">Política de Privacidade e Cookies</a>.</p>
+        </div>
+        <button id="acceptCookies" class="cookie-btn">Entendi e Aceito</button>
+    </div>
+    {% endif %}
+</body>
+
+</html>

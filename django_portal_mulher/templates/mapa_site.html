@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mapa do Site | Portal Mulher{% endblock %}
+
+{% block head %}
+<style>
+    .sitemap-container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .sitemap-container h1 {
+        color: #004587;
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #ffdf00;
+        padding-bottom: 10px;
+    }
+
+    .sitemap-section {
+        margin-bottom: 30px;
+    }
+
+    .sitemap-section h2 {
+        color: #004587;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .sitemap-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sitemap-list li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .sitemap-list li::before {
+        content: "\f105";
+        font-family: "FontAwesome";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        color: #ffdf00;
+    }
+
+    .sitemap-list a {
+        color: #444;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.2s;
+    }
+
+    .sitemap-list a:hover {
+        color: #e91e63;
+        /* Rosa destaque */
+        text-decoration: underline;
+    }
+
+    .sitemap-sublist {
+        list-style: none;
+        padding-left: 20px;
+        margin-top: 10px;
+    }
+
+    .sitemap-sublist li::before {
+        content: "-";
+        font-family: inherit;
+        color: #999;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="main-content-new" style="background-color: #f9f9f9; padding-bottom: 40px;">
+    <div class="container sitemap-container">
+        <h1>Mapa do Site</h1>
+        <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem;">Navegue pela estrutura do Portal da Mulher para
+            encontrar rapidamente o que você precisa.</p>
+
+        <div class="sitemap-section">
+            <h2><i class="fa-solid fa-house"></i> Páginas Principais</h2>
+            <ul class="sitemap-list">
+                <li><a href="{% url 'home' %}">Página Inicial</a></li>
+                <li><a href="{% url 'conheca' %}">Rede de Enfrentamento</a></li>
+                <li><a href="{% url 'acessibilidade' %}">Acessibilidade</a></li>
+                <li><a href="{% url 'politica_privacidade' %}">Política de Privacidade e Termos de Uso (LGPD)</a>
+                </li>
+                <li><a href="{% url 'documentos' %}">Legislação</a></li>
+            </ul>
+        </div>
+
+        <div class="sitemap-section">
+            <h2><i class="fa-solid fa-hands-holding-circle"></i> Seções do Portal</h2>
+            <ul class="sitemap-list">
+                <li><a href="{% url 'home' %}#preciso-ajuda">Preciso de Ajuda</a></li>
+                <li><a href="{% url 'home' %}#materiais-educativos">Materiais Educativos</a></li>
+                <li><a href="{% url 'home' %}#rede-protecao">Rede de Proteção (Mapa)</a></li>
+                <li><a href="{% url 'home' %}#dados-violencia">Painéis e Dados da Violência</a></li>
+                <li><a href="{% url 'home' %}#servicos">Serviços e Políticas Públicas</a></li>
+            </ul>
+        </div>
+
+        <div class="sitemap-section">
+            <h2><i class="fa-solid fa-chart-pie"></i> Dados e Painéis Específicos</h2>
+            <ul class="sitemap-list">
+                <li><a href="{% url 'estatisticas' %}">Painel Principal de Estatísticas (SESP)</a></li>
+            </ul>
+        </div>
+
+    </div>
+</main>
+{% endblock %}

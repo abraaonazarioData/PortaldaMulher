@@ -1,0 +1,104 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Visão Geral | Dashboard{% endblock %}
+{% block page_title %}Visão Geral{% endblock %}
+
+{% block content %}
+<style>
+    .top-header .page-title { display: none; }
+    .top-header { justify-content: flex-end; }
+</style>
+<div class="dashboard-header-custom" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
+    <div>
+        <h2 style="font-size: 1.4rem; color: #1e293b; margin-bottom: 15px; font-weight: 700;">Dashboard</h2>
+        <div style="display: flex; align-items: center;">
+            <div style="width: 4px; height: 20px; background: #8b5cf6; border-radius: 2px; margin-right: 10px;"></div>
+            <h3 style="font-size: 1.1rem; color: #1e293b; font-weight: 700; margin: 0;">Visão Geral do Portal</h3>
+        </div>
+    </div>
+    <div style="color: #64748b; font-size: 0.85rem; padding-top: 5px;">
+        <span style="color: #8b5cf6; font-weight: 500; cursor: pointer;">Início</span> / Dashboard
+    </div>
+</div>
+
+<div class="stats-grid">
+    
+    <div class="stat-card animate-fade-in" style="animation-delay: 0.1s;">
+        <div class="stat-info">
+            <h3>Conteúdos</h3>
+            <div class="number">{{ total_conteudos }}</div>
+        </div>
+        <div class="stat-icon" style="background: #8b5cf6;">
+            <i class="fa-solid fa-file-contract"></i>
+        </div>
+    </div>
+
+    <div class="stat-card animate-fade-in" style="animation-delay: 0.2s;">
+        <div class="stat-info">
+            <h3>Locais (Rede)</h3>
+            <div class="number">{{ total_redes }}</div>
+        </div>
+        <div class="stat-icon" style="background: #22c55e;">
+            <i class="fa-solid fa-hospital"></i>
+        </div>
+    </div>
+
+    <div class="stat-card animate-fade-in" style="animation-delay: 0.3s;">
+        <div class="stat-info">
+            <h3>Temas</h3>
+            <div class="number">{{ total_temas }}</div>
+        </div>
+        <div class="stat-icon" style="background: #f59e0b;">
+            <i class="fa-solid fa-tags"></i>
+        </div>
+    </div>
+
+    <div class="stat-card animate-fade-in" style="animation-delay: 0.4s;">
+        <div class="stat-info">
+            <h3>Usuários</h3>
+            <div class="number">{{ total_usuarios }}</div>
+        </div>
+        <div class="stat-icon" style="background: #0ea5e9;">
+            <i class="fa-solid fa-users"></i>
+        </div>
+    </div>
+
+    <div class="stat-card animate-fade-in" style="animation-delay: 0.5s;">
+        <div class="stat-info">
+            <h3>Acessos Painel</h3>
+            <div class="number">{{ total_acessos_painel }}</div>
+        </div>
+        <div class="stat-icon" style="background: #475569;">
+            <i class="fa-solid fa-eye"></i>
+        </div>
+    </div>
+
+</div>
+    <div class="ouvidoria-card animate-fade-in" style="animation-delay: 0.7s; margin-top: 30px; background: #fff; padding: 20px; border-radius: 12px; box-shadow: var(--card-shadow); display:flex; align-items:center; gap:20px;">
+        <div style="flex:0 0 80px;">
+            <img src="{{ ouvidoria_image_url }}" alt="{{ ouvidoria.title }}" style="width:80px; height:auto; border-radius:8px;">
+        </div>
+        <div>
+            <h3 style="margin:0; font-size:1.2rem; color:#1e293b;">{{ ouvidoria.title }}</h3>
+            <p style="margin:5px 0; color:#4b5563;">{{ ouvidoria.text|safe }}</p>
+            <a href="{{ ouvidoria.link_url|default:'#' }}" target="_blank" class="btn btn-primary" style="background:#8b5cf6; color:white; padding:8px 16px; border-radius:6px; text-decoration:none;">Saiba mais</a>
+        </div>
+    </div>
+<!-- Outras seções da Home podem ser adicionadas aqui (ex: atalhos, gráficos) -->
+<div style="margin-top: 40px; background: white; padding: 30px; border-radius: 12px; box-shadow: var(--card-shadow);" class="animate-fade-in" style="animation-delay: 0.6s;">
+    <h3 style="margin-bottom: 20px; font-weight: 600;">Ações Rápidas - Dados e BI</h3>
+    <p style="color: var(--text-light); line-height: 1.6; margin-bottom: 25px;">
+        Acesse os painéis de análise de dados e estatísticas criminais. Você pode visualizar os gráficos do BI ou abrir a tabela do banco de dados para buscar ocorrências usando filtros avançados.
+    </p>
+    
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <a href="{% url 'bi_interativo' %}" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 25px; background: #7b2cbf; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+            <i class="fa-solid fa-chart-pie" style="font-size: 1.2rem;"></i> Visualizar BI (Gráficos Interativos)
+        </a>
+        
+        <a href="/SysteGEVM9x2/core/estatisticaviolencia/" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 25px; background: #2c3e50; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+            <i class="fa-solid fa-table-list" style="font-size: 1.2rem;"></i> Tabela de Dados (Busca e Filtros)
+        </a>
+    </div>
+</div>
+{% endblock %}

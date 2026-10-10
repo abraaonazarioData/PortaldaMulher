@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ocorrências | Portal Mato Grosso em Defesa das Mulheres{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <div class="container">
+        <h2 class="section-title">
+            <div class="title-icon-svg">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" />
+                    <path d="M50 25V55M50 70V75" stroke="#00D2D3" stroke-width="8" stroke-linecap="round" />
+                </svg>
+            </div>
+            Registro de <strong>Ocorrências</strong>
+        </h2>
+
+        <p class="section-description">Informações sobre como proceder em caso de violência e canais oficiais para
+            registro de boletins de ocorrência.</p>
+
+        <div class="alert-box"
+            style="background: #fff4f4; border-left: 5px solid #d32f2f; padding: 20px; border-radius: 8px; margin: 30px 0;">
+            <h3 style="color: #d32f2f; margin-bottom: 10px;"><i class="fa-solid fa-triangle-exclamation"></i> EM CASO DE
+                EMERGÊNCIA AGORA:</h3>
+            <p style="font-size: 1.1rem;">Ligue imediatamente para o <strong>190 (Polícia Militar)</strong>.</p>
+        </div>
+
+        <div class="services-grid">
+            <a href="https://delegaciavirtual.sinesp.gov.br/portal/" target="_blank" class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="card-content">
+                    <span class="card-subtitle">Online</span>
+                    <h3 class="card-title">DELEGACIA VIRTUAL</h3>
+                    <p>Registre sua ocorrência pela internet de forma segura.</p>
+                </div>
+            </a>
+
+            <a href="#" class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-building-shield"></i></div>
+                <div class="card-content">
+                    <span class="card-subtitle">Presencial</span>
+                    <h3 class="card-title">DELEGACIAS DA MULHER</h3>
+                    <p>Localize a Delegacia Especializada mais próxima de você.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</main>
+{% endblock %}

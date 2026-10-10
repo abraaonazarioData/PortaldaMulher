@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Fale Cidadão - Portal Mulher{% endblock %}
+
+{% block content %}
+<!-- Banner Interno -->
+<section style="background: linear-gradient(135deg, #1759B9 0%, #0d3876 100%); color: white; padding: 60px 0; text-align: center;">
+    <div class="container">
+        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">Fale Cidadão</h1>
+        <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            A porta de entrada para você registrar manifestações, sugerir melhorias ou avaliar os serviços e políticas públicas de Mato Grosso.
+        </p>
+    </div>
+</section>
+
+<!-- Conteúdo Principal -->
+<section style="padding: 60px 0; background: #FAFAFA;">
+    <div class="container">
+        
+        <div style="display: flex; flex-direction: column; gap: 40px;">
+            
+            <!-- Sobre a Ouvidoria -->
+            <div style="background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                <h2 style="font-size: 1.8rem; color: #1759B9; margin-bottom: 20px; border-bottom: 2px solid #1759B9; display: inline-block; padding-bottom: 5px;">
+                    O que é o Fale Cidadão?
+                </h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #444;">
+                    O Fale Cidadão - Ouvidoria do Estado é o canal oficial de comunicação entre a sociedade e o Governo de Mato Grosso. É por meio desta plataforma que você, cidadã, pode ajudar a melhorar a eficácia das políticas públicas, relatando irregularidades, sugerindo melhorias, ou solicitando atendimentos específicos relacionados aos órgãos e entidades do Poder Executivo Estadual.
+                </p>
+                <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #eee;">
+                    <h3 style="font-size: 1.3rem; color: #333; margin-bottom: 15px;">Prazos de Resposta:</h3>
+                    <ul style="font-size: 1.05rem; line-height: 1.7; color: #555; padding-left: 20px;">
+                        <li style="margin-bottom: 10px;"><strong>Manifestações Gerais:</strong> Em até 30 dias, prorrogável por mais 30 dias, mediante justificativa expressa (Lei n.º 13.460/2017).</li>
+                        <li><strong>Lei de Acesso à Informação:</strong> O prazo é de 20 dias, prorrogável por mais 10 dias (Lei n.º 12.527/2011).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tipos de Manifestação -->
+            <div>
+                <h2 style="font-size: 2rem; color: #333; margin-bottom: 30px; text-align: center;">Tipos de Manifestação</h2>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    
+                    <!-- Card 1 -->
+                    <div style="flex: 1 1 300px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s ease;">
+                        <div style="width: 60px; height: 60px; background: rgba(23, 89, 185, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: #1759B9; font-size: 1.8rem;">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; color: #000; margin-bottom: 15px;">Denúncia</h3>
+                        <p style="font-size: 1rem; color: #555; line-height: 1.5;">Comunicar ocorrência de ato ilícito, irregularidade ou prática de infração ambiental, contra a administração pública estadual.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div style="flex: 1 1 300px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s ease;">
+                        <div style="width: 60px; height: 60px; background: rgba(23, 89, 185, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: #1759B9; font-size: 1.8rem;">
+                            <i class="fa-solid fa-face-frown"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; color: #000; margin-bottom: 15px;">Reclamação</h3>
+                        <p style="font-size: 1rem; color: #555; line-height: 1.5;">Demonstrar insatisfação com o serviço público prestado, falha na atuação de servidor, ou infração às leis de proteção ao consumidor.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div style="flex: 1 1 300px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s ease;">
+                        <div style="width: 60px; height: 60px; background: rgba(23, 89, 185, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: #1759B9; font-size: 1.8rem;">
+                            <i class="fa-solid fa-hand-paper"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; color: #000; margin-bottom: 15px;">Solicitação</h3>
+                        <p style="font-size: 1rem; color: #555; line-height: 1.5;">Pedir a adoção de providência ou prestação de um serviço, incluindo informações sob a guarda de órgãos públicos (LAI).</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div style="flex: 1 1 300px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s ease;">
+                        <div style="width: 60px; height: 60px; background: rgba(23, 89, 185, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: #1759B9; font-size: 1.8rem;">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; color: #000; margin-bottom: 15px;">Sugestão</h3>
+                        <p style="font-size: 1rem; color: #555; line-height: 1.5;">Propor melhoria, simplificação ou eficiência na prestação do serviço público e nas políticas implementadas.</p>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div style="flex: 1 1 300px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s ease;">
+                        <div style="width: 60px; height: 60px; background: rgba(23, 89, 185, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: #1759B9; font-size: 1.8rem;">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </div>
+                        <h3 style="font-size: 1.3rem; color: #000; margin-bottom: 15px;">Elogio</h3>
+                        <p style="font-size: 1rem; color: #555; line-height: 1.5;">Demonstrar reconhecimento ou satisfação com o serviço público prestado, ou com a atuação de um servidor do Estado.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div style="text-align: center; margin-top: 20px; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                <img src="https://ouvidoria.cge.mt.gov.br/_next/static/media/CGE%20-%20Fale%20Cidad%C3%A3o%20v1.da578e70.svg" alt="Fale Cidadão" style="height: 80px; margin-bottom: 25px;">
+                <h3 style="font-size: 1.8rem; color: #333; margin-bottom: 20px;">Faça sua parte para um Estado melhor</h3>
+                <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto 30px;">
+                    Sua participação é essencial para a transparência e melhoria das políticas públicas voltadas para as mulheres e toda a sociedade.
+                </p>
+                <a href="https://ouvidoria.cge.mt.gov.br/registre-sua-manifestacao" target="_blank" style="display: inline-block; background: #d12089; color: white; padding: 18px 40px; border-radius: 8px; text-decoration: none; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 15px rgba(209, 32, 137, 0.3); transition: transform 0.2s, box-shadow 0.2s;">
+                    Registrar Manifestação Oficial <i class="fa-solid fa-external-link-alt" style="margin-left: 10px;"></i>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

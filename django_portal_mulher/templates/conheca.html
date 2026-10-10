@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Rede Estadual de Enfrentamento à Violência contra a Mulher | Portal da Mulher{% endblock %}
+
+{% block content %}
+
+
+<section id="pmg-section-container">
+    <header>
+        <h1 class="pmg-main-title">Rede Estadual de Enfrentamento à Violência contra a Mulher</h1>
+    </header>
+
+    <article>
+        {% if conteudo_rede and conteudo_rede.text %}
+            {{ conteudo_rede.text|safe }}
+        {% else %}
+            <p>Conteúdo não encontrado.</p>
+        {% endif %}
+    </article>
+</section>
+
+<style>
+    /* Forçando o estilo localmente para garantir que o cache do navegador não atrapalhe */
+    #pmg-section-container article a {
+        color: #0047BB !important;
+        text-decoration: underline !important;
+        font-weight: 600 !important;
+        transition: color 0.2s;
+    }
+    #pmg-section-container article a:hover {
+        color: #1A5FFF !important;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Pega todos os links dentro da área de texto
+        var links = document.querySelectorAll("#pmg-section-container article a");
+        links.forEach(function(link) {
+            // Força a abertura em uma nova aba
+            link.setAttribute("target", "_blank");
+            // Adiciona segurança ao abrir nova aba
+            link.setAttribute("rel", "noopener noreferrer");
+        });
+    });
+</script>
+{% endblock %}

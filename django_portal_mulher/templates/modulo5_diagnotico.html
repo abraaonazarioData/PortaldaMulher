@@ -1,0 +1,541 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Diagnóstico FONAR - Portal Mato Grosso em Defesa das Mulheres{% endblock %}
+
+{% block head %}
+<style>
+    .form-wrapper-premium {
+        max-width: 900px;
+        margin: 40px auto;
+        background: var(--color-white);
+        padding: 50px;
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .form-wrapper-premium::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: linear-gradient(90deg, var(--color-gov-blue), var(--color-accent-woman));
+    }
+
+    /* Indicador de Progresso */
+    .step-progress-bar {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+        position: relative;
+    }
+
+    .step-progress-bar::before {
+        content: '';
+        position: absolute;
+        top: 25px;
+        left: 5%;
+        width: 90%;
+        height: 2px;
+        background: #eee;
+        z-index: 1;
+    }
+
+    .step-item {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        width: 100px;
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
+        background: #f0f0f0;
+        color: #999;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        margin: 0 auto 10px;
+        border: 4px solid var(--color-white);
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .step-item.active .step-number {
+        background: var(--color-gov-blue);
+        color: var(--color-white);
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(0,69,135,0.2);
+    }
+
+    .step-item.completed .step-number {
+        background: var(--color-accent-woman);
+        color: var(--color-white);
+    }
+
+    .step-item span {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #999;
+        transition: color 0.3s;
+    }
+
+    .step-item.active span {
+        color: var(--color-gov-blue);
+    }
+
+    /* Perguntas */
+    .form-step {
+        display: none;
+    }
+
+    .form-step.active {
+        display: block;
+        animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateX(20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    .question-card {
+        background: #fcfcfc;
+        border: 1px solid #f0f0f0;
+        padding: 25px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        transition: all 0.3s;
+    }
+
+    .question-card:hover {
+        border-color: var(--color-accent-woman);
+        background: #fff;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    }
+
+    .question-text {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--color-text-main);
+        margin-bottom: 20px;
+        display: block;
+        line-height: 1.5;
+    }
+
+    /* Radios Estilizados */
+    .options-group {
+        display: flex;
+        gap: 20px;
+    }
+
+    .option-btn {
+        flex: 1;
+        cursor: pointer;
+    }
+
+    .option-btn input {
+        display: none;
+    }
+
+    .option-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px;
+        border: 2px solid #eee;
+        border-radius: 12px;
+        font-weight: 700;
+        color: #777;
+        transition: all 0.2s;
+    }
+
+    .option-btn:hover .option-content {
+        border-color: var(--color-gov-blue);
+        background: #f8fbff;
+    }
+
+    .option-btn input:checked + .option-content {
+        background: var(--color-gov-blue);
+        border-color: var(--color-gov-blue);
+        color: white;
+        box-shadow: 0 5px 15px rgba(0,69,135,0.2);
+    }
+
+    /* Botões de Navegação */
+    .form-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 1px solid #eee;
+    }
+
+    .btn-fonar {
+        padding: 15px 40px;
+        border-radius: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .btn-back {
+        background: #f0f0f0;
+        color: #777;
+    }
+
+    .btn-next, .btn-finish {
+        background: var(--color-accent-woman);
+        color: white;
+    }
+
+    .btn-next:hover, .btn-finish:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,210,211,0.3);
+    }
+
+    /* Resultado */
+    .result-overlay {
+        display: none;
+        text-align: center;
+        animation: fadeIn 1s ease;
+    }
+
+    .result-banner {
+        padding: 50px;
+        border-radius: 30px;
+        color: white;
+        margin-bottom: 40px;
+    }
+
+    .bg-extreme { background: linear-gradient(135deg, #d32f2f, #b71c1c); }
+    .bg-grave { background: linear-gradient(135deg, #ef6c00, #e65100); }
+    .bg-moderate { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
+
+    .result-badge {
+        font-size: 3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: block;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <div class="container">
+        <h2 class="section-title">
+            <div class="title-icon-svg">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" />
+                    <path d="M35 50L45 60L65 40" stroke="#00D2D3" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            Avalie seu Risco 
+        </h2>
+
+        <p class="section-description">
+            Responda as perguntas, entenda a sua situação e descubra o que fazer.
+        </p>
+
+        <div class="form-wrapper-premium" id="fonarWrapper">
+            <!-- Progresso -->
+            <div class="step-progress-bar">
+                <div class="step-item active" data-step="1">
+                    <div class="step-number">1</div>
+                    <span>Histórico</span>
+                </div>
+                <div class="step-item" data-step="2">
+                    <div class="step-number">2</div>
+                    <span>Agressor</span>
+                </div>
+                <div class="step-item" data-step="3">
+                    <div class="step-number">3</div>
+                    <span>Vítima</span>
+                </div>
+            </div>
+
+            <form id="fonarForm">
+                <!-- Passo 1: Histórico -->
+                <div class="form-step active" id="step1">
+                    <h3 style="color: var(--color-gov-blue); margin-bottom: 30px; border-left: 4px solid var(--color-accent-woman); padding-left: 15px;">Bloco I – Histórico de Violência</h3>
+                    
+                    <div class="question-card">
+                        <span class="question-text">1. O(a) agressor(a) já ameaçou você ou algum familiar com a finalidade de atingi-la?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="q1" value="1" required>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="q1" value="0">
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-text">2. O(a) agressor(a) já praticou formas graves de agressão física contra você?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="q2" value="1" required>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="q2" value="0">
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-text">3. O(a) agressor(a) já obrigou você a ter relações sexuais contra sua vontade?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="q3" value="1" required>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="q3" value="0">
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-text">4. O(a) agressor(a) demonstra comportamentos de controle excessivo ou perseguição?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="q4" value="1" required>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="q4" value="0">
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passo 2: Agressor -->
+                <div class="form-step" id="step2">
+                    <h3 style="color: var(--color-gov-blue); margin-bottom: 30px; border-left: 4px solid var(--color-accent-woman); padding-left: 15px;">Bloco II – Sobre o(a) Agressor(a)</h3>
+                    
+                    <div class="question-card">
+                        <span class="question-text">5. O(a) agressor(a) já descumpriu medida protetiva de urgência anteriormente?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="q5_1" value="1" required disabled>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="q5_1" value="0" disabled>
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-text">6. O(a) agressor(a) faz uso abusivo de álcool, drogas ou medicamentos?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="q6" value="1" required disabled>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="q6" value="0" disabled>
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-text">7. O(a) agressor(a) tem fácil acesso a arma de fogo?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="q7" value="1" required disabled>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="q7" value="0" disabled>
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passo 3: Vítima -->
+                <div class="form-step" id="step3">
+                    <h3 style="color: var(--color-gov-blue); margin-bottom: 30px; border-left: 4px solid var(--color-accent-woman); padding-left: 15px;">Bloco III – Sobre Você (Vítima)</h3>
+                    
+                    <div class="question-card">
+                        <span class="question-text">8. Você terminou ou tentou terminar o relacionamento recentemente?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="q8" value="1" required disabled>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="q8" value="0" disabled>
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-text">9. Este fato pode ser classificado como tentativa de feminicídio?</span>
+                        <div class="options-group">
+                            <label class="option-btn">
+                                <input type="radio" name="tentativa" value="1" required disabled>
+                                <div class="option-content">SIM</div>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="tentativa" value="0" disabled>
+                                <div class="option-content">NÃO</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-nav">
+                    <button type="button" class="btn-fonar btn-back" id="prevBtn" style="visibility: hidden;"><i class="fa-solid fa-chevron-left"></i> Anterior</button>
+                    <button type="button" class="btn-fonar btn-next" id="nextBtn">Próximo <i class="fa-solid fa-chevron-right"></i></button>
+                    <button type="submit" class="btn-fonar btn-finish" id="submitBtn" style="display: none;">Ver Resultado <i class="fa-solid fa-check-double"></i></button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Área de Resultados -->
+        <div class="result-overlay" id="resultArea">
+            <div class="result-banner" id="resultCard">
+                <span class="result-badge" id="riskTitle">RISCO ...</span>
+                <p class="result-desc" id="riskDesc">Processando diagnóstico...</p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                    <a href="tel:190" class="service-card" style="background: white; border: none; padding: 20px; min-width: 250px;">
+                        <div class="icon-box" style="background: #d32f2f; color: white;"><i class="fa-solid fa-phone"></i></div>
+                        <div class="card-content">
+                            <h3 style="margin: 0; color: #333;">LIGAR 190</h3>
+                            <span style="color: #666;">Emergência</span>
+                        </div>
+                    </a>
+                    <a href="/" class="service-card" style="background: white; border: none; padding: 20px; min-width: 250px;">
+                        <div class="icon-box" style="background: var(--color-gov-blue); color: white;"><i class="fa-solid fa-house"></i></div>
+                        <div class="card-content">
+                            <h3 style="margin: 0; color: #333;">VOLTAR AO INÍCIO</h3>
+                            <span style="color: #666;">Página Principal</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const steps = document.querySelectorAll('.form-step');
+    const stepItems = document.querySelectorAll('.step-item');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    let currentStep = 0;
+
+    function updateStep() {
+        steps.forEach((step, index) => {
+            step.classList.toggle('active', index === currentStep);
+            const inputs = step.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = index !== currentStep);
+        });
+
+        stepItems.forEach((item, index) => {
+            item.classList.toggle('active', index === currentStep);
+            item.classList.toggle('completed', index < currentStep);
+        });
+
+        prevBtn.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+
+        if (currentStep === steps.length - 1) {
+            nextBtn.style.display = 'none';
+            submitBtn.style.display = 'flex';
+        } else {
+            nextBtn.style.display = 'flex';
+            submitBtn.style.display = 'none';
+        }
+    }
+
+    nextBtn.addEventListener('click', () => {
+        const currentInputs = steps[currentStep].querySelectorAll('input[required]');
+        let allFilled = true;
+        const names = new Set();
+        currentInputs.forEach(input => names.add(input.name));
+        names.forEach(name => {
+            if (!document.querySelector(`input[name="${name}"]:checked`)) allFilled = false;
+        });
+
+        if (allFilled) {
+            currentStep++;
+            updateStep();
+        } else {
+            alert('Por favor, responda todas as perguntas para prosseguir.');
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentStep--;
+        updateStep();
+    });
+
+    document.getElementById('fonarForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        // Lógica Simplificada de Risco
+        let score = 0;
+        Object.values(data).forEach(val => score += parseInt(val));
+
+        const isTentativa = data['tentativa'] === '1';
+        let risk = 'MODERADO';
+        let colorClass = 'bg-moderate';
+        let desc = 'Sua situação indica risco moderado. Recomendamos que busque orientação preventiva.';
+
+        if (isTentativa || score > 7) {
+            risk = 'EXTREMO';
+            colorClass = 'bg-extreme';
+            desc = 'ALERTA: Sua situação é de RISCO EXTREMO. Procure ajuda imediatamente.';
+        } else if (score >= 4) {
+            risk = 'GRAVE';
+            colorClass = 'bg-grave';
+            desc = 'Sua situação é de RISCO GRAVE. Recomendamos que procure a rede de proteção.';
+        }
+
+        document.getElementById('fonarWrapper').style.display = 'none';
+        const resultArea = document.getElementById('resultArea');
+        const resultCard = document.getElementById('resultCard');
+        document.getElementById('riskTitle').innerText = `RISCO ${risk}`;
+        document.getElementById('riskDesc').innerText = desc;
+        resultCard.className = `result-banner ${colorClass}`;
+        resultArea.style.display = 'block';
+    });
+
+    updateStep();
+</script>
+{% endblock %}

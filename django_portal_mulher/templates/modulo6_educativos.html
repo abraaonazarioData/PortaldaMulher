@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Materiais Educativos | Portal Mato Grosso em Defesa das Mulheres{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <div class="container">
+        <h2 class="section-title">
+            <div class="title-icon-svg">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" />
+                    <path d="M30 35H70V75H30V35Z" fill="#00D2D3" />
+                    <path d="M40 45H60M40 55H60M40 65H50" stroke="white" stroke-width="4" stroke-linecap="round" />
+                </svg>
+            </div>
+            Materiais <strong>Educativos</strong>
+        </h2>
+
+        <p class="section-description">Acesse nossa biblioteca de cartilhas, vídeos e guias informativos sobre prevenção
+            e combate à violência.</p>
+
+        <!-- Barra de Busca Própria da Biblioteca -->
+        <div class="search-library-wrapper" style="max-width: 500px; margin: 30px auto; position: relative;">
+            <div
+                style="display: flex; background: #ffffff; border: 1px solid #ddd; border-radius: 30px; padding: 5px 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); align-items: center;">
+                <i class="fa-solid fa-magnifying-glass" style="color: #888; margin-right: 10px;"></i>
+                <input type="text" id="librarySearchInput" placeholder="Buscar materiais educativos..."
+                    style="flex: 1; border: none; outline: none; padding: 8px 5px; font-size: 1rem; font-family: inherit;">
+            </div>
+        </div>
+
+        <div class="library-grid" id="libraryGrid">
+
+            <!-- Cartilha 1 -->
+            <div class="library-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <img src="{% static 'cards/capa_opm.png' %}" alt="Capa OPM"
+                    style="width: 100%; height: 250px; object-fit: contain; background: #f9f9f9; border-bottom: 1px solid #ddd;"
+                    onerror="this.src='https://via.placeholder.com/300x400?text=Capa+OPM'">
+
+                <div
+                    style="padding: 20px; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 15px;">Criação de Organismos de
+                        Políticas para Mulheres (OPM) em MT</h3>
+                    <a href="{% static 'cartilhas/Carrossel-Cartilhas/cartilha_opm.pdf' %}"
+                        target="_blank" class="btn-read" style="margin-top: auto; width: 100%;">Acessar Cartilha</a>
+                </div>
+            </div>
+
+            <!-- Cartilha 2 -->
+            <div class="library-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <img src="{% static 'cards/capa_maria_penha.png' %}" alt="Capa Maria da Penha"
+                    style="width: 100%; height: 250px; object-fit: contain; background: #f9f9f9; border-bottom: 1px solid #ddd;"
+                    onerror="this.src='https://via.placeholder.com/300x400?text=Capa+Maria+da+Penha'">
+
+                <div
+                    style="padding: 20px; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 15px;">Maria da Penha</h3>
+                    <a href="{% static 'cartilhas/Carrossel-Cartilhas/cartilha_maria_penha.pdf' %}"
+                        target="_blank" class="btn-read" style="margin-top: auto; width: 100%;">Acessar Cartilha</a>
+                </div>
+            </div>
+
+            <!-- Cartilha 3 -->
+            <div class="library-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <img src="{% static 'cards/capa_protocolo.png' %}" alt="Capa Protocolo Não é Não"
+                    style="width: 100%; height: 250px; object-fit: contain; background: #f9f9f9; border-bottom: 1px solid #ddd;"
+                    onerror="this.src='https://via.placeholder.com/300x400?text=Capa+Protocolo'">
+
+                <div
+                    style="padding: 20px; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 15px;">Protocolo NÃO É NÃO</h3>
+                    <a href="{% static 'cartilhas/Carrossel-Cartilhas/cartilha_protocolo.pdf' %}"
+                        target="_blank" class="btn-read" style="margin-top: auto; width: 100%;">Acessar Cartilha</a>
+                </div>
+            </div>
+
+            <!-- Cartilha 4 -->
+            <div class="library-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <img src="{% static 'cards/capa_guia180.png' %}" alt="Capa Guia 180"
+                    style="width: 100%; height: 250px; object-fit: contain; background: #f9f9f9; border-bottom: 1px solid #ddd;"
+                    onerror="this.src='https://via.placeholder.com/300x400?text=Capa+Guia+180'">
+
+                <div
+                    style="padding: 20px; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 15px;">Guia 180</h3>
+                    <a href="{% static 'cartilhas/Carrossel-Cartilhas/cartilha_guia180.pdf' %}"
+                        target="_blank" class="btn-read" style="margin-top: auto; width: 100%;">Acessar Cartilha</a>
+                </div>
+            </div>
+
+            <!-- Cartilha 5 -->
+            <div class="library-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <img src="{% static 'cards/capa_vida_sem_violencia.png' %}"
+                    alt="Capa Por uma vida sem violência"
+                    style="width: 100%; height: 250px; object-fit: contain; background: #f9f9f9; border-bottom: 1px solid #ddd;"
+                    onerror="this.src='https://via.placeholder.com/300x400?text=Capa+Vida+sem+Violencia'">
+
+                <div
+                    style="padding: 20px; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 15px;">Por uma vida sem violência
+                    </h3>
+                    <a href="{% static 'cartilhas/Carrossel-Cartilhas/cartilha_vida_sem_violencia.pdf' %}"
+                        target="_blank" class="btn-read" style="margin-top: auto; width: 100%;">Acessar Cartilha</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="margin-top: 60px;">
+            <h2 class="section-title">
+                <div class="title-icon-svg">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="currentColor" />
+                        <path d="M35 30L70 50L35 70V30Z" fill="#00D2D3" />
+                    </svg>
+                </div>
+                Informação que <strong>Protege</strong>
+            </h2>
+
+
+            <div class="library-grid" id="videosGrid" style="margin-top: 30px;">
+                <a href="https://youtu.be/infxV6ejKMc" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/infxV6ejKMc/hqdefault.jpg"
+                        alt="O que é violência de gênero contra a mulher e seus tipos"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">O que é violência
+                        de gênero contra a mulher e seus tipos</h4>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=YkYNlkr1FQE" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/YkYNlkr1FQE/hqdefault.jpg"
+                        alt="O fenômeno do ciclo da violência"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">O fenômeno do
+                        ciclo da violência</h4>
+                </a>
+
+                <a href="https://www.youtube.com/shorts/-PPR-6kczH0" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/-PPR-6kczH0/hqdefault.jpg"
+                        alt="Os mecanismos para rompimento do ciclo de violência"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">Os mecanismos para
+                        rompimento do ciclo de violência</h4>
+                </a>
+
+                <a href="https://youtu.be/F6epuxrqWW0" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/F6epuxrqWW0/hqdefault.jpg"
+                        alt="Encaminhamentos para a rede de proteção"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">Encaminhamentos
+                        para a rede de proteção</h4>
+                </a>
+
+                <a href="https://youtube.com/shorts/I_K9iL2wkFA?feature=share" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/I_K9iL2wkFA/hqdefault.jpg"
+                        alt="Quem procurar em caso de violência doméstica e familiar"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">Quem procurar em
+                        caso de violência doméstica e familiar</h4>
+                </a>
+
+                <a href="https://youtube.com/shorts/r2JFHZ6k2dE" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/r2JFHZ6k2dE/hqdefault.jpg"
+                        alt="A importância de buscar ajuda e responsabilidade de familiares e amigos próximos"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">A importância de
+                        buscar ajuda e responsabilidade de familiares e amigos próximos</h4>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=4wSwnrVCDJI" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/4wSwnrVCDJI/hqdefault.jpg"
+                        alt="O autor não cumpre as medidas protetivas, o que devo fazer?"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">O autor não cumpre
+                        as medidas protetivas, o que devo fazer?</h4>
+                </a>
+
+                <a href="https://youtube.com/shorts/rkon1vL77K0?feature=share" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/rkon1vL77K0/hqdefault.jpg"
+                        alt="A quem se destina e como buscar"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">A quem se destina
+                        e como buscar</h4>
+                </a>
+
+                <a href="https://youtube.com/shorts/HRusxXexTEo?feature=share" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/HRusxXexTEo/hqdefault.jpg"
+                        alt="Qual a diferença entre o APP SOS Mulher e a tornozeleira eletrônica?"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">Qual a diferença
+                        entre o APP SOS Mulher e a tornozeleira eletrônica?</h4>
+                </a>
+
+                <a href="https://youtube.com/shorts/l-JWRXDxv8A?feature=share" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/l-JWRXDxv8A/hqdefault.jpg"
+                        alt="Preciso ter filmagens, documentação ou testemunhas para buscar ajuda?"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">Preciso ter
+                        filmagens, documentação ou testemunhas para buscar ajuda?</h4>
+                </a>
+
+                <a href="https://youtu.be/uzbAXbB_ePc" target="_blank" class="library-card"
+                    style="text-decoration: none; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="https://img.youtube.com/vi/uzbAXbB_ePc/hqdefault.jpg"
+                        alt="Consequências legais da violência contra a mulher"
+                        style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 class="card-title" style="color: #333; font-size: 1rem; margin-bottom: 10px;">Consequências
+                        legais da violência contra a mulher</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('librarySearchInput');
+        const cards = document.querySelectorAll('.library-card');
+
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+                cards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+                    const desc = card.querySelector('.card-desc').textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+                    if (title.includes(query) || desc.includes(query)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}

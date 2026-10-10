@@ -1,0 +1,15 @@
+*.rar
+*.zip
+.venv/
+*/.venv/
+__pycache__/
+*/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+local_cert.key
+local_cert.crt
+cert.key
+cert.crt
+.vscode/

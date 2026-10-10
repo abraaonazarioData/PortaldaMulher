@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Plano de Enfrentamento | Portal Mato Grosso em Defesa das Mulheres{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <div class="container">
+        <h2 class="section-title">
+            <div class="title-icon-svg">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" />
+                    <path d="M35 50L45 60L65 40" stroke="#00D2D3" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            Plano Estadual de <strong>Enfrentamento</strong>
+        </h2>
+
+        <p class="section-description">Conheça as políticas públicas e metas estabelecidas pelo Governo de Mato Grosso.</p>
+        
+        <div class="goals-list" style="margin-top: 40px;">
+            <div class="goal-item" style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; border-left: 10px solid #00D2D3; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3>Meta 1: Redução de Feminicídios</h3>
+                <p>Implementação de patrulhas Maria da Penha em 100% dos municípios.</p>
+            </div>
+            
+            <div class="goal-item" style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; border-left: 10px solid #00D2D3; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3>Meta 2: Ampliação da Rede</h3>
+                <p>Criação de novas Salas Lilás em delegacias do interior.</p>
+            </div>
+
+            
+        <div class="dashboard-guide">
+            <h2>Guia do Dashboard - Painel de Políticas para Mulheres (MT)</h2>
+
+            <p class="intro">Este painel oferece transparência total de projetos e políticas públicas
+              no Estado de Mato Grosso, abrangendo o período de 2019 a 2026. Entenda os dados:</p>
+          
+
+            <iframe title="feminicidio" width="100%" height="500.6"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZGVmYWRhYzEtNmJmYi00Mjg0LWIyZjQtYmM5Y2U2NWFkMTQ3IiwidCI6IjIxODk0ZWU5LWI1NzctNDNjYS04ZmY1LTQ5YjIzYzVhZDM3NSJ9"
+            frameborder="0" allowFullScreen="true"></iframe>
+        </div>
+    </div>
+</main>
+{% endblock %}

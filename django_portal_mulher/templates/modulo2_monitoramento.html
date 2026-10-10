@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Monitoramento | Portal Mato Grosso em Defesa das Mulheres{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <div class="container">
+        <h2 class="section-title">
+            <div class="title-icon-svg">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" />
+                    <path d="M25 70L40 50L60 60L75 30" stroke="#00D2D3" stroke-width="6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            Monitoramento da <strong>Violência</strong>
+        </h2>
+
+        <p class="section-description">Análise detalhada e em tempo real dos índices de violência contra a mulher no
+            estado.</p>
+
+        <div class="dashboard-guide">
+            <h2>Guia do Dashboard - Explorando os Dados da Violência Contra a Mulher (MT)</h2>
+
+            <p class="intro">Este painel oferece transparência total e georreferenciamento de situações de violência
+                contra a mulher no Estado de Mato Grosso, abrangendo o período de 2019 a 2026. Entenda os dados:</p>
+
+            <div class="dashboard-list">
+                <div class="dashboard-item">
+                    <div class="icon">📍</div>
+                    <div class="content">
+                        <strong>GEORREFERENCIAMENTO:</strong>
+                        <span>Mapas de calor que mostram a localização das ocorrências por município e região.</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="icon">🛡️</div>
+                    <div class="content">
+                        <strong>TIPOS DE CRIME E OCORRÊNCIAS:</strong>
+                        <span>Dados detalhados sobre ameaças, agressões físicas, e feminicídios, baseados em registros
+                            oficiais.</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="icon">👥</div>
+                    <div class="content">
+                        <strong>PERFIL DA VÍTIMA:</strong>
+                        <span>Informações agregadas e anônimas sobre idade, raça e contexto para análise social.</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="icon">🕒</div>
+                    <div class="content">
+                        <strong>SÉRIE HISTÓRICA:</strong>
+                        <span>Acompanhamento de evolução dos índices ao longo do tempo (2019-2026).</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <iframe title="feminicidio" width="100%" height="700.6"
+            src="https://app.powerbi.com/view?r=eyJrIjoiNzgzNzRjNWYtMmZkMy00YjM4LWE5ODUtMDcyZjg1ZjNiYzcxIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9"
+            frameborder="0" allowFullScreen="true"></iframe>
+    </div>
+    </div>
+</main>
+{% endblock %}

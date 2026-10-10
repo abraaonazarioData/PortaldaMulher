@@ -1,0 +1,567 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico FONAR - Portal Mato Grosso</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h1 {
+            color: var(--color-gov-blue);
+            font-weight: 800;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .form-header p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #eee;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .step {
+            width: 40px;
+            height: 40px;
+            background: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--color-text-light);
+            z-index: 2;
+            transition: all var(--transition-fast);
+        }
+
+        .step.active {
+            background: var(--color-gov-blue);
+            color: var(--color-white);
+        }
+
+        .step.completed {
+            background: var(--color-green-neon);
+            color: var(--color-white);
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #fcfcfc;
+            border: 1px solid #f0f0f0;
+            transition: border-color 0.3s;
+        }
+
+        .question-block:hover {
+            border-color: var(--color-gov-blue);
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-text-main);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.2s;
+            flex: 1;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .option-label:hover {
+            background: #f0f7ff;
+            border-color: var(--color-gov-blue);
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"]:checked + .option-label {
+            background: var(--color-gov-blue);
+            color: white;
+            border-color: var(--color-gov-blue);
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-prev {
+            background: #eee;
+            color: var(--color-text-main);
+        }
+
+        .btn-next, .btn-submit {
+            background: var(--color-gov-blue);
+            color: white;
+        }
+
+        .btn-next:hover, .btn-submit:hover {
+            background: var(--color-gov-blue-light);
+            transform: translateY(-2px);
+        }
+
+        /* Result Styles */
+        .result-container {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result-card {
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .risk-extreme { background: #d32f2f; }
+        .risk-grave { background: #ef6c00; }
+        .risk-moderate { background: #388e3c; }
+
+        .result-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .result-desc {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .result-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .action-btn {
+            background: white;
+            color: var(--color-text-main);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar copy -->
+    <div class="topbar">
+        <div class="container topbar-container">
+            <nav class="topbar-nav">
+                <a href="/">GOVMT</a>
+                <a href="/">INÍCIO</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="form-container" id="formWrapper">
+            <div class="form-header">
+                <h1>Responda as perguntas, entenda a sua situação e descubra o que fazer. </h1>
+                <p>Responda as perguntas abaixo para avaliar o nível de risco e receber orientações adequadas.</p>
+            </div>
+
+            <div class="step-indicator">
+                <div class="step active" data-step="1">1</div>
+                <div class="step" data-step="2">2</div>
+                <div class="step" data-step="3">3</div>
+            </div>
+
+            <form id="fonarForm">
+                <!-- Passo 1: Histórico de Violência -->
+                <div class="form-step active" id="step1">
+                    <h3 class="section-title">Bloco I – <strong>Histórico de Violência</strong></h3>
+                    
+                    <div class="question-block">
+                        <span class="question-text">1. O(a) agressor(a) já ameaçou você ou algum familiar com a finalidade de atingi-la?</span>
+                        <div class="options">
+                            <input type="radio" name="q1" id="q1_yes" value="1" required>
+                            <label for="q1_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q1" id="q1_no" value="0">
+                            <label for="q1_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">2. O(a) agressor(a) já praticou formas graves de agressão física contra você?</span>
+                        <div class="options">
+                            <input type="radio" name="q2" id="q2_yes" value="1" required>
+                            <label for="q2_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q2" id="q2_no" value="0">
+                            <label for="q2_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">3. O(a) agressor(a) já obrigou você a ter relações sexuais contra sua vontade?</span>
+                        <div class="options">
+                            <input type="radio" name="q3" id="q3_yes" value="1" required>
+                            <label for="q3_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q3" id="q3_no" value="0">
+                            <label for="q3_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">4. O(a) agressor(a) demonstra comportamentos de controle excessivo ou perseguição?</span>
+                        <div class="options">
+                            <input type="radio" name="q4" id="q4_yes" value="1" required>
+                            <label for="q4_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q4" id="q4_no" value="0">
+                            <label for="q4_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">5. O(a) agressor(a) já descumpriu medida protetiva de urgência anteriormente?</span>
+                        <div class="options">
+                            <input type="radio" name="q5_1" id="q5_1_yes" value="1" required>
+                            <label for="q5_1_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q5_1" id="q5_1_no" value="0">
+                            <label for="q5_1_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">6. As agressões ou ameaças se tornaram mais frequentes ou graves nos últimos 12 meses?</span>
+                        <div class="options">
+                            <input type="radio" name="q6" id="q6_yes" value="1" required>
+                            <label for="q6_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q6" id="q6_no" value="0">
+                            <label for="q6_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passo 2: Sobre o Agressor -->
+                <div class="form-step" id="step2">
+                    <h3 class="section-title">Bloco II – <strong>Sobre o(a) Agressor(a)</strong></h3>
+
+                    <div class="question-block">
+                        <span class="question-text">7. O(a) agressor(a) faz uso abusivo de álcool, drogas ou medicamentos?</span>
+                        <div class="options">
+                            <input type="radio" name="q7" id="q7_yes" value="1" required disabled>
+                            <label for="q7_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q7" id="q7_no" value="0" disabled>
+                            <label for="q7_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">8. O(a) agressor(a) tem alguma doença mental comprovada?</span>
+                        <div class="options">
+                            <input type="radio" name="q8" id="q8_yes" value="1" required disabled>
+                            <label for="q8_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q8" id="q8_no" value="0" disabled>
+                            <label for="q8_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">9. O(a) agressor(a) já tentou suicídio ou falou em suicidar-se?</span>
+                        <div class="options">
+                            <input type="radio" name="q9" id="q9_yes" value="1" required disabled>
+                            <label for="q9_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q9" id="q9_no" value="0" disabled>
+                            <label for="q9_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">11. O(a) agressor(a) tem fácil acesso a arma de fogo?</span>
+                        <div class="options">
+                            <input type="radio" name="q11" id="q11_yes" value="1" required disabled>
+                            <label for="q11_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q11" id="q11_no" value="0" disabled>
+                            <label for="q11_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">12. O(a) agressor(a) já ameaçou ou agrediu familiares, amigos ou animais?</span>
+                        <div class="options">
+                            <input type="radio" name="q12" id="q12_yes" value="1" required disabled>
+                            <label for="q12_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q12" id="q12_no" value="0" disabled>
+                            <label for="q12_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passo 3: Sobre a Vítima -->
+                <div class="form-step" id="step3">
+                    <h3 class="section-title">Bloco III – <strong>Sobre Você (Vítima)</strong></h3>
+
+                    <div class="question-block">
+                        <span class="question-text">13. Você terminou ou tentou terminar o relacionamento recentemente?</span>
+                        <div class="options">
+                            <input type="radio" name="q13" id="q13_yes" value="1" required disabled>
+                            <label for="q13_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q13" id="q13_no" value="0" disabled>
+                            <label for="q13_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">15. Você está grávida ou teve filho nos últimos 18 meses?</span>
+                        <div class="options">
+                            <input type="radio" name="q15" id="q15_yes" value="1" required disabled>
+                            <label for="q15_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q15" id="q15_no" value="0" disabled>
+                            <label for="q15_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">16. Você está em um novo relacionamento e as ameaças aumentaram por isso?</span>
+                        <div class="options">
+                            <input type="radio" name="q16" id="q16_yes" value="1" required disabled>
+                            <label for="q16_yes" class="option-label">SIM</label>
+                            <input type="radio" name="q16" id="q16_no" value="0" disabled>
+                            <label for="q16_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <span class="question-text">Este fato pode ser classificado como tentativa de feminicídio?</span>
+                        <div class="options">
+                            <input type="radio" name="tentativa" id="tent_yes" value="1" required disabled>
+                            <label for="tent_yes" class="option-label">SIM</label>
+                            <input type="radio" name="tentativa" id="tent_no" value="0" disabled>
+                            <label for="tent_no" class="option-label">NÃO</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-prev" id="prevBtn" style="visibility: hidden;"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+                    <button type="button" class="btn btn-next" id="nextBtn">Próximo <i class="fa-solid fa-arrow-right"></i></button>
+                    <button type="submit" class="btn btn-submit" id="submitBtn" style="display: none;">Ver Resultado <i class="fa-solid fa-check"></i></button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Resultados -->
+        <div class="result-container" id="resultArea">
+            <div class="result-card" id="resultCard">
+                <h2 class="result-title" id="riskTitle">RISCO MODERADO</h2>
+                <p class="result-desc" id="riskDesc">Sugerimos que você procure orientação em um dos centros de atendimento.</p>
+                
+                <div class="result-actions">
+                    <a href="tel:190" class="action-btn" style="background: #000; color: #fff;">LIGAR 190 (EMERGÊNCIA)</a>
+                    <a href="/modulo4" class="action-btn">VER REDE DE PROTEÇÃO</a>
+                    <a href="/" class="action-btn">VOLTAR AO INÍCIO</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const steps = document.querySelectorAll('.form-step');
+        const indicators = document.querySelectorAll('.step');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        let currentStep = 0;
+
+        function updateStep() {
+            steps.forEach((step, index) => {
+                step.classList.toggle('active', index === currentStep);
+                
+                // Enable inputs in active step
+                const inputs = step.querySelectorAll('input');
+                inputs.forEach(input => input.disabled = index !== currentStep);
+            });
+
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentStep);
+                indicator.classList.toggle('completed', index < currentStep);
+            });
+
+            prevBtn.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+            
+            if (currentStep === steps.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'flex';
+            } else {
+                nextBtn.style.display = 'flex';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const currentInputs = steps[currentStep].querySelectorAll('input[required]');
+            let allFilled = true;
+            
+            // Group by name and check if at least one in each group is checked
+            const names = new Set();
+            currentInputs.forEach(input => names.add(input.name));
+            
+            names.forEach(name => {
+                if (!document.querySelector(`input[name="${name}"]:checked`)) {
+                    allFilled = false;
+                }
+            });
+
+            if (allFilled) {
+                currentStep++;
+                updateStep();
+            } else {
+                alert('Por favor, responda todas as perguntas deste bloco.');
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentStep--;
+            updateStep();
+        });
+
+        document.getElementById('fonarForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Calculation Logic
+            let positiveCount = 0;
+            // Factors for Extreme: 1, 2, 3, 4, 5.1, 6, 7, 8, 9, 11, 12, 13, 15, 16
+            const extremeFactors = ['q1', 'q2', 'q3', 'q4', 'q5_1', 'q6', 'q7', 'q8', 'q9', 'q11', 'q12', 'q13', 'q15', 'q16'];
+            
+            extremeFactors.forEach(factor => {
+                if (data[factor] === '1') positiveCount++;
+            });
+
+            const isTentativa = data['tentativa'] === '1';
+            const isDescumprimento = data['q5_1'] === '1';
+
+            let risk = 'MODERADO';
+            let colorClass = 'risk-moderate';
+            let desc = 'Sua situação indica risco moderado. Recomendamos que busque orientação preventiva e conheça seus direitos.';
+
+            if (isTentativa || positiveCount > 6) {
+                risk = 'EXTREMO';
+                colorClass = 'risk-extreme';
+                desc = 'ALERTA: Sua situação é de RISCO EXTREMO. Procure ajuda imediatamente ou ligue 190.';
+            } else if (isDescumprimento || (positiveCount >= 4 && positiveCount <= 6)) {
+                risk = 'GRAVE';
+                colorClass = 'risk-grave';
+                desc = 'Sua situação é de RISCO GRAVE. Recomendamos que procure a delegacia especializada ou ligue 180.';
+            }
+
+            // Show Result
+            document.getElementById('formWrapper').style.display = 'none';
+            const resultArea = document.getElementById('resultArea');
+            const resultCard = document.getElementById('resultCard');
+            const riskTitle = document.getElementById('riskTitle');
+            const riskDesc = document.getElementById('riskDesc');
+
+            riskTitle.innerText = `RISCO ${risk}`;
+            riskDesc.innerText = desc;
+            resultCard.className = `result-card ${colorClass}`;
+            resultArea.style.display = 'block';
+        });
+
+        // Initialize
+        updateStep();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Serviços | Portal Mato Grosso em Defesa das Mulheres{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <div class="container">
+        <h2 class="section-title">
+            <div class="title-icon-svg">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" />
+                    <path d="M30 30H70V70H30V30Z" fill="#00D2D3" />
+                    <path d="M40 40H60V60H40V40Z" fill="white" opacity="0.5" />
+                </svg>
+            </div>
+            Nossos <strong>Serviços</strong>
+        </h2>
+
+        <p class="section-description">Confira os principais serviços de apoio e proteção disponíveis para as mulheres em Mato Grosso.</p>
+
+        <!-- Serviços Adicionados da Página Inicial -->
+        <h3 style="color: #004ea8; margin: 40px 0 20px; font-size: 1.5rem; text-align: center;">Serviços em Destaque</h3>
+        <div class="responsive-flex-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 50px;">
+            <div class="servico-card" style="background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; width: 300px; display: flex; flex-direction: column; align-items: center;">
+                <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Abrir ocorrências</strong>
+                <a href="https://delegaciadigital.pjc.mt.gov.br/" target="_blank">
+                    <img alt="Selo não se cale" src="{% static 'cards/selo-nao-se-cale.5ae7ce86.svg' %}" style="width: 150px; height: 150px; object-fit: contain;">
+                </a>
+                <p style="font-size:0.95rem; color:#000; line-height: 1.4; margin-top: 15px;">Link direto para registro de ocorrência online e pedido de medida protetiva pela internet.</p>
+            </div>
+            
+            <div class="servico-card" style="background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; width: 300px; display: flex; flex-direction: column; align-items: center;">
+                <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Meninas que Transformam</strong>
+                <a href="https://seletivo.seplag.mt.gov.br/detalhes/53?slug=pss-programa-meninas-que-transformam-2026" target="_blank">
+                    <img alt="Meninas que Transformam" src="{% static 'cards/transformam.png' %}" style="width: 150px; height: 150px; object-fit: contain;">
+                </a>
+                <p style="font-size:0.95rem; color:#000; line-height: 1.4; margin-top: 15px;">Programa para apoiar o desenvolvimento, a autonomia e a preparação de jovens e adolescentes para o mercado de trabalho.</p>
+            </div>
+            
+            <div class="servico-card" style="background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; width: 300px; display: flex; flex-direction: column; align-items: center;">
+                <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Patrulha Maria da Penha</strong>
+                <a href="https://www.pm.mt.gov.br/pmp" target="_blank">
+                    <img alt="Patrulha Maria da Penha" src="{% static 'cards/images.jpg' %}" style="width: 150px; height: 150px; object-fit: contain;">
+                </a>
+                <p style="font-size:0.95rem; color:#000; line-height: 1.4; margin-top: 15px;">Garantir a segurança da mulher e eficácia das medidas protetivas de urgência que o agressor deve cumprir.</p>
+            </div>
+        </div>
+
+        <!-- <h3 style="color: #004ea8; margin: 40px 0 20px; font-size: 1.5rem; text-align: center;">Rede de Apoio</h3>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <div class="card-content">
+                    <span class="card-subtitle">Apoio Social</span>
+                    <h3 class="card-title">ASSISTÊNCIA PSICOLÓGICA</h3>
+                    <p>Atendimento especializado para mulheres em situação de vulnerabilidade.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-gavel"></i></div>
+                <div class="card-content">
+                    <span class="card-subtitle">Jurídico</span>
+                    <h3 class="card-title">ORIENTAÇÃO LEGAL</h3>
+                    <p>Auxílio sobre medidas protetivas e direitos da mulher.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-house-chimney-medical"></i></div>
+                <div class="card-content">
+                    <span class="card-subtitle">Acolhimento</span>
+                    <h3 class="card-title">CASAS DE AMPARO</h3>
+                    <p>Locais de acolhimento temporário e seguro para mulheres e seus filhos.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="card-content">
+                    <span class="card-subtitle">Autonomia</span>
+                    <h3 class="card-title">CAPACITAÇÃO PROFISSIONAL</h3>
+                    <p>Cursos e oficinas para promover a independência financeira.</p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</main>
+{% endblock %}
