@@ -1,0 +1,40 @@
+# Git
+.git
+.gitignore
+
+# Ambientes virtuais Python
+.venv
+.venv_old
+venv
+ENV/
+env/
+
+# Caches e arquivos compilados
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Arquivos de credenciais e segredos locais
+.env
+.secret_key
+*.pem
+*.key
+*.crt
+
+# Backups e bancos de dados locais (serão montados via volume se necessário)
+*.sqlite3
+*.sqlite3-journal
+db_backup_*.sqlite3
+
+# Documentos, relatórios e arquivos pesados locais
+*.pdf
+relatorio_seguranca_portal_mulher.html
+linux_packages/
+scratch/
+
+# Logs e arquivos temporários de SO
+*.log
+.DS_Store
+Thumbs.db

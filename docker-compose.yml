@@ -1,0 +1,35 @@
+services:
+  portal-mulher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portal_mulher_app
+    restart: unless-stopped
+    ports:
+      - "${PORTAL_PORT:-8000}:8000"
+    env_file:
+      - .env.docker
+    volumes:
+      # Volume persistente para uploads de notícias, banners e arquivos
+      - portal_media:/app/media
+      # Volume persistente para banco de dados SQLite (ou dados da aplicação)
+      - portal_data:/app/data
+    networks:
+      - portal_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 25s
+
+volumes:
+  portal_media:
+    name: portal_mulher_media
+  portal_data:
+    name: portal_mulher_data
+
+networks:
+  portal_network:
+    name: portal_mulher_net
+    driver: bridge

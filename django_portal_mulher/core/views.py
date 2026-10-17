@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import unicodedata
-from .models import RedeProtecao, PageContent, BannerInicial, AtividadeDestaque, ParceiroInstitucional, Ouvidoria
+from .models import RedeProtecao, PageContent, BannerInicial, AtividadeDestaque, ParceiroInstitucional, Ouvidoria, Tema
 import json
+
+
 def home(request):
+
     # Busca a rede de proteção no banco de dados (SQLite)
     redes = list(RedeProtecao.objects.values())
     
@@ -13,7 +16,7 @@ def home(request):
     ajuda = PageContent.objects.filter(tema__slug='preciso-de-ajuda').order_by('id')
     paineis = PageContent.objects.filter(tema__slug='paineis-e-dados').order_by('id')
     banners = BannerInicial.objects.filter(ativo=True).order_by('ordem', '-id')
-    atividades_destaque = AtividadeDestaque.objects.order_by('-data_publicacao')[:5]
+    atividades_destaque = AtividadeDestaque.objects.publicadas().order_by('-data_publicacao')[:5]
     parceiros = ParceiroInstitucional.objects.all().order_by('ordem')
     planos_metas = PageContent.objects.filter(tema__slug='planos-e-metas').order_by('id')[:4]
     legislacao_destaque = PageContent.objects.filter(tema__slug='legislacao-destaque').order_by('id')[:2]
@@ -34,14 +37,15 @@ def home(request):
     ouvidoria_image_url = ouvidoria.image.url if ouvidoria.image else 'https://ouvidoria.cge.mt.gov.br/_next/static/media/CGE%20-%20Fale%20Cidad%C3%A3o%20v1.da578e70.svg'
 
 
-    # Contador de visitas
+    # Contador de visitas (atômico contra concorrência)
     from .models import VisitCounter
+    from django.db.models import F
     counter, created = VisitCounter.objects.get_or_create(id=1)
     
-    # Incrementa apenas se for uma nova sessão (opcional) ou sempre que acessar a home
+    # Incrementa apenas se for uma nova sessão
     if not request.session.get('has_visited', False):
-        counter.count += 1
-        counter.save()
+        VisitCounter.objects.filter(id=1).update(count=F('count') + 1)
+        counter.refresh_from_db()
         request.session['has_visited'] = True
 
     context = {
@@ -88,13 +92,35 @@ def estatisticas(request):
     return render(request, "Estatisticas.html", {"paineis": paineis})
 
 def atividades(request):
-    todas_atividades = AtividadeDestaque.objects.all().order_by('-data_publicacao')
-    return render(request, "atividades.html", {"atividades": todas_atividades})
+    from django.core.paginator import Paginator
+    qs = AtividadeDestaque.objects.publicadas().order_by('-data_publicacao')
+    pagina = Paginator(qs, 10).get_page(request.GET.get('page'))
+    return render(request, "atividades.html", {"atividades": pagina, "page_obj": pagina})
 
-def noticia_detalhe(request, id):
+def noticia_detalhe(request, slug):
     from django.shortcuts import get_object_or_404
-    noticia = get_object_or_404(AtividadeDestaque, id=id)
+    noticia = get_object_or_404(AtividadeDestaque.objects.publicadas(), slug=slug)
     return render(request, "noticia_detalhe.html", {"noticia": noticia})
+
+def noticia_por_id(request, id):
+    """Compatibilidade com links antigos /noticia/<id>/ -> /noticias/<slug>/"""
+    from django.shortcuts import get_object_or_404, redirect
+    noticia = get_object_or_404(AtividadeDestaque.objects.publicadas(), id=id)
+    return redirect(noticia, permanent=True)
+
+def noticia_previa(request, pk):
+    """Pré-visualização (inclusive rascunhos) – apenas equipe autenticada."""
+    from django.shortcuts import get_object_or_404
+    from django.http import Http404
+    from django.urls import reverse
+    if not (request.user.is_authenticated and request.user.is_staff):
+        raise Http404
+    noticia = get_object_or_404(AtividadeDestaque, pk=pk)
+    return render(request, "noticia_detalhe.html", {
+        "noticia": noticia,
+        "previa": True,
+        "url_edicao": reverse('admin:core_atividadedestaque_change', args=[pk]),
+    })
 
 def modulo1(request):
     return render(request, "modulo1_gabinete.html")
@@ -172,24 +198,32 @@ def fale_cidadao(request):
 
 def bi_interativo(request):
     from .models import EstatisticaViolencia
-    # Pass all stats as JSON so frontend can filter interactively
+    # Pass all stats as dicts so frontend can use json_script safely
     stats = list(EstatisticaViolencia.objects.values(
         'municipio', 'tipo_crime', 'ano', 'mes', 'quantidade', 'perfil_vitima_idade', 'perfil_vitima_raca'
     ))
-    return render(request, "bi_interativo.html", {"stats_json": json.dumps(stats)})
+    return render(request, "bi_interativo.html", {"stats": stats, "stats_json": json.dumps(stats)})
 
 def chat_api(request):
-    if request.method == "GET":
-        user_message = request.GET.get("message", "")
-    else:
+    import re
+    from django.core.cache import cache
+
+    if request.method == "POST":
         try:
             data = json.loads(request.body)
             user_message = data.get("message", "")
-        except:
+        except (json.JSONDecodeError, ValueError, AttributeError):
             user_message = ""
+    else:
+        user_message = request.GET.get("message", "")
 
+    user_message = str(user_message).strip()
     if not user_message:
         return JsonResponse({"response": "Por favor, digite uma mensagem."}, status=400)
+
+    # Limitar tamanho máximo para prevenir abuso / DoS
+    if len(user_message) > 500:
+        user_message = user_message[:500]
 
     def normalizar(texto):
         texto = texto.lower()
@@ -198,9 +232,13 @@ def chat_api(request):
 
     msg_norm = normalizar(user_message)
 
-    # 1. Emergência
-    palavras_emergencia = ['socorro', 'ajuda', 'bater', 'batendo', 'agressao', 'agredida', 'denunciar', 'denuncia', 'medo', 'matar']
-    if any(p in msg_norm for p in palavras_emergencia):
+    # 1. Emergência (palavras inteiras via regex \b)
+    palavras_emergencia = [
+        r'\bsocorro\b', r'\bajuda\b', r'\bbater\b', r'\bbatendo\b',
+        r'\bagressao\b', r'\bagredida\b', r'\bdenunciar\b', r'\bdenuncia\b',
+        r'\bmedo\b', r'\bmatar\b', r'\bameaca\b'
+    ]
+    if any(re.search(p, msg_norm) for p in palavras_emergencia):
         resposta = (
             "🚨 **Você não está sozinha!**\n\n"
             "Se você ou alguém estiver em perigo agora, ligue IMEDIATAMENTE para a **Polícia Militar (190)** "
@@ -214,21 +252,24 @@ def chat_api(request):
         'delegacia': 'DEDM',
         'unidade especializada': 'DEDM',
         'dedm': 'DEDM',
-        'núcleo': 'NUCLEO',
         'nucleo': 'NUCLEO',
         'patrulha': 'PMP'
     }
 
     tipo_buscado = None
     for palavra, tipo in tipos_map.items():
-        if palavra in msg_norm:
+        if re.search(r'\b' + re.escape(palavra) + r'\b', msg_norm):
             tipo_buscado = tipo
             break
 
-    cidades_base = list(set(normalizar(item['cidade']) for item in RedeProtecao.objects.values('cidade')))
+    # Cache de cidades da rede por 1 hora
+    def get_cidades():
+        return list(set(normalizar(c) for c in RedeProtecao.objects.values_list('cidade', flat=True) if c))
+    
+    cidades_base = cache.get_or_set('chat_cidades_rede', get_cidades, 3600)
     cidade_buscada = None
     for cidade in cidades_base:
-        if cidade in msg_norm:
+        if re.search(r'\b' + re.escape(cidade) + r'\b', msg_norm):
             cidade_buscada = cidade
             break
 
@@ -242,6 +283,8 @@ def chat_api(request):
             if cidade_buscada and normalizar(item.cidade) != cidade_buscada:
                 continue
             resultados.append(f"📍 **{item.nome}**\n  Endereço: {item.endereco}\n  Telefone: {item.telefone}")
+            if len(resultados) >= 8:
+                break
             
         if resultados:
             resposta = "Encontrei estes locais de atendimento para você:\n\n" + "\n\n".join(resultados) + "\n\nSe precisar de mais algo, me avise!"
@@ -249,9 +292,8 @@ def chat_api(request):
             resposta = "Não encontrei esse local na nossa base. Mas lembre-se: você pode ligar **180** de qualquer telefone para pedir ajuda ou tirar dúvidas de graça."
         return JsonResponse({"response": resposta})
 
-    # 3.5 Rede de Apoio
-    palavras_rede = ['rede de apoio', 'rede de protecao', 'quem faz parte', 'orgaos', 'órgãos', 'plano de metas', 'decreto', '1708']
-    if any(p in msg_norm for p in palavras_rede):
+    # 3. Rede de Apoio
+    if re.search(r'\b(rede de apoio|rede de protecao|quem faz parte|orgaos|plano de metas|decreto 1708|1708)\b', msg_norm):
         resposta = (
             "O Estado de MT possui uma forte **Rede de Proteção** para te ajudar (Plano de Metas).\n\n"
             "**Quem faz parte:**\n"
@@ -262,29 +304,27 @@ def chat_api(request):
         )
         return JsonResponse({"response": resposta})
 
-    # 3.6 Politicas
-    palavras_politicas = ['politicas publicas', 'politicas', 'servicos', 'programas']
-    if any(p in msg_norm for p in palavras_politicas):
+    # 4. Políticas Públicas
+    if re.search(r'\b(politicas publicas|politicas|programas)\b', msg_norm):
         return JsonResponse({"response": "No Portal, você encontra informações sobre Políticas Públicas voltadas para a mulher, como programas de autonomia financeira, capacitação e acolhimento."})
 
-    # 3.9 Maria da Penha
-    if 'maria da penha' in msg_norm or '11.340' in msg_norm:
+    # 5. Maria da Penha
+    if re.search(r'\b(maria da penha|11\.340|11340)\b', msg_norm):
         return JsonResponse({"response": "A **Lei Maria da Penha (Lei 11.340/2006)** é a principal lei brasileira para coibir a violência doméstica e familiar contra a mulher. Ela prevê medidas protetivas de urgência, criação de juizados especiais e endurecimento das penas. No nosso portal, na seção de Legislação e Materiais Educativos, você encontra cartilhas explicando a lei em detalhes."})
 
-    # 3.10 Leis
-    if any(p in msg_norm for p in ['lei', 'leis', 'legislacao', 'direitos']):
+    # 6. Leis
+    if re.search(r'\b(lei|leis|legislacao|direitos)\b', msg_norm):
         return JsonResponse({"response": "Na seção de Legislação do Portal você encontra informações sobre a Lei Maria da Penha, o Estatuto da Mulher, a Lei da Violência Doméstica e outras normas que protegem as mulheres. Consulte nossos materiais educativos para mais detalhes."})
 
-    # 3.7 Materiais
-    palavras_edu = ['materiais', 'educativos', 'cartilhas', 'livros', 'aprender']
-    if any(p in msg_norm for p in palavras_edu):
+    # 7. Materiais Educativos
+    if re.search(r'\b(materiais|cartilhas|livros|aprender|cartilha)\b', msg_norm):
         return JsonResponse({"response": "Oferecemos diversos Materiais Educativos (cartilhas, guias e vídeos) para conscientização sobre os direitos das mulheres e combate à violência."})
 
-    # 3.8 Portal
-    if 'sobre' in msg_norm and 'portal' in msg_norm:
+    # 8. Sobre o Portal
+    if re.search(r'\b(sobre o portal|o que e o portal|portal mulher)\b', msg_norm) or ('sobre' in msg_norm and 'portal' in msg_norm):
         return JsonResponse({"response": "Este é o Portal Oficial de Defesa das Mulheres do Governo de MT. Aqui centralizamos acesso a serviços, rede de proteção, denúncias e materiais educativos."})
 
-    # 4. Fallback
+    # 9. Fallback
     resposta = (
         "Desculpe, não consegui entender completamente. \n\n"
         "Você pode tentar me perguntar sobre:\n"
@@ -294,3 +334,4 @@ def chat_api(request):
         "Se for uma emergência, ligue 190 ou 180."
     )
     return JsonResponse({"response": resposta})
+

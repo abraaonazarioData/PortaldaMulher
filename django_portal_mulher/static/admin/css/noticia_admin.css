@@ -1,0 +1,39 @@
+/* Formulário de Notícias – layout horizontal (Mulher MT) */
+
+/* Rótulos acima dos campos para aproveitar a largura */
+.noticia-form .form-group > .row > label,
+.noticia-form .form-group > .row > div[class*="col-"] {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.noticia-form .form-group > .row > label {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.noticia-form .card-body.p-5 { padding: 1.25rem !important; }
+.noticia-form .card { margin-bottom: 1rem; }
+.noticia-form .card-header .card-title i { display: block; font-size: .85rem; margin-top: 4px; color: #6c757d; }
+
+/* Campos editoriais com hierarquia visual */
+.noticia-form #id_chapeu { text-transform: uppercase; font-weight: 700; letter-spacing: .05em; color: #c2185b; max-width: 320px; }
+.noticia-form #id_titulo { font-size: 1.35rem; font-weight: 700; }
+.noticia-form #id_linha_fina { font-size: 1.05rem; min-height: 80px; height: 80px; }
+.noticia-form input[type="text"], .noticia-form textarea { width: 100%; }
+
+.noticia-contador { display: block; text-align: right; color: #6c757d; font-size: .75rem; margin-top: 2px; }
+.noticia-contador.excedeu { color: #dc3545; font-weight: 700; }
+
+/* Editor amplo */
+.noticia-col-principal .ck-editor__editable { min-height: 480px; }
+.noticia-col-principal .ck-editor { width: 100% !important; }
+.noticia-col-principal .ck-content figure.image figcaption { font-size: .85rem; color: #555; }
+
+/* Lateral */
+.noticia-col-lateral .field-previa_capa img { box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+
+.noticia-previa-box { margin-bottom: 12px; }
+.noticia-btn-previa { font-weight: 700; color: #212529; }
+
+@media (min-width: 1200px) {
+    .noticia-col-lateral { position: sticky; top: 70px; align-self: flex-start; }
+}

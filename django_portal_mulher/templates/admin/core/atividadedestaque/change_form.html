@@ -1,0 +1,75 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/noticia_admin.css' %}">
+{% endblock %}
+
+{# Layout horizontal: coluna principal (texto) + coluna lateral (capa / publicação) #}
+{% block field_sets %}
+<div class="col-12 col-lg-9 noticia-form">
+    <div class="row">
+        <div class="col-12 col-xl-8 noticia-col-principal">
+            {% for fieldset in adminform %}
+                {% if 'col-principal' in fieldset.classes %}
+                    {% include "admin/includes/fieldset.html" with card=True card_header=True %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col-12 col-xl-4 noticia-col-lateral">
+            {% for fieldset in adminform %}
+                {% if 'col-lateral' in fieldset.classes %}
+                    {% include "admin/includes/fieldset.html" with card=True card_header=True %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block submit_buttons_bottom %}
+<div class="noticia-previa-box">
+    <button type="submit" name="_previa" value="1" class="btn btn-block btn-warning noticia-btn-previa">
+        <i class="fas fa-eye"></i> Salvar e pré-visualizar
+    </button>
+    <small class="text-muted d-block mt-1">Salva e mostra a notícia exatamente como o público verá. Rascunhos não aparecem no site.</small>
+</div>
+{{ block.super }}
+{% if change and original.publicada %}
+<a href="{{ original.get_absolute_url }}" target="_blank" class="btn btn-block btn-outline-success mt-2">
+    <i class="fas fa-external-link-alt"></i> Ver no site
+</a>
+{% endif %}
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script>
+(function () {
+    // Contadores de caracteres para Chapéu, Título e Linha fina
+    var limites = { id_chapeu: 40, id_titulo: 200, id_linha_fina: 300 };
+    Object.keys(limites).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var max = limites[id];
+        var c = document.createElement('small');
+        c.className = 'noticia-contador';
+        el.insertAdjacentElement('afterend', c);
+        function upd() {
+            var n = el.value.length;
+            c.textContent = n + ' / ' + max + ' caracteres';
+            c.classList.toggle('excedeu', n > max);
+        }
+        el.setAttribute('maxlength', max);
+        el.addEventListener('input', upd);
+        upd();
+    });
+    // Chapéu sempre em caixa alta
+    var ch = document.getElementById('id_chapeu');
+    if (ch) ch.addEventListener('input', function () {
+        var p = ch.selectionStart; ch.value = ch.value.toUpperCase(); ch.setSelectionRange(p, p);
+    });
+})();
+</script>
+{% endblock %}

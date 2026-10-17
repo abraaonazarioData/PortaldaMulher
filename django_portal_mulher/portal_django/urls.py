@@ -1,6 +1,7 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.defaults import page_not_found
+from django.views.generic import RedirectView
 from core import views, views_dashboard
 
 handler404 = lambda request, exception: page_not_found(request, exception, template_name='404.html')
@@ -16,8 +17,12 @@ urlpatterns = [
     path('acessibilidade', views.acessibilidade, name='acessibilidade'),
     path('planos-metas', views.planos_metas, name='planos_metas'),
     path('estatisticas', views.estatisticas, name='estatisticas'),
-    path('atividades', views.atividades, name='atividades'),
-    path('noticia/<int:id>/', views.noticia_detalhe, name='noticia_detalhe'),
+    path('noticias', views.atividades, name='atividades'),
+    path('atividades', RedirectView.as_view(pattern_name='atividades', permanent=True)),
+    path('noticias/previa/<int:pk>/', views.noticia_previa, name='noticia_previa'),
+    path('noticias/<slug:slug>/', views.noticia_detalhe, name='noticia_detalhe'),
+    path('noticia/<int:id>/', views.noticia_por_id, name='noticia_por_id'),
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
     path('modulo1', views.modulo1, name='modulo1'),
     path('modulo2', views.modulo2, name='modulo2'),
     path('modulo3', views.modulo3, name='modulo3'),
@@ -38,6 +43,12 @@ urlpatterns = [
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import re_path
+from django.views.static import serve
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    ]

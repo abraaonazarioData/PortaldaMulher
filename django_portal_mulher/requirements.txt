@@ -1,8 +1,31 @@
+# Portal Mulher MT — Dependências Python
+# Gerado em: 2026-10-14
+# Ambiente: Python 3.x / Django 5.x
+
+# Framework
 Django>=5.1.0,<6.0.0
+
+# Admin
 django-jazzmin>=3.0.0
-django-ckeditor>=6.7.0
-django-js-asset>=2.2.0
+
+# Editores de texto rico
+django-ckeditor>=6.7.0          # CKEditor 4 — usado em PageContent (RichTextField)
+django-ckeditor-5>=0.2.20       # CKEditor 5 — usado no campo corpo das Notícias
+django-js-asset>=2.2.0          # dependência do django-ckeditor
+
+# Segurança / Sanitização HTML
+nh3>=0.3.0                      # sanitizador XSS para o corpo das notícias
+
+# Utilitários Django
 django-extensions>=3.2.0
+
+# Processamento de imagens
 Pillow>=10.0.0
+
+# Planilhas e dados
 pandas>=2.0.0
 openpyxl>=3.1.0
+
+# Servidor de Produção (Linux / WSGI / Arquivos Estáticos)
+gunicorn>=21.0.0
+whitenoise>=6.5.0

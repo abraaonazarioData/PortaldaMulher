@@ -10,11 +10,12 @@ def is_staff(user):
 @user_passes_test(is_staff, login_url='/SysteGEVM9x2/login/')
 def dashboard_home(request):
     from .models import PanelVisitCounter
+    from django.db.models import F
     counter, _ = PanelVisitCounter.objects.get_or_create(id=1)
     
     if not request.session.get('has_visited_panel', False):
-        counter.count += 1
-        counter.save()
+        PanelVisitCounter.objects.filter(id=1).update(count=F('count') + 1)
+        counter.refresh_from_db()
         request.session['has_visited_panel'] = True
 
     # Garantir que exista um registro de Ouvidoria

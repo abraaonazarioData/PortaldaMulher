@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: portal-mulher
+    runtime: python
+    rootDir: django_portal_mulher
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn portal_django.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_PRODUCTION
+        value: "True"

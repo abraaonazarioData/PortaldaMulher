@@ -27,19 +27,28 @@ else
 fi
 
 # 3. Instalar/atualizar dependências
-echo "[3/5] Verificando dependências Python..."
+echo "[3/6] Verificando dependências Python..."
 if [ -d "linux_packages" ]; then
-    pip install --no-index --find-links=linux_packages/ -r requirements.txt gunicorn 2>/dev/null || pip install -r requirements.txt
+    echo "Tentando instalar pacotes offline (linux_packages)..."
+    pip install --no-index --find-links=linux_packages/ -r requirements.txt || {
+        echo "Aviso: Nem todos os pacotes estavam presentes em linux_packages. Instalando via repositório online..."
+        pip install -r requirements.txt
+    }
 else
     pip install -r requirements.txt
 fi
 
-# 4. Coleta de estáticos
-echo "[4/5] Coletando arquivos estáticos..."
-python manage.py collectstatic --noinput || true
+# 4. Migração de banco de dados
+echo "[4/6] Aplicando migrações pendentes no banco de dados..."
+python manage.py migrate --noinput
 
-# 5. Reiniciar serviço no Linux
-echo "[5/5] Reiniciando serviço da aplicação..."
+# 5. Coleta de arquivos estáticos
+echo "[5/6] Coletando arquivos estáticos para produção..."
+mkdir -p staticfiles
+python manage.py collectstatic --noinput
+
+# 6. Reiniciar serviço no Linux
+echo "[6/6] Reiniciando serviço da aplicação..."
 if command -v systemctl &> /dev/null; then
     if systemctl is-active --quiet portal_mulher 2>/dev/null; then
         sudo systemctl restart portal_mulher

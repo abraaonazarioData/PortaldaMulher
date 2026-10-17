@@ -302,10 +302,12 @@
     </div>
 </div>
 
-<!-- JSON Data -->
-<script type="application/json" id="stats-data">
-    {{ stats_json|safe }}
-</script>
+<!-- JSON Data Seguro contra XSS -->
+{% if stats %}
+{{ stats|json_script:"stats-data" }}
+{% else %}
+<script type="application/json" id="stats-data">[]</script>
+{% endif %}
 
 <script>
     const rawData = JSON.parse(document.getElementById('stats-data').textContent);

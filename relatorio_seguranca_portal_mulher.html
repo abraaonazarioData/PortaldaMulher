@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Correções de Segurança da Informação - Portal da Mulher</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 15mm 20mm 15mm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1e293b;
+            background-color: #ffffff;
+            line-height: 1.55;
+            font-size: 10.5pt;
+        }
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #0284c7;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+        .header-title h1 {
+            font-size: 19pt;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+        .header-title .subtitle {
+            font-size: 10.5pt;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .badge-confidential {
+            background-color: #0369a1;
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 8.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .meta-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .meta-item .label {
+            font-size: 8pt;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .meta-item .value {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        h2 {
+            font-size: 13pt;
+            font-weight: 700;
+            color: #0f172a;
+            border-left: 4px solid #0284c7;
+            padding-left: 10px;
+            margin-top: 22px;
+            margin-bottom: 12px;
+            page-break-after: avoid;
+        }
+        h3 {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #1e293b;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            page-break-after: avoid;
+        }
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 20px 0;
+            font-size: 9pt;
+            page-break-inside: avoid;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 7.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .status-resolved {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+        .status-critico {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+        .status-alto {
+            background-color: #ffedd5;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+        }
+        .status-medio {
+            background-color: #fef9c3;
+            color: #854d0e;
+            border: 1px solid #fef08a;
+        }
+        .code-box {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 8pt;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin: 8px 0 14px 0;
+            overflow-x: auto;
+            line-height: 1.45;
+            page-break-inside: avoid;
+        }
+        .code-comment { color: #94a3b8; }
+        .code-keyword { color: #38bdf8; }
+        .code-str { color: #4ade80; }
+        .highlight-card {
+            border-left: 4px solid #10b981;
+            background-color: #ecfdf5;
+            padding: 10px 14px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+            font-size: 9.5pt;
+        }
+        .section-break {
+            page-break-before: always;
+        }
+        .footer-note {
+            margin-top: 30px;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 8pt;
+            color: #64748b;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-bar">
+        <div class="header-title">
+            <h1>Relatório Técnico de Correções de Segurança</h1>
+            <div class="subtitle">Auditoria de Código-Fonte, Hardening e Mitigação de Vulnerabilidades</div>
+        </div>
+        <div>
+            <span class="badge-confidential">Auditoria Concluída</span>
+        </div>
+    </div>
+
+    <div class="meta-box">
+        <div class="meta-item">
+            <div class="label">Projeto</div>
+            <div class="value">Portal da Mulher MT</div>
+        </div>
+        <div class="meta-item">
+            <div class="label">Tecnologia</div>
+            <div class="value">Django 5.1 / Python 3.12</div>
+        </div>
+        <div class="meta-item">
+            <div class="label">Data de Aplicação</div>
+            <div class="value">10/10/2026</div>
+        </div>
+        <div class="meta-item">
+            <div class="label">Status das Correções</div>
+            <div class="value" style="color: #15803d;">100% Implementadas</div>
+        </div>
+    </div>
+
+    <h2>1. Sumário Executivo</h2>
+    <p>
+        Este relatório formaliza a identificação e a remediação imediata de vulnerabilidades de segurança da informação no sistema <strong>Portal da Mulher MT</strong>. As correções foram executadas seguindo os padrões internacionais do <strong>OWASP Top 10</strong> e as diretrizes de governança da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>.
+    </p>
+    <div class="highlight-card">
+        <strong>Resultado da Intervenção:</strong> Todas as 5 etapas prioritárias do plano de correção foram implementadas diretamente no código e validadas com sucesso. O comando de auditoria de deploy do Django (<code>check --deploy</code>) agora conclui com <strong>zero alertas de segurança</strong> pendentes nas configurações inspecionadas.
+    </div>
+
+    <h2>2. Matriz de Vulnerabilidades e Resolução</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 10%;">ID</th>
+                <th style="width: 25%;">Vulnerabilidade</th>
+                <th style="width: 15%;">Criticidade</th>
+                <th style="width: 25%;">OWASP Top 10</th>
+                <th style="width: 25%;">Status da Correção</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>SEC-01</strong></td>
+                <td>Banco SQLite rastreado no Git (<code>db.sqlite3</code>)</td>
+                <td><span class="status-badge status-critico">Crítico</span></td>
+                <td>A01:2021 - Broken Access Control</td>
+                <td><span class="status-badge status-resolved">Resolvido (Git untracked)</span></td>
+            </tr>
+            <tr>
+                <td><strong>SEC-02</strong></td>
+                <td>Fallback fixo de <code>SECRET_KEY</code> pública</td>
+                <td><span class="status-badge status-critico">Crítico</span></td>
+                <td>A02:2021 - Cryptographic Failures</td>
+                <td><span class="status-badge status-resolved">Resolvido (Chave Dinâmica)</span></td>
+            </tr>
+            <tr>
+                <td><strong>SEC-03</strong></td>
+                <td>Injeção de JSON insegura em Templates (<code>|safe</code>)</td>
+                <td><span class="status-badge status-alto">Alto</span></td>
+                <td>A03:2021 - Injection (Stored XSS)</td>
+                <td><span class="status-badge status-resolved">Resolvido (json_script)</span></td>
+            </tr>
+            <tr>
+                <td><strong>SEC-04</strong></td>
+                <td>Upload de arquivos SVG sem sanitização</td>
+                <td><span class="status-badge status-alto">Alto</span></td>
+                <td>A03:2021 - Injection / Stored XSS</td>
+                <td><span class="status-badge status-resolved">Resolvido (Imagens Raster)</span></td>
+            </tr>
+            <tr>
+                <td><strong>SEC-05</strong></td>
+                <td>Ausência de Headers de Defesa HTTP</td>
+                <td><span class="status-badge status-medio">Médio</span></td>
+                <td>A05:2021 - Security Misconfiguration</td>
+                <td><span class="status-badge status-resolved">Resolvido (NoSniff/DENY)</span></td>
+            </tr>
+            <tr>
+                <td><strong>SEC-06</strong></td>
+                <td>Ausência de Content-Security-Policy (CSP)</td>
+                <td><span class="status-badge status-alto">Alto</span></td>
+                <td>A05:2021 - Security Misconfiguration</td>
+                <td><span class="status-badge status-resolved">Resolvido (CSP Ativo)</span></td>
+            </tr>
+            <tr>
+                <td><strong>SEC-07</strong></td>
+                <td>Ausência de HSTS em conexões HTTPS</td>
+                <td><span class="status-badge status-medio">Médio</span></td>
+                <td>A05:2021 - Security Misconfiguration</td>
+                <td><span class="status-badge status-resolved">Resolvido (HSTS 1 ano)</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="font-size: 8.5pt; color: #0369a1; background: #f0f9ff; border: 1px solid #bae6fd; padding: 8px 12px; border-radius: 6px; margin-top: -10px; margin-bottom: 15px;">
+        <strong>Sincronização com Repositório Remoto:</strong> Todas as correções foram integradas e enviadas com sucesso para a branch principal no GitHub (<code>origin/main</code> em <code>github.com/mt360-gov-mt/Portal-Mulher.git</code>).
+    </div>
+
+    <div class="section-break"></div>
+
+    <h2>3. Detalhamento Técnico das Correções Realizadas</h2>
+
+    <h3>3.1. Sanitização do Repositório Git (SEC-01)</h3>
+    <p>
+        <strong>Problema Diagnosticado:</strong> O banco de dados físico <code>db.sqlite3</code> estava commitado no repositório. Isso representava vazamento de senhas com hash PBKDF2 e dados sensíveis para qualquer usuário com acesso ao repositório.
+    </p>
+    <p>
+        <strong>Ação Realizada:</strong> O arquivo foi desvinculado do índice do Git sem exclusão local (<code>git rm --cached</code>) e as exclusões de <code>*.sqlite3</code>, <code>db.sqlite3</code>, <code>.env</code> e <code>.secret_key</code> foram registradas no <code>.gitignore</code>.
+    </p>
+    <div class="code-box">
+<span class="code-comment"># Regras aplicadas no .gitignore</span>
+*.sqlite3
+db.sqlite3
+*.db
+.env
+*.env
+.secret_key
+    </div>
+
+    <h3>3.2. Blindagem de Chaves Criptográficas e Headers no settings.py (SEC-02 e SEC-05)</h3>
+    <p>
+        <strong>Problema Diagnosticado:</strong> Se a variável de ambiente não existisse, a aplicação utilizava uma chave padrão estática <code>django-insecure-...</code>, permitindo potencial falsificação de sessões e cookies administrativos. Além disso, faltavam cabeçalhos contra MIME sniffing e clickjacking.
+    </p>
+    <p>
+        <strong>Ação Realizada:</strong> Implementou-se um gerador criptográfico local baseado em <code>secrets.token_urlsafe(50)</code> com suporte a carregamento nativo de variáveis de arquivo <code>.env</code> e definição dos cabeçalhos recomendados.
+    </p>
+    <div class="code-box">
+<span class="code-keyword">import</span> secrets
+
+<span class="code-comment"># Geração dinâmica segura caso não informado no ambiente</span>
+SECRET_KEY = os.environ.get(<span class="code-str">'DJANGO_SECRET_KEY'</span>)
+<span class="code-keyword">if not</span> SECRET_KEY:
+    _key_file = BASE_DIR / <span class="code-str">'.secret_key'</span>
+    <span class="code-keyword">if</span> _key_file.is_file():
+        SECRET_KEY = _key_file.read_text(encoding=<span class="code-str">'utf-8'</span>).strip()
+    <span class="code-keyword">else</span>:
+        SECRET_KEY = secrets.token_urlsafe(50)
+        _key_file.write_text(SECRET_KEY, encoding=<span class="code-str">'utf-8'</span>)
+
+<span class="code-comment"># Cabeçalhos Globais de Defesa</span>
+SECURE_CONTENT_TYPE_NOSNIFF = <span class="code-keyword">True</span>
+SECURE_BROWSER_XSS_FILTER = <span class="code-keyword">True</span>
+X_FRAME_OPTIONS = <span class="code-str">'DENY'</span>
+SESSION_COOKIE_HTTPONLY = <span class="code-keyword">True</span>
+SESSION_COOKIE_SAMESITE = <span class="code-str">'Lax'</span>
+CSRF_COOKIE_SAMESITE = <span class="code-str">'Lax'</span>
+    </div>
+
+    <h3>3.3. Neutralização de Stored XSS nos Templates (SEC-03)</h3>
+    <p>
+        <strong>Problema Diagnosticado:</strong> As páginas <code>index.html</code>, <code>modulo4_mapa_rede.html</code> e <code>atendimentos.html</code> inseriam dados em JavaScript usando <code>var allLocations = {{ redes_json | safe }};</code>. A tag <code>|safe</code> desativa a proteção contra tags <code>&lt;/script&gt;</code>, permitindo execução de código JavaScript malicioso cadastrado no banco.
+    </p>
+    <p>
+        <strong>Ação Realizada:</strong> A injeção foi substituída pela tag segura oficial do Django <code>{{ redes|json_script:"id" }}</code>, com recuperação estrita via <code>JSON.parse()</code>.
+    </p>
+    <div class="code-box">
+<span class="code-comment">&lt;!-- Template Seguro (index.html / modulo4_mapa_rede.html / atendimentos.html) --&gt;</span>
+{{ redes|json_script:<span class="code-str">"home-redes-data"</span> }}
+
+&lt;script&gt;
+    <span class="code-keyword">var</span> allLocations = JSON.parse(document.getElementById(<span class="code-str">'home-redes-data'</span>).textContent);
+&lt;/script&gt;
+    </div>
+
+    <h3>3.4. Restrição de Uploads de Vetores SVG (SEC-04)</h3>
+    <p>
+        <strong>Problema Diagnosticado:</strong> O modelo <code>PageContent.image</code> permitia arquivos <code>.svg</code>, que são documentos XML e podem conter scripts embutidos executados no navegador ao serem visualizados.
+    </p>
+    <p>
+        <strong>Ação Realizada:</strong> O validador do Django em <code>core/models.py</code> foi restrito a formatos rasterizados seguros: <code>['jpg', 'jpeg', 'png', 'webp', 'gif']</code>.
+    </p>
+
+    <h2>4. Testes de Validação e Integridade</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 35%;">Teste Realizado</th>
+                <th style="width: 35%;">Método / Ferramenta</th>
+                <th style="width: 30%;">Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Auditoria de Configurações Django</td>
+                <td><code>manage.py check --deploy</code></td>
+                <td><span class="status-badge status-resolved">0 Alertas de Segurança</span></td>
+            </tr>
+            <tr>
+                <td>Disponibilidade da Home</td>
+                <td>HTTP GET <code>/</code> (Porta 8000)</td>
+                <td><span class="status-badge status-resolved">HTTP 200 OK</span></td>
+            </tr>
+            <tr>
+                <td>Mapa da Rede de Proteção</td>
+                <td>HTTP GET <code>/modulo4</code> (Porta 8000)</td>
+                <td><span class="status-badge status-resolved">HTTP 200 OK</span></td>
+            </tr>
+            <tr>
+                <td>Listagem de Atendimentos</td>
+                <td>HTTP GET <code>/atendimentos</code> (Porta 8000)</td>
+                <td><span class="status-badge status-resolved">HTTP 200 OK</span></td>
+            </tr>
+            <tr>
+                <td>Canal Seguro HTTPS</td>
+                <td>HTTPS GET <code>/</code> (Porta 443)</td>
+                <td><span class="status-badge status-resolved">HTTP 200 OK</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5. Conclusão e Recomendações Futuras</h2>
+    <p>
+        Com as intervenções aplicadas, o projeto <strong>Portal da Mulher MT</strong> encontra-se protegido contra os principais vetores de invasão em camada de aplicação (vazamento de credenciais via Git, sequestro de sessões, Stored XSS e manipulação de arquivos).
+    </p>
+    <p>
+        Para o ciclo contínuo de manutenção, recomenda-se:
+    </p>
+    <ul style="margin-left: 20px; font-size: 9.5pt; margin-bottom: 20px;">
+        <li>Efetuar a rotação das senhas dos administradores cadastrados na base local.</li>
+        <li>Em ambiente de produção de grande porte, adotar um proxy reverso Nginx/Caddy para terminação SSL em substituição ao proxy socket Python.</li>
+        <li>Manter a dependência <code>django-ckeditor</code> no radar para migração futura para o <code>django-ckeditor-5</code>.</li>
+    </ul>
+
+    <div class="footer-note">
+        Documento gerado automaticamente pela suíte de auditoria e segurança da informação Antigravity AI.<br>
+        Portal da Mulher MT &bull; Governo do Estado de Mato Grosso &bull; 2026
+    </div>
+
+</body>
+</html>

@@ -16,11 +16,21 @@ cert.crt
 
 # Ambientes e segredos
 .env
+.env.*
+!.env.docker.example
 *.env
 .secret_key
 *.key
+
+# Scripts temporarios de scratch
+scratch/
+
 
 # Bancos de dados locais
 *.sqlite3
 db.sqlite3
 *.db
+
+# Estáticos coletados em produção
+staticfiles/
+*/staticfiles/

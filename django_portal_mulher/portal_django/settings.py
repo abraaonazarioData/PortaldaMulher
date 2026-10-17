@@ -53,15 +53,36 @@ if not SECRET_KEY:
         except Exception:
             pass
 
-# Controle de modo DEBUG
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() in ('true', '1')
+# Controle de modo DEBUG (Falso por padrão por segurança)
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() in ('true', '1')
 
 # Restrição de ALLOWED_HOSTS
 _env_hosts = os.environ.get('DJANGO_ALLOWED_HOSTS')
 if _env_hosts:
     ALLOWED_HOSTS = [h.strip() for h in _env_hosts.split(',') if h.strip()]
 else:
-    ALLOWED_HOSTS = ['*'] if DEBUG else ['localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['*'] if DEBUG else [
+        'localhost',
+        '127.0.0.1',
+        'mulher.mt.gov.br',
+        '.onrender.com',
+        '.railway.app',
+        '.pythonanywhere.com',
+    ]
+
+# CSRF Trusted Origins para formulários e login seguro na nuvem
+_env_csrf = os.environ.get('CSRF_TRUSTED_ORIGINS')
+if _env_csrf:
+    CSRF_TRUSTED_ORIGINS = [o.strip() for o in _env_csrf.split(',') if o.strip()]
+else:
+    CSRF_TRUSTED_ORIGINS = [
+        'https://*.onrender.com',
+        'https://*.railway.app',
+        'https://*.pythonanywhere.com',
+        'https://mulher.mt.gov.br',
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+    ]
 
 # Cabeçalhos Globais de Defesa do Navegador
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -89,6 +110,7 @@ INSTALLED_APPS = [
     'jazzmin',
     'django_extensions',
     'ckeditor',
+    'django_ckeditor_5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -101,6 +123,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -132,13 +155,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'portal_django.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+_db_path = os.environ.get('DJANGO_DB_PATH')
+DB_NAME = Path(_db_path) if _db_path else BASE_DIR / 'db.sqlite3'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DB_NAME,
     }
 }
 
@@ -179,6 +202,8 @@ USE_THOUSAND_SEPARATOR = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -224,4 +249,47 @@ CKEDITOR_CONFIGS = {
         ],
         'extraPlugins': 'justify',
     }
+}
+
+# ---------------------------------------------------------------------------
+# CKEditor 5 – editor das Notícias (imagens internas com legenda/crédito)
+# ---------------------------------------------------------------------------
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
+CKEDITOR_5_UPLOAD_FILE_TYPES = ['jpeg', 'jpg', 'png', 'webp', 'gif']
+CKEDITOR_5_MAX_FILE_SIZE = 8  # MB
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'imageUpload', 'undo', 'redo'],
+    },
+    'noticia': {
+        'language': 'pt-br',
+        'toolbar': {
+            'items': [
+                'heading', '|',
+                'bold', 'italic', 'underline', 'link', '|',
+                'bulletedList', 'numberedList', 'blockQuote', '|',
+                'imageUpload', 'insertTable', 'mediaEmbed', 'horizontalLine', '|',
+                'alignment', 'removeFormat', '|',
+                'undo', 'redo',
+            ],
+            'shouldNotGroupWhenFull': True,
+        },
+        'heading': {
+            'options': [
+                {'model': 'paragraph', 'title': 'Parágrafo', 'class': 'ck-heading_paragraph'},
+                {'model': 'heading2', 'view': 'h2', 'title': 'Intertítulo', 'class': 'ck-heading_heading2'},
+                {'model': 'heading3', 'view': 'h3', 'title': 'Subintertítulo', 'class': 'ck-heading_heading3'},
+            ]
+        },
+        'image': {
+            'toolbar': [
+                'toggleImageCaption', 'imageTextAlternative', '|',
+                'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|',
+                'resizeImage',
+            ],
+            'styles': ['alignLeft', 'alignCenter', 'alignRight'],
+        },
+        'table': {'contentToolbar': ['tableColumn', 'tableRow', 'mergeTableCells']},
+        'mediaEmbed': {'previewsInData': True},
+    },
 }
