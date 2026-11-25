@@ -714,7 +714,7 @@
                                     <p style="font-size: 0.85rem; margin-bottom: 6px; color: #333; line-height: 1.4;"><strong>Endereço:</strong> ${loc.endereco}</p>
                                     <p style="font-size: 0.85rem; margin-bottom: 6px; color: #333;"><strong>Telefone:</strong> ${loc.telefone}</p>
                                     <p style="font-size: 0.85rem; margin-bottom: 6px; color: #333;"><strong>Email:</strong> ${loc.email ? loc.email : '-'} </p>
-                                    <p style="font-size: 0.85rem; color: #333;"><strong>Horário de funcionamento:</strong> Comercial</p>
+                                    <p style="font-size: 0.85rem; color: #333;"><strong>Horário de funcionamento:</strong> ${loc.horario ? loc.horario : 'Comercial'}</p>
                                 `;
                             locationsListEl.appendChild(card);
                         });
@@ -870,20 +870,42 @@
                     
                     {% if servicos %}
                         {% for servico in servicos %}
-                        <div class="servico-card">
-                            <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">{{ servico.title }}</strong>
+                        <div class="servico-card" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; height: 100%;">
+                            <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">
+                                {% if servico.link_url %}
+                                <a href="{{ servico.link_url }}" target="_blank" style="text-decoration: none; color: inherit;">{{ servico.title }}</a>
+                                {% elif 'selo' in servico.slug or servico.slug == 'selo-empresa-amiga-da-mulher' %}
+                                <a href="{% url 'servico_detalhe' servico.slug %}" style="text-decoration: none; color: inherit;">{{ servico.title }}</a>
+                                {% else %}
+                                {{ servico.title }}
+                                {% endif %}
+                            </strong>
+                            
                             {% if servico.link_url %}
-                            <a href="{{ servico.link_url }}" target="_blank">
+                            <a href="{{ servico.link_url }}" target="_blank" style="text-decoration: none; display: inline-block;">
+                            {% elif 'selo' in servico.slug or servico.slug == 'selo-empresa-amiga-da-mulher' %}
+                            <a href="{% url 'servico_detalhe' servico.slug %}" style="text-decoration: none; display: inline-block;">
                             {% endif %}
                                 {% if servico.image %}
-                                <img alt="{{ servico.title }}" src="{{ servico.image.url }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+                                <img alt="{{ servico.title }}" src="{{ servico.image.url }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                                 {% elif servico.icon %}
-                                <i class="{{ servico.icon }}" style="font-size: 80px; color: #4b0082; margin: 20px 0;"></i>
+                                <i class="{{ servico.icon }}" style="font-size: 80px; color: #4b0082; margin: 20px 0; cursor: pointer;"></i>
                                 {% endif %}
-                            {% if servico.link_url %}
+                            {% if servico.link_url or 'selo' in servico.slug or servico.slug == 'selo-empresa-amiga-da-mulher' %}
                             </a>
                             {% endif %}
-                            <p style="font-size:0.95rem; color:#000; line-height: 1.4;">{{ servico.text }}</p>
+                            
+                            <p style="font-size:0.95rem; color:#000; line-height: 1.4; margin-top: 15px;">
+                                {{ servico.text|striptags }}
+                            </p>
+
+                            {% if 'selo' in servico.slug or servico.slug == 'selo-empresa-amiga-da-mulher' %}
+                            <div style="margin-top: auto; padding-top: 10px;">
+                                <a href="{% url 'servico_detalhe' servico.slug %}" style="display: inline-block; background: #004587; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: background 0.2s;" onmouseover="this.style.background='#003366'" onmouseout="this.style.background='#004587'">
+                                    Ver Empresas &amp; Selos &rsaquo;
+                                </a>
+                            </div>
+                            {% endif %}
                         </div>
                         {% endfor %}
                     {% else %}
@@ -952,8 +974,19 @@
                     </p>
                 </div>
                 <div style="flex-shrink: 0; text-align: center;">
-                    <a href="{{ ouvidoria.link_url|default:'#' }}" target="_blank" style="display: inline-block; background: #fff; padding: 30px 60px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';">
-                        <img src="{{ ouvidoria_image_url }}" alt="{{ ouvidoria.title }}" style="height:75px; display:block; margin:0 auto;">
+                    <a href="{{ ouvidoria.link_url|default:'https://ouvidoria.cge.mt.gov.br' }}" target="_blank" style="display: inline-block; background: #fff; padding: 20px 40px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';">
+                        {% if ouvidoria.image %}
+                            <img src="{{ ouvidoria.image.url }}" alt="{{ ouvidoria.title|default:'Ouvidoria Fale Cidadão' }}" style="height:75px; max-width:240px; object-fit:contain; display:block; margin:0 auto;">
+                        {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="240" height="70" style="display:block; margin:0 auto;">
+                                <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+                                <circle cx="40" cy="40" r="28" fill="#004074"/>
+                                <path d="M28 40 A12 12 0 0 1 52 40 A12 12 0 0 1 28 40" fill="none" stroke="#ffffff" stroke-width="3"/>
+                                <circle cx="40" cy="40" r="4" fill="#f8961e"/>
+                                <text x="78" y="34" font-family="'Montserrat', Arial, sans-serif" font-size="18" font-weight="800" fill="#004074">FALE CIDADÃO</text>
+                                <text x="78" y="54" font-family="'Montserrat', Arial, sans-serif" font-size="12" font-weight="600" fill="#f8961e">OUVIDORIA GERAL DO ESTADO</text>
+                            </svg>
+                        {% endif %}
                     </a>
                 </div>
             </div>

@@ -9,21 +9,31 @@ echo "=================================================="
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$REPO_DIR"
 
-# 1. Puxar as últimas correções do Git
-echo "[1/5] Atualizando código-fonte via Git..."
-git pull origin main
+# 1. Puxar as últimas correções do Git (se for repositório configurado)
+if [ -d ".git" ] && git remote get-url origin &>/dev/null; then
+    echo "[1/6] Atualizando código-fonte via Git..."
+    git pull origin main || echo "Aviso: git pull não executado, mantendo arquivos locais..."
+else
+    echo "[1/6] Utilizando arquivos locais descompactados..."
+fi
 
 # 2. Navegar para a pasta do Django e ativar venv
 cd "$REPO_DIR/django_portal_mulher"
 
 if [ -d ".venv" ]; then
-    echo "[2/5] Ativando ambiente virtual (.venv)..."
+    echo "[2/6] Ativando ambiente virtual (.venv)..."
     source .venv/bin/activate
 elif [ -d "venv" ]; then
-    echo "[2/5] Ativando ambiente virtual (venv)..."
+    echo "[2/6] Ativando ambiente virtual (venv)..."
     source venv/bin/activate
+elif command -v python3 &>/dev/null; then
+    echo "[2/6] Criando e ativando novo ambiente virtual Linux (.venv)..."
+    python3 -m venv .venv || true
+    if [ -f ".venv/bin/activate" ]; then
+        source .venv/bin/activate
+    fi
 else
-    echo "[2/5] Usando Python do ambiente ativo..."
+    echo "[2/6] Usando Python do ambiente ativo..."
 fi
 
 # 3. Instalar/atualizar dependências

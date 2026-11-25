@@ -21,30 +21,38 @@
 
         <!-- Serviços Adicionados da Página Inicial -->
         <h3 style="color: #004ea8; margin: 40px 0 20px; font-size: 1.5rem; text-align: center;">Serviços em Destaque</h3>
-        <div class="responsive-flex-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 50px;">
-            <div class="servico-card" style="background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; width: 300px; display: flex; flex-direction: column; align-items: center;">
+        <div class="responsive-flex-container" style="display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; margin-bottom: 50px;">
+            {% if servicos %}
+                {% for servico in servicos %}
+                <a href="{{ servico.url_destino }}" {% if servico.is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} class="servico-card" style="background: #fff; padding: 26px 22px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); text-align: center; width: 350px; max-width: 100%; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease;">
+                    <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">{{ servico.title }}</strong>
+                    {% if servico.image %}
+                    <img alt="{{ servico.title }}" src="{{ servico.image.url }}" style="width: 160px; height: 160px; object-fit: contain;">
+                    {% elif servico.icon %}
+                    <i class="{{ servico.icon }}" style="font-size: 80px; color: #4b0082; margin: 20px 0;"></i>
+                    {% endif %}
+                    <p style="font-size:0.98rem; color:#333; line-height: 1.5; margin-top: 15px; margin-bottom: 0;">{{ servico.text|striptags }}</p>
+                </a>
+                {% endfor %}
+            {% else %}
+            <a href="https://delegaciadigital.pjc.mt.gov.br/" target="_blank" rel="noopener noreferrer" class="servico-card" style="background: #fff; padding: 26px 22px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); text-align: center; width: 350px; max-width: 100%; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease;">
                 <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Abrir ocorrências</strong>
-                <a href="https://delegaciadigital.pjc.mt.gov.br/" target="_blank">
-                    <img alt="Selo não se cale" src="{% static 'cards/selo-nao-se-cale.5ae7ce86.svg' %}" style="width: 150px; height: 150px; object-fit: contain;">
-                </a>
-                <p style="font-size:0.95rem; color:#000; line-height: 1.4; margin-top: 15px;">Link direto para registro de ocorrência online e pedido de medida protetiva pela internet.</p>
-            </div>
+                <img alt="Selo não se cale" src="{% static 'cards/selo-nao-se-cale.5ae7ce86.svg' %}" style="width: 160px; height: 160px; object-fit: contain;">
+                <p style="font-size:0.98rem; color:#333; line-height: 1.5; margin-top: 15px; margin-bottom: 0;">Link direto para registro de ocorrência online e pedido de medida protetiva pela internet.</p>
+            </a>
             
-            <div class="servico-card" style="background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; width: 300px; display: flex; flex-direction: column; align-items: center;">
+            <a href="https://seletivo.seplag.mt.gov.br/detalhes/53?slug=pss-programa-meninas-que-transformam-2026" target="_blank" rel="noopener noreferrer" class="servico-card" style="background: #fff; padding: 26px 22px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); text-align: center; width: 350px; max-width: 100%; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease;">
                 <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Meninas que Transformam</strong>
-                <a href="https://seletivo.seplag.mt.gov.br/detalhes/53?slug=pss-programa-meninas-que-transformam-2026" target="_blank">
-                    <img alt="Meninas que Transformam" src="{% static 'cards/transformam.png' %}" style="width: 150px; height: 150px; object-fit: contain;">
-                </a>
-                <p style="font-size:0.95rem; color:#000; line-height: 1.4; margin-top: 15px;">Programa para apoiar o desenvolvimento, a autonomia e a preparação de jovens e adolescentes para o mercado de trabalho.</p>
-            </div>
+                <img alt="Meninas que Transformam" src="{% static 'cards/transformam.png' %}" style="width: 160px; height: 160px; object-fit: contain;">
+                <p style="font-size:0.98rem; color:#333; line-height: 1.5; margin-top: 15px; margin-bottom: 0;">Programa para apoiar o desenvolvimento, a autonomia e a preparação de jovens e adolescentes para o mercado de trabalho.</p>
+            </a>
             
-            <div class="servico-card" style="background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; width: 300px; display: flex; flex-direction: column; align-items: center;">
+            <a href="https://www.pm.mt.gov.br/pmp" target="_blank" rel="noopener noreferrer" class="servico-card" style="background: #fff; padding: 26px 22px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); text-align: center; width: 350px; max-width: 100%; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease;">
                 <strong style="font-size:1.3rem; display:block; margin-bottom:15px; color:#000;">Patrulha Maria da Penha</strong>
-                <a href="https://www.pm.mt.gov.br/pmp" target="_blank">
-                    <img alt="Patrulha Maria da Penha" src="{% static 'cards/images.jpg' %}" style="width: 150px; height: 150px; object-fit: contain;">
-                </a>
-                <p style="font-size:0.95rem; color:#000; line-height: 1.4; margin-top: 15px;">Garantir a segurança da mulher e eficácia das medidas protetivas de urgência que o agressor deve cumprir.</p>
-            </div>
+                <img alt="Patrulha Maria da Penha" src="{% static 'cards/images.jpg' %}" style="width: 160px; height: 160px; object-fit: contain;">
+                <p style="font-size:0.98rem; color:#333; line-height: 1.5; margin-top: 15px; margin-bottom: 0;">Garantir a segurança da mulher e eficácia das medidas protetivas de urgência que o agressor deve cumprir.</p>
+            </a>
+            {% endif %}
         </div>
 
         <!-- <h3 style="color: #004ea8; margin: 40px 0 20px; font-size: 1.5rem; text-align: center;">Rede de Apoio</h3>

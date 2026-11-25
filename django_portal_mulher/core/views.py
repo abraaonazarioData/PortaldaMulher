@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.db import models
 import unicodedata
 from .models import RedeProtecao, PageContent, BannerInicial, AtividadeDestaque, ParceiroInstitucional, Ouvidoria, Tema
 import json
@@ -33,8 +34,11 @@ def home(request):
             text='Acesse o canal da Ouvidoria para registrar manifestações, sugestões ou reclamações.',
             link_url='https://ouvidoria.cge.mt.gov.br',
         )
-    # URL segura da imagem para template
-    ouvidoria_image_url = ouvidoria.image.url if ouvidoria.image else 'https://ouvidoria.cge.mt.gov.br/_next/static/media/CGE%20-%20Fale%20Cidad%C3%A3o%20v1.da578e70.svg'
+    # URL segura da imagem para template (com fallback para estático local)
+    if ouvidoria and ouvidoria.image:
+        ouvidoria_image_url = ouvidoria.image.url
+    else:
+        ouvidoria_image_url = '/static/assets/cge_fale_cidadao.svg'
 
 
     # Contador de visitas (atômico contra concorrência)
@@ -67,7 +71,113 @@ def home(request):
     return render(request, 'index.html', context)
 
 def servicos(request):
-    return render(request, "servicos.html")
+    servicos_list = PageContent.objects.filter(tema__slug='servicos-e-politicas-publicas').order_by('id')
+    return render(request, "servicos.html", {"servicos": servicos_list})
+
+def servico_detalhe(request, slug):
+    from django.shortcuts import get_object_or_404
+    from .models import EmpresaCertificadaSelo, PageContent, Tema
+    from datetime import datetime
+    import urllib.request, json, ssl
+
+    # Busca o serviço ou cria dinamicamente se ainda não existir no banco
+    servico = PageContent.objects.filter(slug=slug).first()
+    if not servico:
+        # Tenta buscar por aproximação ou cria o registro padrão para evitar 404
+        if 'selo' in slug:
+            tema, _ = Tema.objects.get_or_create(slug='servicos-e-politicas-publicas', defaults={'nome': 'Serviços e Políticas Públicas'})
+            servico, _ = PageContent.objects.get_or_create(
+                slug='selo-empresa-amiga-da-mulher',
+                defaults={
+                    'title': 'Selo Empresa Amiga da Mulher',
+                    'tema': tema,
+                    'text': '<p>O Selo Empresa Amiga da Mulher certifica estabelecimentos comprometidos com a segurança e acolhimento das mulheres em Mato Grosso.</p>',
+                    'reference_sources': 'Decreto Estadual e Protocolo Não se Cale / REDEVIM - Governo de Mato Grosso.',
+                    'icon': 'fa-solid fa-award',
+                }
+            )
+        else:
+            from django.http import Http404
+            raise Http404("Serviço não encontrado")
+    
+    # Se for o Selo Empresa Amiga da Mulher, consulta ou atualiza via API publica do Procon MT
+    if slug == 'selo-empresa-amiga-da-mulher' or 'selo' in slug:
+        try:
+            api_url = 'https://simplifica-dev.mt.gov.br/api/1/procon-publico/seloNaoENaoProcon/Selo/listarSelosPublicosVigentes'
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)', 'Accept': 'application/json'})
+            with urllib.request.urlopen(req, context=ctx, timeout=5) as resp:
+                data = json.loads(resp.read().decode('utf-8'))
+                itens = data.get('itens', []) if isinstance(data, dict) else (data if isinstance(data, list) else [])
+                if itens:
+                    for it in itens:
+                        nome = it.get('nome') or it.get('razaoSocial') or it.get('nomeEmpresa') or it.get('estabelecimento')
+                        cnpj = it.get('cnpj') or it.get('documento') or ''
+                        pdf = it.get('pdfUrl') or ''
+                        validade_str = it.get('validade')
+                        validade_dt = None
+                        if validade_str:
+                            try:
+                                validade_dt = datetime.fromisoformat(validade_str.replace('Z', '+00:00')).date()
+                            except Exception:
+                                pass
+                        
+                        muni = it.get('municipio') or 'Cuiabá'
+                        uf = it.get('uf') or 'Mato Grosso'
+                        municipio_fmt = f"{muni} / {uf}" if uf not in muni else muni
+
+                        if nome:
+                            EmpresaCertificadaSelo.objects.update_or_create(
+                                nome=nome,
+                                defaults={
+                                    'servico': servico,
+                                    'cnpj': cnpj,
+                                    'municipio': municipio_fmt,
+                                    'endereco': it.get('enderecoCompleto') or it.get('endereco') or '',
+                                    'instagram': it.get('instagram') or 'vazio',
+                                    'status': 'Vigente',
+                                    'validade': validade_dt,
+                                    'pdf_url': pdf,
+                                    'latitude': float(it.get('latitude') or it.get('lat') or -15.6010),
+                                    'longitude': float(it.get('longitude') or it.get('lng') or -56.0974),
+                                }
+                            )
+        except Exception:
+            pass # Fallback: se a API externa falhar, usa os dados gravados no banco local
+
+    # Busca as empresas com selo vinculadas ao serviço ou todas se for o selo
+    empresas_selos = EmpresaCertificadaSelo.objects.filter(models.Q(servico=servico) | models.Q(servico__isnull=True)).order_by('nome')
+    municipios_disponiveis = EmpresaCertificadaSelo.objects.values_list('municipio', flat=True).distinct()
+
+    # Prepara lista serializável para o Leaflet Map
+    empresas_mapa_data = []
+    for emp in empresas_selos:
+        pdf_final = emp.pdf_url if emp.pdf_url else (emp.certificado_pdf.url if emp.certificado_pdf else "")
+        empresas_mapa_data.append({
+            "id": emp.id,
+            "nome": emp.nome,
+            "cnpj": emp.cnpj,
+            "municipio": emp.municipio,
+            "endereco": emp.endereco or "",
+            "instagram": emp.instagram or "",
+            "validade": emp.validade.strftime("%d/%m/%Y") if emp.validade else "",
+            "status": emp.status,
+            "latitude": emp.latitude if emp.latitude is not None else -15.6010,
+            "longitude": emp.longitude if emp.longitude is not None else -56.0974,
+            "certificado_url": pdf_final
+        })
+
+    # Outros serviços para a barra lateral / carrossel relacionado
+    outros_servicos = PageContent.objects.filter(tema__slug='servicos-e-politicas-publicas').exclude(id=servico.id)[:6]
+    return render(request, "servico_detalhe.html", {
+        "servico": servico,
+        "empresas_selos": empresas_selos,
+        "empresas_mapa_data": json.dumps(empresas_mapa_data),
+        "municipios_disponiveis": municipios_disponiveis,
+        "outros_servicos": outros_servicos,
+    })
 
 def legislacao(request):
     legislacoes = PageContent.objects.filter(tema__slug='legislacao').order_by('id')

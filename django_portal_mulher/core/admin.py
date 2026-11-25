@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .admin_extra import admin_extra_urls
 from django.urls import path
-from .models import BannerInicial, AtividadeDestaque, ParceiroInstitucional, PlanosMetas, VisitCounter, PanelVisitCounter, RedeProtecao, Tema, PrecisoAjuda, MateriaisEducativos, PaineisDados, ServicosPublicos, Legislacao, SobrePortal, Ouvidoria, EstatisticaViolencia
+from .models import BannerInicial, AtividadeDestaque, ParceiroInstitucional, PlanosMetas, VisitCounter, PanelVisitCounter, RedeProtecao, Tema, PrecisoAjuda, MateriaisEducativos, PaineisDados, ServicosPublicos, Legislacao, SobrePortal, Ouvidoria, EstatisticaViolencia, EmpresaCertificadaSelo
 
 admin.site.site_header = "Administração do Portal Mulher"
 admin.site.site_title = "Portal Mulher MT"
@@ -184,6 +184,35 @@ class PlanosMetasAdmin(BaseThemeAdmin):
 @admin.register(Ouvidoria)
 class OuvidoriaAdmin(BaseThemeAdmin):
     theme_slug = 'ouvidoria'
+
+@admin.register(EmpresaCertificadaSelo)
+class EmpresaCertificadaSeloAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'cnpj', 'municipio', 'instagram', 'validade', 'status', 'possui_certificado')
+    list_filter = ('status', 'municipio', 'servico')
+    search_fields = ('nome', 'cnpj', 'endereco', 'instagram')
+    list_editable = ('status', 'validade')
+    date_hierarchy = 'validade'
+
+    fieldsets = (
+        ('Identificação da Empresa', {
+            'fields': ('servico', 'nome', 'cnpj', 'municipio', 'endereco', 'instagram')
+        }),
+        ('Localização no Mapa', {
+            'fields': ('latitude', 'longitude'),
+            'classes': ('collapse',),
+            'description': 'Coordenadas para exibição no mapa (preenchimento opcional, usa coordenadas padrão do município se em branco).'
+        }),
+        ('Validade e Certificado', {
+            'fields': ('validade', 'status', 'certificado_pdf')
+        }),
+    )
+
+    def possui_certificado(self, obj):
+        from django.utils.html import format_html
+        if obj.certificado_pdf:
+            return format_html('<a href="{}" target="_blank" style="color: green; font-weight: bold;"><i class="fa-solid fa-file-pdf"></i> Ver PDF</a>', obj.certificado_pdf.url)
+        return format_html('<span style="color: #999;">Sem PDF</span>')
+    possui_certificado.short_description = 'Certificado'
 
 # Extend admin URLs to include custom view
 _original_get_urls = admin.site.get_urls

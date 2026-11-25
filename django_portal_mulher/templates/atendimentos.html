@@ -369,7 +369,8 @@
                                     </div>
                                     <div style="padding:15px;">
                                         <p style="font-size: 0.9rem; margin-bottom: 10px; color: #555;"><strong>Endereço:</strong> ${loc.endereco}</p>
-                                        <p style="font-size: 0.9rem; margin-bottom: 10px; color: #555;"><strong>Telefone:</strong> ${loc.telefone}</p>
+                                        <p style="font-size: 0.9rem; margin-bottom: 10px; color: #555;"><strong>Telefone:</strong> ${loc.telefone ? loc.telefone : '-'}</p>
+                                        <p style="font-size: 0.9rem; margin-bottom: 10px; color: #555;"><strong>Horário:</strong> ${loc.horario ? loc.horario : 'Comercial'}</p>
                                         <a href="https://www.google.com/maps/dir/?api=1&destination=${loc.latitude},${loc.longitude}" target="_blank" style="display:block; text-align:center; background:#8c9eff; color:white; padding:8px; border-radius:6px; text-decoration:none; font-weight:bold; font-size:0.85rem; margin-top: 10px;">
                                            <i class="fa-solid fa-route"></i> Como Chegar
                                         </a>
@@ -394,9 +395,9 @@
                                     </h4>
                                     ${loc.distance ? '<div style="background:#e91e63; color:white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; display: inline-block; margin-bottom: 10px;"><i class="fa-solid fa-location-dot"></i> a ' + loc.distance.toFixed(1) + ' km de você</div>' : ''}
                                     <p style="font-size: 0.85rem; margin-bottom: 6px; color: #555; line-height: 1.4;"><strong>Endereço:</strong> ${loc.endereco}</p>
-                                    <p style="font-size: 0.85rem; margin-bottom: 6px; color: #555;"><strong>Telefone:</strong> ${loc.telefone}</p>
+                                    <p style="font-size: 0.85rem; margin-bottom: 6px; color: #555;"><strong>Telefone:</strong> ${loc.telefone ? loc.telefone : '-'}</p>
                                     <p style="font-size: 0.85rem; margin-bottom: 6px; color: #555;"><strong>Email:</strong> ${loc.email ? loc.email : '-'} </p>
-                                    <p style="font-size: 0.85rem; color: #555;"><strong>Horário de funcionamento:</strong> Comercial</p>
+                                    <p style="font-size: 0.85rem; color: #555;"><strong>Horário de funcionamento:</strong> ${loc.horario ? loc.horario : 'Comercial'}</p>
                                 `;
                             locationsListEl.appendChild(card);
                         });

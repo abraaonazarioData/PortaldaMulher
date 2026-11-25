@@ -34,3 +34,9 @@ db.sqlite3
 # Estáticos coletados em produção
 staticfiles/
 */staticfiles/
+
+# Arquivos temporarios e pacotes locais
+*.tar.gz
+log_run.txt
+*.whl
+templates_index.html

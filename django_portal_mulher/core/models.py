@@ -21,7 +21,7 @@ class PageContent(models.Model):
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Tema/Seção", related_name="conteudos")
     title = models.CharField("Título", max_length=200)
     slug = models.SlugField("Identificador (Slug)", unique=True, help_text="Ex: sobre-nos, contato. Usado na URL.")
-    text = RichTextField("Texto Principal", blank=True)
+    text = CKEditor5Field("Texto Principal", config_name='default', blank=True)
     reference_sources = models.TextField("Fontes de Referência", blank=True, help_text="Links ou textos de referência.")
     link_url = models.URLField("Link (Botão de Acesso)", blank=True, help_text="URL de destino para botões de acesso.")
     icon = models.CharField("Ícone (FontAwesome)", max_length=100, blank=True, help_text="Ex: fa-solid fa-file-contract")
@@ -58,6 +58,21 @@ class PageContent(models.Model):
         text = html.unescape(text)
         # Removes excess whitespace that might result from stripping tags/entities
         return ' '.join(text.split())
+
+    @property
+    def url_destino(self):
+        """Retorna o link externo se preenchido, ou a URL da subpágina interna"""
+        if self.link_url and (self.link_url.startswith('http://') or self.link_url.startswith('https://') or self.link_url.startswith('tel:')):
+            return self.link_url
+        from django.urls import reverse
+        try:
+            return reverse('servico_detalhe', kwargs={'slug': self.slug})
+        except Exception:
+            return f"/servicos/{self.slug}/"
+
+    @property
+    def is_external_link(self):
+        return bool(self.link_url and (self.link_url.startswith('http://') or self.link_url.startswith('https://')))
 
     class Meta:
         verbose_name = "Conteúdo de Página"
@@ -179,14 +194,17 @@ _CORPO_ATTRS = {
 
 
 def sanitizar_corpo(html):
-    import nh3
-    return nh3.clean(
-        html or '',
-        tags=_CORPO_TAGS,
-        attributes=_CORPO_ATTRS,
-        url_schemes={'http', 'https', 'mailto'},
-        link_rel='noopener noreferrer',
-    )
+    try:
+        import nh3
+        return nh3.clean(
+            html or '',
+            tags=_CORPO_TAGS,
+            attributes=_CORPO_ATTRS,
+            url_schemes={'http', 'https', 'mailto'},
+            link_rel='noopener noreferrer',
+        )
+    except ImportError:
+        return html or ''
 
 
 class AtividadeDestaque(models.Model):
@@ -287,3 +305,48 @@ class EstatisticaViolencia(models.Model):
 
     def __str__(self):
         return f"{self.tipo_crime} em {self.municipio} ({self.ano}) - {self.quantidade}"
+
+class EmpresaCertificadaSelo(models.Model):
+    STATUS_CHOICES = [
+        ('Vigente', 'Vigente'),
+        ('Expirado', 'Expirado'),
+        ('Suspenso', 'Suspenso'),
+    ]
+
+    servico = models.ForeignKey(
+        PageContent,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="empresas_selo",
+        verbose_name="Serviço / Programa de Selo",
+        help_text="Vincule ao serviço correspondente (ex: Selo Empresa Amiga da Mulher)"
+    )
+    nome = models.CharField("Nome da Empresa / Razão Social", max_length=255)
+    cnpj = models.CharField("CNPJ", max_length=25, help_text="Ex: 14.237.702/0001-06")
+    municipio = models.CharField("Município", max_length=150, default="Cuiabá / Mato Grosso")
+    endereco = models.CharField("Endereço", max_length=255, blank=True)
+    instagram = models.CharField("Instagram", max_length=100, blank=True, help_text="Ex: @estabelecimento")
+    latitude = models.FloatField("Latitude", null=True, blank=True, help_text="Ex: -15.6010")
+    longitude = models.FloatField("Longitude", null=True, blank=True, help_text="Ex: -56.0974")
+    validade = models.DateField("Data de Validade", null=True, blank=True)
+    status = models.CharField("Status", max_length=20, choices=STATUS_CHOICES, default='Vigente')
+    pdf_url = models.URLField("URL Externa do Certificado (PDF)", max_length=500, blank=True)
+    certificado_pdf = models.FileField(
+        "Certificado / Selo (PDF)",
+        upload_to='selos/',
+        blank=True,
+        null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['pdf', 'png', 'jpg', 'jpeg'])],
+        help_text="Arquivo oficial do certificado em PDF ou imagem."
+    )
+    criado_em = models.DateTimeField("Cadastrado em", default=timezone_now)
+
+    class Meta:
+        verbose_name = "Empresa com Selo Oficial"
+        verbose_name_plural = "Listagem de Selos (Empresas)"
+        ordering = ['nome']
+
+    def __str__(self):
+        return f"{self.nome} ({self.cnpj})"
+

@@ -62,8 +62,8 @@ class SecurityHeadersMiddleware:
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com",
             "font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com",
             "img-src 'self' data: https: http: blob:",
-            "connect-src 'self' https://mulher.mt.gov.br",
-            "frame-src 'self' https://www.youtube.com https://youtube.com https://ouvidoria.cge.mt.gov.br",
+            "connect-src 'self' https://mulher.mt.gov.br https://*.powerbi.com https://*.analysis.windows.net",
+            "frame-src 'self' https://www.youtube.com https://youtube.com https://ouvidoria.cge.mt.gov.br https://app.powerbi.com https://*.powerbi.com https://*.analysis.windows.net https://*.pbix.io",
             "base-uri 'self'",
             "form-action 'self'",
         ]

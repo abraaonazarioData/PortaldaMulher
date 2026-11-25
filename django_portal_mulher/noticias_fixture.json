@@ -1,0 +1,722 @@
+[
+{
+  "model": "core.atividadedestaque",
+  "pk": 1,
+  "fields": {
+    "chapeu": "LEGISLAÇÃO EM VIGOR",
+    "titulo": "Governo de MT suspende notícias institucionais do Portal em cumprimento às normas eleitorais",
+    "linha_fina": "Governo de MT suspende notícias institucionais do Portal em cumprimento às normas eleitorais",
+    "autor": "maria",
+    "imagem": "atividades/Palacio_Paiaguas.jpg",
+    "credito_imagem": "José",
+    "corpo": "<ul><li>Se você preencher esse campo, quando a pessoa clicar em \"LER ATIVIDADE COMPLETA\" no site, ela será direcionada para essa nova página para terminar de ler o texto que você digitou.</li><li>Se você deixar o campo em branco, ele continuará funcionando como antes (usando o link externo, se houver</li><li>Se você preencher esse campo, quando a pessoa clicar em \"LER ATIVIDADE COMPLETA\" no site, ela será direcionada para essa nova página para terminar de ler o texto que você digitou.</li><li>Se você deixar o campo em branco, ele continuará funcionando como antes (usando o link externo, se houver</li><li>Se você preencher esse campo, quando a pessoa clicar em \"LER ATIVIDADE COMPLETA\" no site, ela será direcionada para essa nova página para terminar de ler o texto que você digitou.</li><li>Se você deixar o campo em branco, ele continuará funcionando como antes (usando o link externo, se houver</li><li>Se você preencher esse campo, quando a pessoa clicar em \"LER ATIVIDADE COMPLETA\" no site, ela será direcionada para essa nova página para terminar de ler o texto que você digitou.</li><li>Se você deixar o campo em branco, ele continuará funcionando como antes (usando o link externo, se houver</li></ul><p><i>Fonte original: </i><a href=\"https://www.seplag.mt.gov.br/web/mt/w/governo-de-mt-suspende-not%C3%ADcias-institucionais-do-portal-em-cumprimento-%C3%A0s-normas-eleitorais\" rel=\"noopener noreferrer\"><i>https://www.seplag.mt.gov.br/web/mt/w/governo-de-mt-suspende-not%C3%ADcias-institucionais-do-portal-em-cumprimento-%C3%A0s-normas-eleitorais</i></a></p>",
+    "slug": "governo-de-mt-suspende-noticias-institucionais-do-portal-em-cumprimento-as-normas-eleitorais",
+    "status": "rascunho",
+    "data_publicacao": "2026-08-22T14:48:04Z",
+    "criado_em": "2026-10-14T14:55:21.983Z",
+    "atualizado_em": "2026-10-26T01:21:53.884Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 5,
+  "fields": {
+    "chapeu": "COMBATE À VIOLÊNCIA",
+    "titulo": "PM liberta mulher mantida em cárcere privado por 30 dias",
+    "linha_fina": "Vítima relatou agressões e violência sexual durante o período em que foi mantida presa pelo namorado, detido em flagrante",
+    "autor": "Polícia Militar de Mato Grosso | PMMT",
+    "imagem": "atividades/viatura_pm_mt_1.jpg",
+    "credito_imagem": "Assessoria | PMMT",
+    "corpo": "<p>A Polícia Militar de Mato Grosso libertou, nesta quinta-feira (15.10), uma mulher que vinha sendo mantida em cárcere privado por aproximadamente 30 dias pelo companheiro.</p>\n<p>A equipe policial foi acionada após denúncias anônimas informando sobre a situação de confinamento e agressões no imóvel. No local, a guarnição constatou a veracidade dos fatos e realizou a abordagem tática, conseguindo resgatar a vítima com segurança.</p>\n<p>Em seu depoimento preliminar, a vítima relatou ter sofrido agressões físicas constantes e violência psicológica ao longo de todo o período em que permaneceu impedida de sair ou fazer contato com familiares. O suspeito foi preso em flagrante delito e encaminhado à Delegacia Especializada de Defesa da Mulher para as providências legais.</p>\n<p>A vítima recebeu acolhimento humanizado e foi encaminhada para atendimento médico e acompanhamento pela rede socioassistencial e psicológica do Estado.</p>",
+    "slug": "pm-liberta-mulher-mantida-em-carcere-privado-por-30-dias",
+    "status": "publicado",
+    "data_publicacao": "2026-10-16T00:52:00Z",
+    "criado_em": "2026-10-17T21:01:12.849Z",
+    "atualizado_em": "2026-10-25T23:51:12.067Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 6,
+  "fields": {
+    "chapeu": "ENFRENTAMENTO À VIOLÊNCIA",
+    "titulo": "Corpo de Bombeiros promove curso para qualificar atendimento a mulheres vítimas de violência",
+    "linha_fina": "Capacitação aborda acolhimento, procedimentos de atendimento e encaminhamento das vítimas à rede de proteção em Mato Grosso",
+    "autor": "Corpo de Bombeiros Militar | CBMMT",
+    "imagem": "atividades/CAMVV3.jpg",
+    "credito_imagem": "Assessoria | CBMMT",
+    "corpo": "<p>O Corpo de Bombeiros Militar de Mato Grosso (CBMMT) iniciou nesta semana o Curso de Aperfeiçoamento para o Atendimento a Mulheres em Situação de Violência (CAMVV), voltado para bombeiros militares que atuam no serviço operacional e de resgate.</p>\n<p>O objetivo é capacitar a tropa para reconhecer sinais de violência doméstica, prestar os primeiros socorros de maneira humanizada, evitar a revitimização e realizar o correto encaminhamento das mulheres para as delegacias e abrigos da rede de proteção do Estado.</p>\n<p>A formação integra o conjunto de ações integradas do Governo de Mato Grosso para intensificar a resposta estatal no combate à violência de gênero e o fortalecimento de protocolos de acolhimento emergencial.</p>",
+    "slug": "corpo-de-bombeiros-promove-curso-para-qualificar-atendimento-a-mulheres-vitimas-de-violencia",
+    "status": "publicado",
+    "data_publicacao": "2026-10-15T14:30:00Z",
+    "criado_em": "2026-10-17T21:01:12.913Z",
+    "atualizado_em": "2026-10-25T23:51:12.075Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 7,
+  "fields": {
+    "chapeu": "VIOLÊNCIA DOMÉSTICA",
+    "titulo": "Polícia Civil prende homem investigado por ameaça contra companheira e posse ilegal de arma de fogo",
+    "linha_fina": "Suspeito havia sido solto após audiência de custódia, mas voltou a ser preso após diligências realizadas durante o feriado prolongado",
+    "autor": "Polícia Judiciária Civil | PJCMT",
+    "imagem": "atividades/Delegacia_de_Araputanga.jpeg",
+    "credito_imagem": "Assessoria | PJCMT",
+    "corpo": "<p>A Polícia Judiciária Civil de Mato Grosso cumpriu mandado de prisão preventiva contra um indivíduo investigado por crimes de ameaça no âmbito da Lei Maria da Penha e posse ilegal de arma de fogo.</p>\n<p>O suspeito havia sido inicialmente detido, mas obteve liberdade provisória durante audiência de custódia. No entanto, novas diligências da equipe investigativa demonstraram descumprimento iminente de medidas cautelares e risco à integridade da vítima.</p>\n<p>Diante dos novos elementos apresentados pela autoridade policial, o Poder Judiciário decretou a prisão preventiva, que foi imediatamente cumprida. O investigado foi recolhido à unidade prisional e permanece à disposição da Justiça.</p>",
+    "slug": "policia-civil-prende-homem-investigado-por-ameaca-contra-companheira-e-posse-ilegal-de-arma-de-fogo",
+    "status": "publicado",
+    "data_publicacao": "2026-10-15T13:47:00Z",
+    "criado_em": "2026-10-17T21:01:12.968Z",
+    "atualizado_em": "2026-10-25T23:51:12.082Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 8,
+  "fields": {
+    "chapeu": "AÇÕES DO GOVERNO",
+    "titulo": "Escola de Saúde Pública promove curso de boas práticas no pré-natal, parto e nascimento",
+    "linha_fina": "Médicos, enfermeiros e gestores da Baixada Cuiabana passam por formação de 30 horas para melhoria da Rede Alyne e a atenção à saúde das mulheres",
+    "autor": "Secom-MT | SES-MT",
+    "imagem": "atividades/Foto_praticas_pre-Natal.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>A Escola de Saúde Pública do Estado de Mato Grosso promoveu uma capacitação estratégica de boas práticas na atenção ao pré-natal, parto e puerpério, reunindo médicos, enfermeiros e equipes multiprofissionais de saúde da Baixada Cuiabana.</p>\n<p>A qualificação abrange 30 horas de treinamento prático e teórico com foco na redução da mortalidade materna e neonatal, na ampliação da assistência qualificada e na consolidação das diretrizes da Rede Alyne em todo o território mato-grossense.</p>\n<p>Segundo a Secretaria de Estado de Saúde (SES-MT), o aprimoramento contínuo dos profissionais da ponta é essencial para garantir um atendimento seguro, digno e humanizado a todas as mães e bebês atendidos pelo Sistema Único de Saúde (SUS).</p>",
+    "slug": "escola-de-saude-publica-promove-curso-de-boas-praticas-no-pre-natal-parto-e-nascimento",
+    "status": "publicado",
+    "data_publicacao": "2026-10-15T13:43:00Z",
+    "criado_em": "2026-10-17T21:01:13.032Z",
+    "atualizado_em": "2026-10-25T23:51:12.199Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 9,
+  "fields": {
+    "chapeu": "VIOLÊNCIA CONTRA A MULHER",
+    "titulo": "Polícia Civil prende três homens por agredir mulher em Rondonópolis",
+    "linha_fina": "A ação ocorreu após a vítima ser agredida e ameaçada por cobrança de aluguéis atrasados dos suspeitos",
+    "autor": "Polícia Judiciária Civil | PJCMT",
+    "imagem": "atividades/Delegacia_da_Mulher_de_Rondonopolis.jpg",
+    "credito_imagem": "Assessoria | PJCMT",
+    "corpo": "<p>A Delegacia Especializada de Defesa da Mulher (DEDM) de Rondonópolis efetuou a prisão em flagrante de três homens envolvidos em graves agressões físicas e ameaças contra uma mulher.</p>\n<p>Conforme as apurações, o crime foi motivado por cobranças arbitrárias e desavenças contratuais. A vítima foi encurralada e agredida, sofrendo lesões corporais antes de conseguir acionar o socorro policial.</p>\n<p>Os policiais civis localizaram e detiveram os agressores ainda nas proximidades. Todos foram autuados pelos crimes correspondentes e autuados conforme a legislação vigente, resguardando a segurança física da vítima.</p>",
+    "slug": "policia-civil-prende-tres-homens-por-agredir-mulher-em-rondonopolis",
+    "status": "publicado",
+    "data_publicacao": "2026-10-15T13:40:00Z",
+    "criado_em": "2026-10-17T21:01:13.119Z",
+    "atualizado_em": "2026-10-25T23:51:12.391Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 10,
+  "fields": {
+    "chapeu": "VIOLÊNCIA DOMÉSTICA",
+    "titulo": "Polícia Civil prende em flagrante mulher suspeita de violência doméstica contra criança em Paranatinga",
+    "linha_fina": "Agressão ocorreu após discussão familiar; menina de 11 anos apresentou marcas no pescoço e mãe foi conduzida à audiência de custódia",
+    "autor": "Polícia Judiciária Civil | PJCMT",
+    "imagem": "atividades/Delegacia_de_Paranatinga_344qjWu.jpeg",
+    "credito_imagem": "Assessoria | PJCMT",
+    "corpo": "<p>Agressão ocorreu após discussão familiar; menina de 11 anos apresentou marcas no pescoço e mãe foi conduzida à audiência de custódia</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://www.pjc.mt.gov.br/w/pol%C3%ADcia-civil-prende-em-flagrante-mulher-suspeita-de-viol%C3%AAncia-dom%C3%A9stica-contra-crian%C3%A7a-em-paranatinga\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "policia-civil-prende-em-flagrante-mulher-suspeita-de-violencia-domestica-contra-crianca-em-paranatinga",
+    "status": "publicado",
+    "data_publicacao": "2026-10-23T15:58:00Z",
+    "criado_em": "2026-10-25T23:48:20.990Z",
+    "atualizado_em": "2026-10-26T01:12:21.775Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 11,
+  "fields": {
+    "chapeu": "TRIBUNAL DO JÚRI",
+    "titulo": "Homem recebe mais de 64 anos por feminicídio e homicídio",
+    "linha_fina": "O Conselho de Sentença acolheu integralmente a tese acusatória sustentada pelo Ministério Público de Mato Grosso (MPMT), rejeitando o pedido da defesa de desclassificação para lesão corporal seguida de morte.",
+    "autor": "Ministério Público de Mato Grosso | MPMT",
+    "imagem": "atividades/WhatsApp_Image_2026-08-17_at_15_11_46_CNKfOK6.jpeg",
+    "credito_imagem": "Assessoria | MPMT",
+    "corpo": "<p>O Conselho de Sentença acolheu integralmente a tese acusatória sustentada pelo Ministério Público de Mato Grosso (MPMT), rejeitando o pedido da defesa de desclassificação para lesão corporal seguida de morte.</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://mpmt.mp.br/conteudo/58/181459/homem-recebe-mais-de-64-anos-por-feminicidio-e-homicidio\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "homem-recebe-mais-de-64-anos-por-feminicidio-e-homicidio",
+    "status": "publicado",
+    "data_publicacao": "2026-10-22T19:33:00Z",
+    "criado_em": "2026-10-25T23:48:21.054Z",
+    "atualizado_em": "2026-10-26T01:13:17.032Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 12,
+  "fields": {
+    "chapeu": "ENFRENTAMENTO À VIOLÊNCIA DE GÊNERO",
+    "titulo": "Ouvidoria da Mulher do MPMT ganha novos canais de atendimento",
+    "linha_fina": "O Ministério Público do Estado de Mato Grosso (MPMT) lançará, no dia 28 de outubro, novos canais de atendimento da Ouvidoria da Mulher.",
+    "autor": "Ministério Público de Mato Grosso | MPMT",
+    "imagem": "atividades/Gemini_Generated_Image_h2ak9th2ak9th2ak_L13Qg5k.jpeg",
+    "credito_imagem": "Assessoria | MPMT",
+    "corpo": "<p>O Ministério Público do Estado de Mato Grosso (MPMT) lançará, no dia 28 de outubro, novos canais de atendimento da Ouvidoria da Mulher.</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://mpmt.mp.br/conteudo/58/181442/ouvidoria-da-mulher-do-mpmt-ganha-novos-canais-de-atendimento\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "ouvidoria-da-mulher-do-mpmt-ganha-novos-canais-de-atendimento",
+    "status": "publicado",
+    "data_publicacao": "2026-10-22T19:27:00Z",
+    "criado_em": "2026-10-25T23:48:21.126Z",
+    "atualizado_em": "2026-10-26T01:14:41.215Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 13,
+  "fields": {
+    "chapeu": "REDE DE ENFRENTAMENTO",
+    "titulo": "Cemulher capacita membros de rede de enfrentamento à violência doméstica de Porto Alegre do Norte",
+    "linha_fina": "Equipe da Cemulher-MT levou uma capacitação aos profissionais que integram a Rede de Enfrentamento à Violência Doméstica e Familiar contra a Mulher de Porto Alegre do Norte, que abrange também os municípios de Confresa, Canabrava do Norte e São José do Xingu.",
+    "autor": "Tribunal de Justiça de Mato Grosso | TJMT",
+    "imagem": "atividades/102c0000-0aa7-0a58-3e8c-08df2f9de35b_MkkKPbf.webp",
+    "credito_imagem": "Assessoria | TJMT",
+    "corpo": "<p>Equipe da Cemulher-MT levou uma capacitação aos profissionais que integram a Rede de Enfrentamento à Violência Doméstica e Familiar contra a Mulher de Porto Alegre do Norte, que abrange também os municípios de Confresa, Canabrava do Norte e São José do Xingu.</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://www.tjmt.jus.br/noticias/2026/10/cemulher-capacita-membros-rede-enfrentamento-a-violencia-domestica-porto-alegre-norte\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "cemulher-capacita-membros-de-rede-de-enfrentamento-a-violencia-domestica-de-porto-alegre-do-norte",
+    "status": "publicado",
+    "data_publicacao": "2026-10-22T11:57:00Z",
+    "criado_em": "2026-10-25T23:48:21.219Z",
+    "atualizado_em": "2026-10-26T01:15:21.758Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 14,
+  "fields": {
+    "chapeu": "DESCUMPRIRAM MEDIDAS PROTETIVAS",
+    "titulo": "Polícia Civil cumpre duas prisões preventivas em investigações de violência contra a mulher em Cuiabá",
+    "linha_fina": "Ações da Delegacia da Mulher resultam na prisão de investigados por ameaças e descumprimento de medidas protetivas na Capital",
+    "autor": "Polícia Judiciária Civil | PJCMT",
+    "imagem": "atividades/Delegacia_da_Mulher_de_Cuiaba_fachada_O9AIaZx.jpg",
+    "credito_imagem": "Assessoria | PJCMT",
+    "corpo": "<p>Ações da Delegacia da Mulher resultam na prisão de investigados por ameaças e descumprimento de medidas protetivas na Capital</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.pjc.mt.gov.br/w/pol%C3%ADcia-civil-cumpre-duas-pris%C3%B5es-preventivas-em-investiga%C3%A7%C3%B5es-de-viol%C3%AAncia-contra-a-mulher-em-cuiab%C3%A1\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "policia-civil-cumpre-duas-prisoes-preventivas-em-investigacoes-de-violencia-contra-a-mulher-em-cuiaba",
+    "status": "publicado",
+    "data_publicacao": "2026-10-21T20:11:00Z",
+    "criado_em": "2026-10-25T23:48:21.363Z",
+    "atualizado_em": "2026-10-26T00:09:36.745Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 15,
+  "fields": {
+    "chapeu": "VIOLÊNCIA CONTRA A MULHER",
+    "titulo": "Polícia Civil prende investigado por violência doméstica que descumpriu medidas protetivas",
+    "linha_fina": "O homem é investigado por violência física e psicológica contra a companheira",
+    "autor": "Polícia Judiciária Civil | PJCMT",
+    "imagem": "atividades/Delegacia_de_Paranatinga_F9IDA9q.jpeg",
+    "credito_imagem": "Assessoria | PJCMT",
+    "corpo": "<p>O homem é investigado por violência física e psicológica contra a companheira</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://www.pjc.mt.gov.br/w/pol%C3%ADcia-civil-prende-investigado-por-viol%C3%AAncia-dom%C3%A9stica-que-descumpriu-medidas-protetivas\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "policia-civil-prende-investigado-por-violencia-domestica-que-descumpriu-medidas-protetivas",
+    "status": "publicado",
+    "data_publicacao": "2026-10-21T15:05:00Z",
+    "criado_em": "2026-10-25T23:48:21.441Z",
+    "atualizado_em": "2026-10-26T01:16:15.115Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 16,
+  "fields": {
+    "chapeu": "TRIBUNAL DO JÚRI",
+    "titulo": "Feminicida que matou esposa e simulou sequestro é condenado a 31 anos em Cuiabá",
+    "linha_fina": "Condenado pelos crimes de feminicídio, ocultação de cadáver e comunicação falsa de crime.",
+    "autor": "Tribunal de Justiça de Mato Grosso | TJMT",
+    "imagem": "atividades/102c0000-0aa7-0a58-5634-08df2f6cc05a_ELBjRNP.webp",
+    "credito_imagem": "Assessoria | TJMT",
+    "corpo": "<p>Condenado pelos crimes de feminicídio, ocultação de cadáver e comunicação falsa de crime.</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://www.tjmt.jus.br/noticias/2026/10/feminicida-que-matou-esposa-e-simulou-sequestro-e-condenado-a-31-anos-em-cuiaba\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "feminicida-que-matou-esposa-e-simulou-sequestro-e-condenado-a-31-anos-em-cuiaba",
+    "status": "publicado",
+    "data_publicacao": "2026-10-21T15:03:00Z",
+    "criado_em": "2026-10-25T23:48:21.549Z",
+    "atualizado_em": "2026-10-26T01:16:53.261Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 17,
+  "fields": {
+    "chapeu": "MULHER E SAÚDE",
+    "titulo": "Salas Acolher + Saúde fortalecem rede de proteção com atuação integrada em Cuiabá",
+    "linha_fina": "Mulheres em situação de violência contam com atendimento integrado e mais próximo de casa por meio das Salas Acolher + Saúde",
+    "autor": "Prefeitura de Cuiabá",
+    "imagem": "atividades/Capturar.JPG",
+    "credito_imagem": "Assessoria | Prefeitura de Cuiabá",
+    "corpo": "<p>Mulheres em situação de violência contam com atendimento integrado e mais próximo de casa por meio das Salas Acolher + Saúde</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.cuiaba.mt.gov.br/noticias/salas-acolher-saude-fortalecem-rede-de-protecao-com-atuacao-integrada-em-cuiaba\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "salas-acolher-saude-fortalecem-rede-de-protecao-com-atuacao-integrada-em-cuiaba",
+    "status": "publicado",
+    "data_publicacao": "2026-10-21T11:55:00Z",
+    "criado_em": "2026-10-25T23:48:21.714Z",
+    "atualizado_em": "2026-10-26T00:09:36.765Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 18,
+  "fields": {
+    "chapeu": "REDE DE PROTEÇÃO",
+    "titulo": "Juína inaugura Casa de Acolhimento para mulheres vítimas de violência e fortalece rede de proteção",
+    "linha_fina": "A Prefeitura de Juína, por meio da Secretaria Municipal de Assistência Social, inaugurou a nova Casa de Acolhimento para Mulheres Vítimas de Violência.",
+    "autor": "Prefeitura de Juína",
+    "imagem": "atividades/20261009-7n1w_q4yN9qo.jpeg",
+    "credito_imagem": "Assessoria | Prefeitura de Juína",
+    "corpo": "<p>A Prefeitura de Juína, por meio da Secretaria Municipal de Assistência Social, inaugurou a nova Casa de Acolhimento para Mulheres Vítimas de Violência.</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://www.juina.mt.gov.br/noticia/3556/juina-inaugura-casa-de-acolhimento-para-mulheres-vitimas-de-violencia-e-fortalece-rede-de-protecao\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "juina-inaugura-casa-de-acolhimento-para-mulheres-vitimas-de-violencia-e-fortalece-rede-de-protecao",
+    "status": "publicado",
+    "data_publicacao": "2026-10-21T11:53:00Z",
+    "criado_em": "2026-10-25T23:48:21.785Z",
+    "atualizado_em": "2026-10-26T01:17:35.245Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 19,
+  "fields": {
+    "chapeu": "PREVENÇÃO À VIOLÊNCIA",
+    "titulo": "TCE-MT reconhece iniciativas de prevenção à violência em quatro municípios",
+    "linha_fina": "Sob relatoria do conselheiro Guilherme Antonio Maluf, as contas de São José do Xingu, Serra Nova Dourada, Água Boa e Canarana receberam parecer prévio favorável à aprovação",
+    "autor": "Tribunal de Contas de Mato Grosso | TCE-MT",
+    "imagem": "atividades/be34f8c5f42fa1a3d174b71de2c54878_0Nfgcr8.jpeg",
+    "credito_imagem": "Assessoria | TCE-MT",
+    "corpo": "<p>Sob relatoria do conselheiro Guilherme Antonio Maluf, as contas de São José do Xingu, Serra Nova Dourada, Água Boa e Canarana receberam parecer prévio favorável à aprovação</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://www.tce.mt.gov.br/noticias/tce-mt-reconhece-iniciativas-de-prevencao-a-violencia-em-quatro-municipios/63106\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "tce-mt-reconhece-iniciativas-de-prevencao-a-violencia-em-quatro-municipios",
+    "status": "publicado",
+    "data_publicacao": "2026-10-21T11:32:00Z",
+    "criado_em": "2026-10-25T23:48:21.879Z",
+    "atualizado_em": "2026-10-26T01:18:01.451Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 20,
+  "fields": {
+    "chapeu": "REDE DE ENFRENTAMENTO",
+    "titulo": "Cemulher capacita rede de enfrentamento à violência contra a mulher de Querência",
+    "linha_fina": "Mais de 50 profissionais de diversas instituições públicas e da sociedade civil, participaram de uma capacitação promovida pela Coordenadoria Estadual da Mulher em Situação de Violência Doméstica e Familiar do Tribunal de Justiça de Mato Grosso",
+    "autor": "Tribunal de Justiça de Mato Grosso | TJMT",
+    "imagem": "atividades/Capturar_WjM5jWo.JPG",
+    "credito_imagem": "Assessoria | TJMT",
+    "corpo": "<p>Mais de 50 profissionais de diversas instituições públicas e da sociedade civil, participaram de uma capacitação promovida pela Coordenadoria Estadual da Mulher em Situação de Violência Doméstica e Familiar do Tribunal de Justiça de Mato Grosso</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.tjmt.jus.br/noticias/2026/10/cemulher-capacita-rede-enfrentamento-a-violencia-contra-a-mulher-querencia\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "cemulher-capacita-rede-de-enfrentamento-a-violencia-contra-a-mulher-de-querencia",
+    "status": "publicado",
+    "data_publicacao": "2026-10-21T11:29:00Z",
+    "criado_em": "2026-10-25T23:48:22.020Z",
+    "atualizado_em": "2026-10-26T00:09:36.784Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 21,
+  "fields": {
+    "chapeu": "REDE DE PROTEÇÃO",
+    "titulo": "Seaf amplia ações em defesa das mulheres rurais e inclui combate à violência nos encontros pelo estado",
+    "linha_fina": "Parceria com a Casa Civil e a Setasc leva a Van Rosa e o programa SER Família Mulher ao campo, garantindo orientação e proteção às mulheres rurais",
+    "autor": "Seaf-MT",
+    "imagem": "atividades/Van_do_SER_Familia_Mulher.jpg",
+    "credito_imagem": "Assessoria | Seaf-MT",
+    "corpo": "<p>Parceria com a Casa Civil e a Setasc leva a Van Rosa e o programa SER Família Mulher ao campo, garantindo orientação e proteção às mulheres rurais</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.agriculturafamiliar.mt.gov.br/w/seaf-amplia-a%C3%A7%C3%B5es-em-defesa-das-mulheres-rurais-e-inclui-combate-%C3%A0-viol%C3%AAncia-nos-encontros-pelo-estado\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "seaf-amplia-acoes-em-defesa-das-mulheres-rurais-e-inclui-combate-a-violencia-nos-encontros-pelo-estado",
+    "status": "publicado",
+    "data_publicacao": "2026-10-20T19:06:00Z",
+    "criado_em": "2026-10-25T23:48:22.188Z",
+    "atualizado_em": "2026-10-26T00:09:36.798Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 22,
+  "fields": {
+    "chapeu": "AÇÃO RÁPIDA",
+    "titulo": "Polícia Militar prende suspeito de matar mulher durante discussão em comércio de Várzea Grande",
+    "linha_fina": "Vítima foi esfaqueada e levada para o Pronto-Socorro, mas não resistiu aos ferimentos",
+    "autor": "Polícia Militar de Mato Grosso | PMMT",
+    "imagem": "atividades/viatura_pm_mt_ILUSTRATIVA_1.jpg",
+    "credito_imagem": "Assessoria | PMMT",
+    "corpo": "<p>Vítima foi esfaqueada e levada para o Pronto-Socorro, mas não resistiu aos ferimentos</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.pm.mt.gov.br/w/pol%C3%ADcia-militar-prende-suspeito-de-matar-mulher-durante-discuss%C3%A3o-em-com%C3%A9rcio-de-v%C3%A1rzea-grande\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "policia-militar-prende-suspeito-de-matar-mulher-durante-discussao-em-comercio-de-varzea-grande",
+    "status": "publicado",
+    "data_publicacao": "2026-10-20T14:46:00Z",
+    "criado_em": "2026-10-25T23:48:22.340Z",
+    "atualizado_em": "2026-10-26T00:09:36.812Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 23,
+  "fields": {
+    "chapeu": "VAN ROSA",
+    "titulo": "Setasc divulga programação de atendimentos em Cuiabá e Várzea Grande a partir desta segunda-feira (19)",
+    "linha_fina": "Ação itinerante oferece acolhimento, orientações e atendimento especializado às mulheres, com passagem por unidades de saúde e unidades do Ganha Tempo",
+    "autor": "Setasc-MT",
+    "imagem": "atividades/WhatsApp_Image_2026-10-14_at_16_ab88GYK.55.46.jpeg",
+    "credito_imagem": "Assessoria | Setasc-MT",
+    "corpo": "<p>Ação itinerante oferece acolhimento, orientações e atendimento especializado às mulheres, com passagem por unidades de saúde e unidades do Ganha Tempo</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://www.setasc.mt.gov.br/w/setasc-divulga-programa%C3%A7%C3%A3o-de-atendimentos-em-cuiab%C3%A1-e-v%C3%A1rzea-grande-a-partir-desta-segunda-feira-19-\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "setasc-divulga-programacao-de-atendimentos-em-cuiaba-e-varzea-grande-a-partir-desta-segunda-feira-19",
+    "status": "publicado",
+    "data_publicacao": "2026-10-19T21:29:00Z",
+    "criado_em": "2026-10-25T23:48:22.426Z",
+    "atualizado_em": "2026-10-26T01:18:48.914Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 24,
+  "fields": {
+    "chapeu": "AÇÃO RÁPIDA",
+    "titulo": "PM salva mulher de tentativa de feminicídio e prende agressor em flagrante em Cuiabá",
+    "linha_fina": "Vítima estava sendo enforcada pelo suspeito, que foi detido pela PM",
+    "autor": "Polícia Militar de Mato Grosso | PMMT",
+    "imagem": "atividades/viatura_pm_mt.jpg",
+    "credito_imagem": "Assessoria | PMMT",
+    "corpo": "<p>Vítima estava sendo enforcada pelo suspeito, que foi detido pela PM</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.pm.mt.gov.br/w/pm-salva-mulher-de-tentativa-de-feminic%C3%ADdio-e-prende-agressor-em-flagrante-em-cuiab%C3%A1\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "pm-salva-mulher-de-tentativa-de-feminicidio-e-prende-agressor-em-flagrante-em-cuiaba",
+    "status": "publicado",
+    "data_publicacao": "2026-10-19T20:42:00Z",
+    "criado_em": "2026-10-25T23:48:22.590Z",
+    "atualizado_em": "2026-10-26T00:09:36.825Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 25,
+  "fields": {
+    "chapeu": "EM RONDONÓPOLIS",
+    "titulo": "Polícia Militar prende homem suspeito por tentativa de homicídio e violência doméstica",
+    "linha_fina": "Envolvidos ingeriam bebidas alcoólicas no Residencial Celina Bezerra quando tiveram um desentendimento",
+    "autor": "Polícia Militar de Mato Grosso | PMMT",
+    "imagem": "atividades/WhatsApp_Image_2026-10-19_at_09_lAuum94.04.56_1.jpeg",
+    "credito_imagem": "Assessoria | PMMT",
+    "corpo": "<p>Envolvidos ingeriam bebidas alcoólicas no Residencial Celina Bezerra quando tiveram um desentendimento</p><p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p><p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p><ul><li><strong>190</strong> — Polícia Militar (Emergência imediata)</li><li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li><li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li><li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li></ul><p><a href=\"https://www.pm.mt.gov.br/w/pol%C3%ADcia-militar-prende-homem-suspeito-por-tentativa-de-homic%C3%ADdio-e-viol%C3%AAncia-dom%C3%A9stica\" rel=\"noopener noreferrer\"><strong><u>Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</u></strong></a></p>",
+    "slug": "policia-militar-prende-homem-suspeito-por-tentativa-de-homicidio-e-violencia-domestica",
+    "status": "publicado",
+    "data_publicacao": "2026-10-19T20:42:00Z",
+    "criado_em": "2026-10-25T23:48:22.670Z",
+    "atualizado_em": "2026-10-26T01:19:31.615Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 26,
+  "fields": {
+    "chapeu": "PROTEÇÃO À MULHER",
+    "titulo": "Polícia Civil prende três homens por violência doméstica em Cuiabá",
+    "linha_fina": "Mandados estão relacionados principalmente ao descumprimento de medidas protetivas; um dos casos também envolve lesão corporal",
+    "autor": "Polícia Judiciária Civil | PJCMT",
+    "imagem": "atividades/Delegacia_da_Mulher_de_Cuiaba_fachada.jpg",
+    "credito_imagem": "Assessoria | PJCMT",
+    "corpo": "<p>Mandados estão relacionados principalmente ao descumprimento de medidas protetivas; um dos casos também envolve lesão corporal</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"http://www.pjc.mt.gov.br/w/pol%C3%ADcia-civil-prende-tr%C3%AAs-homens-por-viol%C3%AAncia-dom%C3%A9stica-em-cuiab%C3%A1\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "policia-civil-prende-tres-homens-por-violencia-domestica-em-cuiaba",
+    "status": "publicado",
+    "data_publicacao": "2026-10-15T13:35:00Z",
+    "criado_em": "2026-10-25T23:48:23.179Z",
+    "atualizado_em": "2026-10-26T00:09:36.837Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 27,
+  "fields": {
+    "chapeu": "FORAGIDO CAPTURADO",
+    "titulo": "Polícia Civil prende homem investigado por matar mulher em Alto Boa Vista",
+    "linha_fina": "Crime ocorreu em 2025 e executor foi localizado em São Félix do Xingu, no Pará",
+    "autor": "Polícia Judiciária Civil | PJCMT",
+    "imagem": "atividades/viatura_confresa.jpg",
+    "credito_imagem": "Assessoria | PJCMT",
+    "corpo": "<p>Crime ocorreu em 2025 e executor foi localizado em São Félix do Xingu, no Pará</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.pjc.mt.gov.br/w/pol%C3%ADcia-civil-prende-homem-investigado-por-matar-mulher-em-alto-boa-vista\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "policia-civil-prende-homem-investigado-por-matar-mulher-em-alto-boa-vista",
+    "status": "publicado",
+    "data_publicacao": "2026-10-15T13:32:00Z",
+    "criado_em": "2026-10-25T23:48:23.348Z",
+    "atualizado_em": "2026-10-26T00:09:36.850Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 28,
+  "fields": {
+    "chapeu": "DEFESA DA INFÂNCIA",
+    "titulo": "Polícia Civil prende preventivamente argentino que fazia imagens íntimas de crianças em lugares públicos em Cuiabá",
+    "linha_fina": "Suspeito foi preso após importunar sexualmente uma menina de 12 anos em uma loja na capital",
+    "autor": "Polícia Judiciária Civil | PJCMT",
+    "imagem": "atividades/Plantao_da_Mulher_24h_Cuiaba.jpg",
+    "credito_imagem": "Assessoria | PJCMT",
+    "corpo": "<p>Suspeito foi preso após importunar sexualmente uma menina de 12 anos em uma loja na capital</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.pjc.mt.gov.br/w/pol%C3%ADcia-civil-prende-preventivamente-argentino-que-fazia-imagens-%C3%ADntimas-de-crian%C3%A7as-em-lugares-p%C3%BAblicos-em-cuiab%C3%A1\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "policia-civil-prende-preventivamente-argentino-que-fazia-imagens-intimas-de-criancas-em-lugares-publicos-em-cuiaba",
+    "status": "publicado",
+    "data_publicacao": "2026-10-15T13:31:00Z",
+    "criado_em": "2026-10-25T23:48:23.487Z",
+    "atualizado_em": "2026-10-26T00:09:36.860Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 29,
+  "fields": {
+    "chapeu": "FORAGIDO PRESO",
+    "titulo": "Polícia Militar prende em Nova Nazaré homem procurado por feminicídio em Goiás",
+    "linha_fina": "Suspeito tinha mandado de prisão em aberto e estava com uma espingarda e 18 cartuchos calibre 32",
+    "autor": "Polícia Militar de Mato Grosso | PMMT",
+    "imagem": "atividades/05.10_nova_nazare_1.jpg",
+    "credito_imagem": "Assessoria | PMMT",
+    "corpo": "<p>Suspeito tinha mandado de prisão em aberto e estava com uma espingarda e 18 cartuchos calibre 32</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.pm.mt.gov.br/w/pol%C3%ADcia-militar-prende-foragido-por-feminic%C3%ADdio-em-goi%C3%A1s-ap%C3%B3s-abordagem-em-nova-nazar%C3%A9\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "policia-militar-prende-em-nova-nazare-homem-procurado-por-feminicidio-em-goias",
+    "status": "publicado",
+    "data_publicacao": "2026-10-15T13:29:00Z",
+    "criado_em": "2026-10-25T23:48:23.635Z",
+    "atualizado_em": "2026-10-26T00:09:36.871Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 30,
+  "fields": {
+    "chapeu": "REFORÇO NO COMBATE",
+    "titulo": "\"Delegacias da Mulher vão ampliar proteção e garantir resposta mais rápida às vítimas\", afirma chefe do Gabinete de Enfrentamento à Violência Contra a Mulher",
+    "linha_fina": "Com as novas unidades em Lucas do Rio Verde e Sorriso, Estado passa a contar com nove Delegacias Especializadas de Defesa da Mulher",
+    "autor": "Secom-MT",
+    "imagem": "atividades/WhatsApp_Image_2026-07-03_at_13.00.10.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Com as novas unidades em Lucas do Rio Verde e Sorriso, Estado passa a contar com nove Delegacias Especializadas de Defesa da Mulher</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/-delegacias-da-mulher-v%C3%A3o-ampliar-prote%C3%A7%C3%A3o-e-garantir-resposta-mais-r%C3%A1pida-%C3%A0s-v%C3%ADtimas-afirma-chefe-do-gabinete-de-enfrentamento-%C3%A0-viol%\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "quotdelegacias-da-mulher-vao-ampliar-protecao-e-garantir-resposta-mais-rapida-as-vitimasquot-afirma-chefe-do-gabinete-de-enfrentamento-a-violencia-contra-a-mulher",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:44:00Z",
+    "criado_em": "2026-10-25T23:48:23.794Z",
+    "atualizado_em": "2026-10-26T01:03:44.155Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 31,
+  "fields": {
+    "chapeu": "REFORÇO NA PROTEÇÃO ÀS MULHERES",
+    "titulo": "Governo inaugura 2ª Delegacia da Mulher do dia no Médio-Norte de MT: \"Estado tem pressa em combater violência doméstica\", afirma governador",
+    "linha_fina": "Segunda unidade foi inaugurada em Sorriso e reforça a rede de atendimento às mulheres no interior; outra foi entregue em Lucas do Rio Verde",
+    "autor": "Secom-MT",
+    "imagem": "atividades/inauguracao_delegacia_Sorriso.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Segunda unidade foi inaugurada em Sorriso e reforça a rede de atendimento às mulheres no interior; outra foi entregue em Lucas do Rio Verde</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governo-inaugura-2%C2%AA-delegacia-da-mulher-do-dia-no-m%C3%A9dio-norte-de-mt-estado-tem-pressa-em-combater-viol%C3%AAncia-dom%C3%A9stica-afirma-governador\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governo-inaugura-2a-delegacia-da-mulher-do-dia-no-medio-norte-de-mt-quotestado-tem-pressa-em-combater-violencia-domesticaquot-afirma-governador",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:42:00Z",
+    "criado_em": "2026-10-25T23:48:23.950Z",
+    "atualizado_em": "2026-10-26T01:03:44.162Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 32,
+  "fields": {
+    "chapeu": "PARCERIA COM MUNICÍPIO",
+    "titulo": "Governo de MT amplia rede de proteção às mulheres e entrega nova escola em Lucas do Rio Verde",
+    "linha_fina": "Governador Otaviano Pivetta inaugurou a Delegacia Especializada de Defesa da Mulher",
+    "autor": "Secom-MT",
+    "imagem": "atividades/WhatsApp_Image_2026-07-02_at_17.01.10.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Governador Otaviano Pivetta inaugurou a Delegacia Especializada de Defesa da Mulher</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governo-de-mt-amplia-rede-de-prote%C3%A7%C3%A3o-%C3%A0s-mulheres-e-entrega-nova-escola-em-lucas-do-rio-verde\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governo-de-mt-amplia-rede-de-protecao-as-mulheres-e-entrega-nova-escola-em-lucas-do-rio-verde",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:41:00Z",
+    "criado_em": "2026-10-25T23:48:24.080Z",
+    "atualizado_em": "2026-10-26T00:09:36.881Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 33,
+  "fields": {
+    "chapeu": "REFORÇO NA PROTEÇÃO ÀS MULHERES",
+    "titulo": "Governo de MT sanciona lei que determina escolas estaduais a abordarem prevenção à violência doméstica e lança site",
+    "linha_fina": "Site tem informações para vítimas acessarem a rede de apoio e denunciarem casos",
+    "autor": "Secom-MT",
+    "imagem": "atividades/JPC_5905.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Site tem informações para vítimas acessarem a rede de apoio e denunciarem casos</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governo-de-mt-sanciona-lei-que-determina-escolas-estaduais-a-abordar-preven%C3%A7%C3%A3o-%C3%A0-viol%C3%AAncia-dom%C3%A9stica-e-lan%C3%A7a-site\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governo-de-mt-sanciona-lei-que-determina-escolas-estaduais-a-abordarem-prevencao-a-violencia-domestica-e-lanca-site",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:40:00Z",
+    "criado_em": "2026-10-25T23:48:24.220Z",
+    "atualizado_em": "2026-10-26T00:09:36.893Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 34,
+  "fields": {
+    "chapeu": "CRIMES CONTRA A MULHER",
+    "titulo": "Governador Otaviano Pivetta afirma que Estado vai manter combate à criminalidade com “mão pesada”",
+    "linha_fina": "Declaração foi feita durante a entrega de 47 viaturas da Patrulha Maria da Penha, em evento da Sesp voltado ao fortalecimento da segurança pública",
+    "autor": "Secom-MT",
+    "imagem": "atividades/c8c5859b-6ad0-4df7-99f3-a32f1cf71ec2.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Declaração foi feita durante a entrega de 47 viaturas da Patrulha Maria da Penha, em evento da Sesp voltado ao fortalecimento da segurança pública</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governador-otaviano-pivetta-afirma-que-estado-vai-manter-combate-%C3%A0-criminalidade-com-m%C3%A3o-pesada-\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governador-otaviano-pivetta-afirma-que-estado-vai-manter-combate-a-criminalidade-com-mao-pesada",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:39:00Z",
+    "criado_em": "2026-10-25T23:48:24.413Z",
+    "atualizado_em": "2026-10-26T00:09:36.906Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 35,
+  "fields": {
+    "chapeu": "COMBATE À VIOLÊNCIA DOMÉSTICA",
+    "titulo": "Governo de MT entrega 47 novas viaturas da Patrulha Maria da Penha e alcança 100% dos municípios",
+    "linha_fina": "Programa Patrulha Maria da Penha está presente nos 142 municípios divididos em 87 núcleos",
+    "autor": "Secom-MT",
+    "imagem": "atividades/Patrulha_Maria_da_Penha_defesa_das_mulheres-6466.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Programa Patrulha Maria da Penha está presente nos 142 municípios divididos em 87 núcleos</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governo-de-mt-entrega-47-novas-viaturas-da-patrulha-maria-da-penha-e-alcan%C3%A7a-100-dos-munic%C3%ADpios\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governo-de-mt-entrega-47-novas-viaturas-da-patrulha-maria-da-penha-e-alcanca-100-dos-municipios",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:20:00Z",
+    "criado_em": "2026-10-25T23:48:24.549Z",
+    "atualizado_em": "2026-10-26T00:09:36.917Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 36,
+  "fields": {
+    "chapeu": "PROTEÇÃO ÀS MULHERES",
+    "titulo": "Após feminicídio, secretária reforça importância de vítimas de violência manterem medidas protetivas",
+    "linha_fina": "Suspeito tinha histórico de violência contra vítima",
+    "autor": "Secom-MT",
+    "imagem": "atividades/CLAS7618.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Suspeito tinha histórico de violência contra vítima</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/ap%C3%B3s-feminic%C3%ADdio-secret%C3%A1ria-refor%C3%A7a-import%C3%A2ncia-de-v%C3%ADtimas-de-viol%C3%AAncia-manterem-medidas-protetivas\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "apos-feminicidio-secretaria-reforca-importancia-de-vitimas-de-violencia-manterem-medidas-protetivas",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:17:00Z",
+    "criado_em": "2026-10-25T23:48:24.703Z",
+    "atualizado_em": "2026-10-26T00:09:36.927Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 37,
+  "fields": {
+    "chapeu": "MAIS SEGURANÇA",
+    "titulo": "Governo de MT inaugura nova delegacia em Nobres: “Com essa unidade, nenhum crime ficará impune”, afirma prefeito",
+    "linha_fina": "Governador Otaviano Pivetta também entregou 64 escrituras definitivas e autorizou concessão de R$ 6,4 milhões em auxílios pelo programa SER Família Habitação",
+    "autor": "Secom-MT",
+    "imagem": "atividades/WhatsApp_Image_2026-06-12_at_16.31.24.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Governador Otaviano Pivetta também entregou 64 escrituras definitivas e autorizou concessão de R$ 6,4 milhões em auxílios pelo programa SER Família Habitação</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governo-de-mt-inaugura-nova-delegacia-em-nobres-com-essa-unidade-nenhum-crime-ficar%C3%A1-impune-afirma-prefeito\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governo-de-mt-inaugura-nova-delegacia-em-nobres-com-essa-unidade-nenhum-crime-ficara-impune-afirma-prefeito",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:15:00Z",
+    "criado_em": "2026-10-25T23:48:24.887Z",
+    "atualizado_em": "2026-10-25T23:51:14.535Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 38,
+  "fields": {
+    "chapeu": "MENINAS QUE TRANSFORMAM",
+    "titulo": "Governo de MT abre inscrições para contratar adolescentes em programa de valorização feminina",
+    "linha_fina": "Governo de MT abre inscrições para contratar adolescentes em programa de valorização feminina",
+    "autor": "Secom-MT",
+    "imagem": "atividades/WhatsApp_Image_2026-06-11_at_08.24.39.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Governo de MT abre inscrições para contratar adolescentes em programa de valorização feminina</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governo-de-mt-abre-inscri%C3%A7%C3%B5es-para-contratar-adolescentes-em-programa-de-valoriza%C3%A7%C3%A3o-feminina\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governo-de-mt-abre-inscricoes-para-contratar-adolescentes-em-programa-de-valorizacao-feminina",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:13:00Z",
+    "criado_em": "2026-10-25T23:48:24.993Z",
+    "atualizado_em": "2026-10-26T00:09:36.939Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 39,
+  "fields": {
+    "chapeu": "PROTEÇÃO ÀS MULHERES",
+    "titulo": "Governo de MT instala Delegacia da Mulher 24h em VG: “garantia de vida”, afirma desembargadora",
+    "linha_fina": "Plantão 24 horas amplia atendimento especializado e reforça rede de proteção a vítimas de violência doméstica e familiar",
+    "autor": "Secom-MT",
+    "imagem": "atividades/IMG-20260506-WA0298.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Plantão 24 horas amplia atendimento especializado e reforça rede de proteção a vítimas de violência doméstica e familiar</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governo-de-mt-instala-delegacia-da-mulher-24h-em-vg-garantia-de-vida-afirma\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governo-de-mt-instala-delegacia-da-mulher-24h-em-vg-garantia-de-vida-afirma-desembargadora",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:12:00Z",
+    "criado_em": "2026-10-25T23:48:25.114Z",
+    "atualizado_em": "2026-10-25T23:51:14.972Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 40,
+  "fields": {
+    "chapeu": "MT EM DEFESA DAS MULHERES",
+    "titulo": "Governo de MT firma pacto com TJ, MP, AL, TCE e Defensoria em defesa das mulheres",
+    "linha_fina": "Pacote de medidas estratégicas lançadas visa ampliar rede de proteção para combater violência contra mulher e feminicídios",
+    "autor": "Secom-MT",
+    "imagem": "atividades/sem_titulo-7743.jpg.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Pacote de medidas estratégicas lançadas visa ampliar rede de proteção para combater violência contra mulher e feminicídios</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/governo-de-mt-firma-pacto-com-tj-mp-al-tce-e-defensoria-em-defesa-das-mulheres\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "governo-de-mt-firma-pacto-com-tj-mp-al-tce-e-defensoria-em-defesa-das-mulheres",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:11:00Z",
+    "criado_em": "2026-10-25T23:48:25.261Z",
+    "atualizado_em": "2026-10-26T00:09:36.956Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 41,
+  "fields": {
+    "chapeu": "AÇÕES DO GOVERNO",
+    "titulo": "Gabinete de Enfrentamento à Violência Contra Mulher reúne juízes, promotores e policiais em seminário para prevenção ao feminicídio",
+    "linha_fina": "Objetivo é capacitar integrantes do Sistema de Justiça para atuação integrada",
+    "autor": "Secom-MT",
+    "imagem": "atividades/P_Paiaguas-9323_2.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Objetivo é capacitar integrantes do Sistema de Justiça para atuação integrada</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/gabinete-de-enfrentamento-%C3%A0-viol%C3%AAncia-contra-mulher-re%C3%BAne-ju%C3%ADzes-promotores-e-policiais-em-semin%C3%A1rio-para-preven%C3%A7%C3%A3o-ao-feminic%C3%ADdio\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "gabinete-de-enfrentamento-a-violencia-contra-mulher-reune-juizes-promotores-e-policiais-em-seminario-para-prevencao-ao-feminicidio",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:10:00Z",
+    "criado_em": "2026-10-25T23:48:25.397Z",
+    "atualizado_em": "2026-10-26T00:09:36.980Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 42,
+  "fields": {
+    "chapeu": "AÇÕES DE PREVENÇÃO E REPRESSÃO",
+    "titulo": "Saiba o que o Governo de MT está fazendo para combater a violência contra mulheres no Estado",
+    "linha_fina": "Desde 2019, o Estado desenvolve ações para romper ciclos de violência e diminuir casos",
+    "autor": "Secom-MT",
+    "imagem": "atividades/PLANTAO_MULHER_24H_ok.jpg",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Desde 2019, o Estado desenvolve ações para romper ciclos de violência e diminuir casos</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/saiba-o-que-o-governo-de-mt-est%C3%A1-fazendo-para-combater-a-viol%C3%AAncia-contra-mulheres-no-estado\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "saiba-o-que-o-governo-de-mt-esta-fazendo-para-combater-a-violencia-contra-mulheres-no-estado",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:07:00Z",
+    "criado_em": "2026-10-25T23:48:25.543Z",
+    "atualizado_em": "2026-10-26T00:09:36.997Z"
+  }
+},
+{
+  "model": "core.atividadedestaque",
+  "pk": 43,
+  "fields": {
+    "chapeu": "COMBATE À VIOLÊNCIA",
+    "titulo": "“A família é a primeira ponta de apoio para mulheres que sofrem violência doméstica”, afirma delegada",
+    "linha_fina": "Coordenadora ressalta que o combate à violência doméstica é uma responsabilidade coletiva",
+    "autor": "Secom-MT",
+    "imagem": "atividades/delegada_mariell_antonini.png",
+    "credito_imagem": "Secom-MT",
+    "corpo": "<p>Coordenadora ressalta que o combate à violência doméstica é uma responsabilidade coletiva</p>\n<p>As ações integram a política contínua do Governo do Estado de Mato Grosso e dos órgãos que compõem a Rede de Enfrentamento à Violência contra a Mulher (REDEVIM), reforçando o atendimento célere, o acolhimento qualificado e a resposta enérgica às infrações e aos crimes de violência doméstica e de gênero.</p>\n<p><strong>Canais de denúncia e acolhimento em Mato Grosso:</strong></p>\n<ul>\n    <li><strong>190</strong> — Polícia Militar (Emergência imediata)</li>\n    <li><strong>197</strong> — Polícia Civil (Denúncias anônimas e investigações)</li>\n    <li><strong>180</strong> — Central de Atendimento à Mulher (Informações e orientações 24h)</li>\n    <li><strong>SOS Mulher MT</strong> — Botão do Pânico e Medida Protetiva Digital no celular</li>\n</ul>\n<p style=\"margin-top: 25px;\"><a href=\"https://www.secom.mt.gov.br/w/-a-fam%C3%ADlia-%C3%A9-a-primeira-ponta-de-apoio-para-mulheres-que-sofrem-viol%C3%AAncia-dom%C3%A9stica-afirma-delegada\" target=\"_blank\" style=\"color: #004587; font-weight: bold; text-decoration: underline;\" rel=\"noopener noreferrer\">Acesse a matéria completa e os comunicados oficiais na íntegra no portal institucional</a></p>",
+    "slug": "a-familia-e-a-primeira-ponta-de-apoio-para-mulheres-que-sofrem-violencia-domestica-afirma-delegada",
+    "status": "publicado",
+    "data_publicacao": "2026-10-13T19:05:00Z",
+    "criado_em": "2026-10-25T23:48:25.661Z",
+    "atualizado_em": "2026-10-26T00:09:37.012Z"
+  }
+}
+]
