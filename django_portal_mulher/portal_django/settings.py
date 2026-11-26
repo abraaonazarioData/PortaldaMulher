@@ -91,6 +91,7 @@ X_FRAME_OPTIONS = 'DENY'
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
+SECURE_REFERRER_POLICY = 'same-origin'
 
 # Configurações de Segurança para Produção / HTTPS
 PRODUCTION = os.environ.get('DJANGO_PRODUCTION', '').lower() in ('true', '1')
